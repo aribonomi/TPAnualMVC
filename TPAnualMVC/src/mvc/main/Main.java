@@ -11,8 +11,9 @@ import dao.Vuelo.Aerolinea;
 import dao.Vuelo.Pais;
 import dao.Vuelo.Provincia;
 import mvc.controller.VerificarEdad;
+import mvc.view.MenuPrincipal;
 
-public class Prueba {
+public class Main {
 	
 	public static void main(String[] args) {
 	
@@ -37,6 +38,7 @@ public class Prueba {
 	
 	
 	VerificarEdad.verificarEdad(_cliente);
+	MenuPrincipal.menuPrincipal();
 	
 	}
 	
