@@ -12,6 +12,7 @@ import dao.Vuelo.Pais;
 import dao.Vuelo.Provincia;
 import mvc.controller.VerificarEdad;
 import mvc.view.MenuPrincipal;
+import mvc.view.MenuPrincipalSwing;
 
 public class Main {
 	
@@ -37,8 +38,10 @@ public class Main {
 			_pasaporte, _pf);
 	
 	
-	VerificarEdad.verificarEdad(_cliente);
-	MenuPrincipal.menuPrincipal();
+//	VerificarEdad.verificarEdad(_cliente);
+//	MenuPrincipal.menuPrincipal();
+
+	MenuPrincipalSwing.JMenuPrincipal();
 	
 	}
 	
