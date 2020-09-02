@@ -25,9 +25,9 @@ public class Main {
 	
 	Pasaporte _pasaporte = new Pasaporte(32, "11122233", "Sargento Chaja", d1, d1, _pais);
 	
-	Aerolinea _aerolinea = new Aerolinea(32, "Emirates", null);
+	Aerolinea _aerolinea = new Aerolinea(32, "Emirates", null, null);
 	
-	PasajeroFrecuente _pf = new PasajeroFrecuente(45, "MuyFrecuente", "4442233232", _aerolinea);
+	PasajeroFrecuente _pf = new PasajeroFrecuente(45, "MuyFrecuente", "4442233232", null, _aerolinea);
 	
 	Telefono _telefono = new Telefono(3342332, "Ariel", "03484333222", "333211132");
 	
