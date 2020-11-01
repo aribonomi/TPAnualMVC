@@ -11,6 +11,7 @@ public class ControladorCliente implements ActionListener{
 	
 	
 	
+	
 	public ControladorCliente(VistaPrincipal vista) {
 		super();
 		this.vista = vista;
