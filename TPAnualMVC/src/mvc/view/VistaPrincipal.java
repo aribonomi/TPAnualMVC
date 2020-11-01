@@ -14,6 +14,9 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.border.SoftBevelBorder;
+
+import mvc.controller.ControladorCliente;
+
 import javax.swing.border.BevelBorder;
 
 public class VistaPrincipal extends JFrame {
@@ -53,6 +56,7 @@ public class VistaPrincipal extends JFrame {
 		
 		JMenuItem agregarCliente = new JMenuItem("Agregar");
 		menuCliente.add(agregarCliente);
+		agregarCliente.addActionListener(new ControladorCliente(this));
 		
 		JMenuItem consultarCliente = new JMenuItem("Consultar");
 		menuCliente.add(consultarCliente);
