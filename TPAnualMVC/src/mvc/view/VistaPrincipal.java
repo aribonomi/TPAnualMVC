@@ -16,6 +16,7 @@ import java.awt.Color;
 import javax.swing.border.SoftBevelBorder;
 
 import mvc.controller.ControladorCliente;
+import mvc.controller.ControladorLineaAerea;
 
 import javax.swing.border.BevelBorder;
 
@@ -26,6 +27,10 @@ public class VistaPrincipal extends JFrame {
 	public JMenuItem consultarCliente;
 	public JMenuItem modificarCliente;
 	public JMenuItem eliminarCliente;
+	public JMenuItem agregarLineaAerea;
+	public JMenuItem modificarLineaAerea;
+	public JMenuItem consultarLineaAerea;
+	public JMenuItem eliminarLineaAerea;
 
 	/**
 	 * Launch the application.
@@ -80,15 +85,19 @@ public class VistaPrincipal extends JFrame {
 		
 		JMenuItem agregarLineaAerea = new JMenuItem("Agregar");
 		menuLineaAerea.add(agregarLineaAerea);
+		agregarLineaAerea.addActionListener(new ControladorLineaAerea(this));
 		
 		JMenuItem consultarLineaAerea = new JMenuItem("Consultar");
 		menuLineaAerea.add(consultarLineaAerea);
+		consultarLineaAerea.addActionListener(new ControladorLineaAerea(this));
 		
 		JMenuItem modificarLineaAerea = new JMenuItem("Modificar");
 		menuLineaAerea.add(modificarLineaAerea);
+		modificarLineaAerea.addActionListener(new ControladorLineaAerea(this));
 		
 		JMenuItem eliminarLineaAerea = new JMenuItem("Eliminar");
 		menuLineaAerea.add(eliminarLineaAerea);
+		eliminarLineaAerea.addActionListener(new ControladorLineaAerea(this));
 		
 		JMenu menuVuelo = new JMenu("Vuelos");
 		menuVuelo.setBackground(Color.BLACK);

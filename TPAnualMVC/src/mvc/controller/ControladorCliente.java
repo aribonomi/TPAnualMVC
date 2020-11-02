@@ -7,24 +7,30 @@ import javax.swing.JOptionPane;
 
 import Factory.Factory;
 import dao.Interfaces.ClienteDAO;
+import dao.Interfaces.DireccionDAO;
+import dao.Interfaces.TelefonoDAO;
 import dao.negocio.Aerolinea;
 import dao.negocio.Alianza;
 import dao.negocio.Direccion;
 import dao.negocio.Pais;
 import dao.negocio.Provincia;
+import dao.negocio.Telefono;
 import mvc.view.VistaPrincipal;
 
 public class ControladorCliente implements ActionListener{
 
 	VistaPrincipal vista;
 	ClienteDAO clienteDAO;
-	
+	DireccionDAO direccionDAO;
+	TelefonoDAO telefonoDAO;
 	
 	
 	
 	public ControladorCliente(VistaPrincipal vista) {
 		this.vista = vista;
 		clienteDAO = new Factory().getClienteDaoImplMysql();
+		direccionDAO = new Factory().getDireccionDaoImplMysql();
+		telefonoDAO = new Factory().getTelefonoDaoImplMysql();
 	}
 
 
@@ -47,9 +53,14 @@ public class ControladorCliente implements ActionListener{
 			String provincia = JOptionPane.showInputDialog(null, "Provincia: ", "Dirección");
 			String pais = JOptionPane.showInputDialog(null, "País: ", "Dirección");
 			
+			
+			
 			String celular = JOptionPane.showInputDialog(null, "Celular: ", "Teléfono");
 			String laboral = JOptionPane.showInputDialog(null, "Laboral: ", "Teléfono");
 			String personal = JOptionPane.showInputDialog(null, "Personal: ", "Teléfono");
+			Telefono tel = new Telefono(celular, laboral, personal);
+			telefonoDAO.addTelefono(tel);
+			
 			
 			String numeroPas = JOptionPane.showInputDialog(null, "Número de pasaporte: ", "Pasaporte");
 			String autoridad = JOptionPane.showInputDialog(null, "Autoridad de emisión: ", "Pasaporte");
