@@ -1,6 +1,6 @@
 package mvc.controller;
 
-import dao.Cliente.Cliente;
+import dao.negocio.Cliente;
 
 public class VerificarEdad {
 	
