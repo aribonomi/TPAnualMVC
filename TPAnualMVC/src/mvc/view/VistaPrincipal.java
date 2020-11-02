@@ -21,7 +21,11 @@ import javax.swing.border.BevelBorder;
 
 public class VistaPrincipal extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
+	public JMenuItem agregarCliente;
+	public JMenuItem consultarCliente;
+	public JMenuItem modificarCliente;
+	public JMenuItem eliminarCliente;
 
 	/**
 	 * Launch the application.
@@ -54,18 +58,21 @@ public class VistaPrincipal extends JFrame {
 		menuCliente.setBackground(Color.BLACK);
 		menuBar.add(menuCliente);
 		
-		JMenuItem agregarCliente = new JMenuItem("Agregar");
+		agregarCliente = new JMenuItem("Agregar");
 		menuCliente.add(agregarCliente);
 		agregarCliente.addActionListener(new ControladorCliente(this));
 		
-		JMenuItem consultarCliente = new JMenuItem("Consultar");
+		consultarCliente = new JMenuItem("Consultar");
 		menuCliente.add(consultarCliente);
+		consultarCliente.addActionListener(new ControladorCliente(this));
 		
-		JMenuItem modificarCliente = new JMenuItem("Modificar");
+		modificarCliente = new JMenuItem("Modificar");
 		menuCliente.add(modificarCliente);
+		modificarCliente.addActionListener(new ControladorCliente(this));
 		
-		JMenuItem eliminarCliente = new JMenuItem("Eliminar");
+		eliminarCliente = new JMenuItem("Eliminar");
 		menuCliente.add(eliminarCliente);
+		eliminarCliente.addActionListener(new ControladorCliente(this));
 		
 		JMenu menuLineaAerea = new JMenu("Líneas aereas");
 		menuLineaAerea.setBackground(Color.BLACK);
