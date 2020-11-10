@@ -31,6 +31,10 @@ public class VistaPrincipal extends JFrame {
 	public JMenuItem modificarLineaAerea;
 	public JMenuItem consultarLineaAerea;
 	public JMenuItem eliminarLineaAerea;
+	public JMenuItem agregarVuelo;
+	public JMenuItem consultarVuelo;
+	public JMenuItem modificarVuelo;
+	public JMenuItem eliminarVuelo;
 
 	/**
 	 * Launch the application.
@@ -103,16 +107,16 @@ public class VistaPrincipal extends JFrame {
 		menuVuelo.setBackground(Color.BLACK);
 		menuBar.add(menuVuelo);
 		
-		JMenuItem agregarVuelo = new JMenuItem("Agregar");
+		agregarVuelo = new JMenuItem("Agregar");
 		menuVuelo.add(agregarVuelo);
 		
-		JMenuItem consultarVuelo = new JMenuItem("Consultar");
+		consultarVuelo = new JMenuItem("Consultar");
 		menuVuelo.add(consultarVuelo);
 		
-		JMenuItem modificarVuelo = new JMenuItem("Modificar");
+		modificarVuelo = new JMenuItem("Modificar");
 		menuVuelo.add(modificarVuelo);
 		
-		JMenuItem eliminarVuelo = new JMenuItem("Eliminar");
+		eliminarVuelo = new JMenuItem("Eliminar");
 		menuVuelo.add(eliminarVuelo);
 		
 		JMenu menuVenta = new JMenu("Ventas");
