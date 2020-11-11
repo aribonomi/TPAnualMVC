@@ -11,13 +11,16 @@ import dao.Interfaces.DireccionDAO;
 import dao.Interfaces.TelefonoDAO;
 import dao.negocio.Aerolinea;
 import dao.negocio.Alianza;
+import dao.negocio.Cliente;
 import dao.negocio.Direccion;
 import dao.negocio.Pais;
+import dao.negocio.PasajeroFrecuente;
+import dao.negocio.Pasaporte;
 import dao.negocio.Provincia;
 import dao.negocio.Telefono;
 import mvc.view.VistaPrincipal;
 
-public class ControladorCliente implements ActionListener{
+public class ControladorCliente {
 
 	VistaPrincipal vista;
 	ClienteDAO clienteDAO;
@@ -35,6 +38,16 @@ public class ControladorCliente implements ActionListener{
 
 
 
+	public void altaCliente(String nombre, String apellido, String dni, String cuit_cuil,
+			String fecha_nacimiento, String email, Direccion direccion, Telefono telefono, Pasaporte pasaporte,
+			PasajeroFrecuente pasajeroFrecuente) {
+		
+		Cliente c = new Cliente(nombre, apellido, dni, cuit_cuil, fecha_nacimiento, email, direccion, telefono, pasaporte, pasajeroFrecuente);
+		clienteDAO.altaCliente(c);
+		
+	}
+	
+	/*
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -75,9 +88,10 @@ public class ControladorCliente implements ActionListener{
 
 			
 		}
+		*/
 		
 	}
 	
 	
 
-}
+

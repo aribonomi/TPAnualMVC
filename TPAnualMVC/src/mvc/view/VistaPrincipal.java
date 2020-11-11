@@ -17,6 +17,7 @@ import javax.swing.border.SoftBevelBorder;
 
 import mvc.controller.ControladorCliente;
 import mvc.controller.ControladorLineaAerea;
+import mvc.controller.EventosVistaPrincipal;
 
 import javax.swing.border.BevelBorder;
 
@@ -69,19 +70,19 @@ public class VistaPrincipal extends JFrame {
 		
 		agregarCliente = new JMenuItem("Agregar");
 		menuCliente.add(agregarCliente);
-		agregarCliente.addActionListener(new ControladorCliente(this));
+		agregarCliente.addActionListener(new EventosVistaPrincipal(this));
 		
 		consultarCliente = new JMenuItem("Consultar");
 		menuCliente.add(consultarCliente);
-		consultarCliente.addActionListener(new ControladorCliente(this));
+		consultarCliente.addActionListener(new EventosVistaPrincipal(this));
 		
 		modificarCliente = new JMenuItem("Modificar");
 		menuCliente.add(modificarCliente);
-		modificarCliente.addActionListener(new ControladorCliente(this));
+		modificarCliente.addActionListener(new EventosVistaPrincipal(this));
 		
 		eliminarCliente = new JMenuItem("Eliminar");
 		menuCliente.add(eliminarCliente);
-		eliminarCliente.addActionListener(new ControladorCliente(this));
+		eliminarCliente.addActionListener(new EventosVistaPrincipal(this));
 		
 		JMenu menuLineaAerea = new JMenu("Líneas aereas");
 		menuLineaAerea.setBackground(Color.BLACK);
@@ -89,19 +90,19 @@ public class VistaPrincipal extends JFrame {
 		
 		JMenuItem agregarLineaAerea = new JMenuItem("Agregar");
 		menuLineaAerea.add(agregarLineaAerea);
-		agregarLineaAerea.addActionListener(new ControladorLineaAerea(this));
+		agregarLineaAerea.addActionListener(new EventosVistaPrincipal(this));
 		
 		JMenuItem consultarLineaAerea = new JMenuItem("Consultar");
 		menuLineaAerea.add(consultarLineaAerea);
-		consultarLineaAerea.addActionListener(new ControladorLineaAerea(this));
+		consultarLineaAerea.addActionListener(new EventosVistaPrincipal(this));
 		
 		JMenuItem modificarLineaAerea = new JMenuItem("Modificar");
 		menuLineaAerea.add(modificarLineaAerea);
-		modificarLineaAerea.addActionListener(new ControladorLineaAerea(this));
+		modificarLineaAerea.addActionListener(new EventosVistaPrincipal(this));
 		
 		JMenuItem eliminarLineaAerea = new JMenuItem("Eliminar");
 		menuLineaAerea.add(eliminarLineaAerea);
-		eliminarLineaAerea.addActionListener(new ControladorLineaAerea(this));
+		eliminarLineaAerea.addActionListener(new EventosVistaPrincipal(this));
 		
 		JMenu menuVuelo = new JMenu("Vuelos");
 		menuVuelo.setBackground(Color.BLACK);
