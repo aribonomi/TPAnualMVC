@@ -15,12 +15,17 @@ import java.awt.GridLayout;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JSpinner;
+import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
 
 public class VistaAgregarCliente extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -49,22 +54,11 @@ public class VistaAgregarCliente extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel label = new JLabel("");
-		label.setBounds(5, 6, 141, 62);
-		contentPane.add(label);
-		
 		JLabel labelArgegarCliente = new JLabel("Agregar cliente");
 		labelArgegarCliente.setBounds(146, 6, 141, 62);
 		labelArgegarCliente.setHorizontalAlignment(SwingConstants.CENTER);
 		labelArgegarCliente.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		contentPane.add(labelArgegarCliente);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(409, 6, 19, 248);
-		contentPane.add(scrollPane);
-		
-		JScrollBar scrollBar = new JScrollBar();
-		scrollPane.setViewportView(scrollBar);
 		
 		JLabel labelNombre = new JLabel("Nombre");
 		labelNombre.setBounds(5, 68, 51, 19);
@@ -190,5 +184,48 @@ public class VistaAgregarCliente extends JFrame {
 		));
 		table.setBounds(5, 451, 378, -84);
 		contentPane.add(table);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(407, 6, 17, 48);
+		contentPane.add(scrollBar);
+		
+		JLabel labelCodPostal = new JLabel("C\u00F3digo postal");
+		labelCodPostal.setBounds(5, 353, 86, 14);
+		contentPane.add(labelCodPostal);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(146, 348, 141, 19);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel labelProvincia = new JLabel("Provincia");
+		labelProvincia.setBounds(5, 378, 46, 14);
+		contentPane.add(labelProvincia);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(146, 373, 141, 19);
+		contentPane.add(comboBox);
+		
+		JLabel labelPais = new JLabel("Pa\u00EDs");
+		labelPais.setBounds(5, 400, 46, 14);
+		contentPane.add(labelPais);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(146, 398, 141, 19);
+		contentPane.add(comboBox_1);
+		
+		JLabel labelTelefono = new JLabel("Tel\u00E9fono");
+		labelTelefono.setFont(new Font("Tahoma", Font.BOLD, 11));
+		labelTelefono.setBounds(5, 425, 74, 14);
+		contentPane.add(labelTelefono);
+		
+		JLabel labelCelular = new JLabel("Celular");
+		labelCelular.setBounds(5, 451, 46, 14);
+		contentPane.add(labelCelular);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(146, 448, 141, 17);
+		contentPane.add(textField_2);
+		textField_2.setColumns(10);
 	}
 }
