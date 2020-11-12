@@ -9,27 +9,38 @@ import Factory.Factory;
 import dao.Interfaces.AeropuertoDAO;
 import dao.Interfaces.VuelosDAO;
 import dao.negocio.Aeropuerto;
+import dao.negocio.Vuelo;
 import mvc.view.VistaPrincipal;
 
-public class ControladorVuelo implements ActionListener{
+public class ControladorVuelo{
 	
-	VistaPrincipal vista;
 	VuelosDAO vueloDAO;
-	AeropuertoDAO aeropDAO;
-	
 	
 	
 
 	public ControladorVuelo(VistaPrincipal vista) {
-		this.vista = vista;
-		vueloDAO = new Factory().getVuelosDaoImplMysql();
-		aeropDAO = new Factory().getAeropuertoDaoImplMysql();
+		new Factory();
+		vueloDAO = Factory.getVuelosDaoImplMysql();
 	}
 
 
+	public void altaVuelo(Vuelo v) {
+		vueloDAO.altaVuelo(v);
+	}
+	
+	public void bajaVuelo(String id) {
+		vueloDAO.bajaVuelo(id);
+	}
+	
+	public void modVuelo(Vuelo v) {
+		vueloDAO.modificarVuelo(v);
+	}
+	
+	public Vuelo consultarVuelo(String id) {
+		return vueloDAO.getVuelos(id);
+	}
 
-
-	@Override
+	/*@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==this.vista.agregarVuelo) {
 			String numero = JOptionPane.showInputDialog(null, "Número de vuelo:");
@@ -47,7 +58,7 @@ public class ControladorVuelo implements ActionListener{
 			
 		}
 		
-	}
+	}*/
 	
 	
 

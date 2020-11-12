@@ -1,50 +1,40 @@
 package mvc.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JOptionPane;
-
 import Factory.Factory;
 import dao.Interfaces.ClienteDAO;
-import dao.Interfaces.DireccionDAO;
-import dao.Interfaces.TelefonoDAO;
-import dao.negocio.Aerolinea;
-import dao.negocio.Alianza;
 import dao.negocio.Cliente;
-import dao.negocio.Direccion;
-import dao.negocio.Pais;
-import dao.negocio.PasajeroFrecuente;
-import dao.negocio.Pasaporte;
-import dao.negocio.Provincia;
-import dao.negocio.Telefono;
-import mvc.view.VistaPrincipal;
+
 
 public class ControladorCliente {
 
-	VistaPrincipal vista;
 	ClienteDAO clienteDAO;
-	DireccionDAO direccionDAO;
-	TelefonoDAO telefonoDAO;
 	
 	
 	
-	public ControladorCliente(VistaPrincipal vista) {
-		this.vista = vista;
-		clienteDAO = new Factory().getClienteDaoImplMysql();
-		direccionDAO = new Factory().getDireccionDaoImplMysql();
-		telefonoDAO = new Factory().getTelefonoDaoImplMysql();
+	public ControladorCliente() {
+
+		new Factory();
+		clienteDAO = Factory.getClienteDaoImplMysql();
+
 	}
 
 
 
-	public void altaCliente(String nombre, String apellido, String dni, String cuit_cuil,
-			String fecha_nacimiento, String email, Direccion direccion, Telefono telefono, Pasaporte pasaporte,
-			PasajeroFrecuente pasajeroFrecuente) {
-		
-		Cliente c = new Cliente(nombre, apellido, dni, cuit_cuil, fecha_nacimiento, email, direccion, telefono, pasaporte, pasajeroFrecuente);
+	public void altaCliente(Cliente c) {
 		clienteDAO.altaCliente(c);
 		
+	}
+	
+	public void bajaCliente(String id) {
+		clienteDAO.bajaCliente(id);
+	}
+	
+	public void modificarCliente(Cliente c) {
+		clienteDAO.modificarCliente(c);
+	}
+	
+	public Cliente consultarCliente(String id) {
+		return clienteDAO.getCliente(id);
 	}
 	
 	/*

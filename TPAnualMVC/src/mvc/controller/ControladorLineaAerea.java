@@ -1,31 +1,36 @@
 package mvc.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import Factory.Factory;
 import dao.Interfaces.LineaAereaDAO;
-import mvc.view.VistaPrincipal;
+import dao.negocio.Aerolinea;
 
-public class ControladorLineaAerea implements ActionListener{
+public class ControladorLineaAerea {
 	
-	public VistaPrincipal vista;
 	public LineaAereaDAO lineaAereaDAO;
 	
 	
-	public ControladorLineaAerea(VistaPrincipal vista) {
+	public ControladorLineaAerea() {
 
-		this.vista = vista;
+		new Factory();
+		lineaAereaDAO = Factory.getLineaAereaDaoImplMysql();
+	}
+	
+	public void altaLineaAerea(Aerolinea a) {
+		lineaAereaDAO.altaLineaAerea(a);
+	}
+	
+	public void bajaLineaAerea(String id) {
+		lineaAereaDAO.bajaLineaAerea(id);
 	}
 
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getSource()==this.vista.agregarLineaAerea) {
-			
-		}
-		
+	public void modLineaAerea(Aerolinea a) {
+		lineaAereaDAO.modificarLineaAerea(a);
 	}
+	
+	public Aerolinea consultarLineaAerea(String id) {
+		return lineaAereaDAO.getLineaArea(id);
+	}
+	
 	
 	
 	

@@ -146,45 +146,6 @@ public class VistaAgregarCliente extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-				{null, null},
-			},
-			new String[] {
-				"New column", "New column"
-			}
-		));
-		table.setBounds(5, 451, 378, -84);
-		contentPane.add(table);
-		
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(407, 6, 17, 48);
 		contentPane.add(scrollBar);
