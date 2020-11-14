@@ -3,14 +3,14 @@ package mvc.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import mvc.view.VistaAgregarCliente;
+import mvc.view.VistaCliente;
 
 public class EventoCliente implements ActionListener{
 	
 	
-	VistaAgregarCliente vista;
+	VistaCliente vista;
 	
-	public EventoCliente(VistaAgregarCliente vista) {
+	public EventoCliente(VistaCliente vista) {
 		this.vista = vista;
 	}
 	
