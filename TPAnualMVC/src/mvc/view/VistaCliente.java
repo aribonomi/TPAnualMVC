@@ -21,6 +21,7 @@ import javax.swing.JDesktopPane;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 import dao.negocio.Alianza;
+import mvc.eventos.EventoCliente;
 
 
 
@@ -69,7 +70,12 @@ public class VistaCliente extends JFrame {
 	public JTextField textFieldCalleMod;
 	public JTextField textFieldAlturaMod;
 	
-	private JComboBox comboBox_provincia;
+	public JComboBox comboBox_provincia;
+	public JButton btnAltaCliente;
+	public JComboBox comboBox_pais;
+	public JComboBox comboBox_paisEmision;
+	public JComboBox comboBoxAlianza;
+	public JTextField textField_NumPF;
 
 	/**
 	 * Launch the application.
@@ -212,7 +218,7 @@ public class VistaCliente extends JFrame {
 		labelPais.setBounds(5, 336, 46, 14);
 		contentPane.add(labelPais);
 		
-		JComboBox comboBox_pais = new JComboBox();
+		comboBox_pais = new JComboBox();
 		comboBox_pais.setBounds(146, 334, 141, 19);
 		contentPane.add(comboBox_pais);
 		
@@ -289,7 +295,7 @@ public class VistaCliente extends JFrame {
 		labelPasajeroFrecuente.setBounds(5, 586, 125, 14);
 		contentPane.add(labelPasajeroFrecuente);
 		
-		JComboBox comboBox_paisEmision = new JComboBox();
+		comboBox_paisEmision = new JComboBox();
 		comboBox_paisEmision.setBounds(146, 559, 141, 19);
 		contentPane.add(comboBox_paisEmision);
 		
@@ -306,7 +312,7 @@ public class VistaCliente extends JFrame {
 		labelAlianza.setBounds(5, 636, 46, 14);
 		contentPane.add(labelAlianza);
 		
-		JComboBox comboBoxAlianza = new JComboBox();
+		comboBoxAlianza = new JComboBox();
 		comboBoxAlianza.setModel(new DefaultComboBoxModel(new String[] {"SKYTEAM", "ONEWORLD", "STARALLIANCE"}));
 		comboBoxAlianza.setBounds(146, 633, 141, 17);
 		contentPane.add(comboBoxAlianza);
@@ -315,19 +321,24 @@ public class VistaCliente extends JFrame {
 		lblId.setBounds(5, 683, 46, 14);
 		contentPane.add(lblId);
 		
-		JLabel labelAerolinea = new JLabel("Aerolinea");
-		labelAerolinea.setFont(new Font("Tahoma", Font.BOLD, 11));
-		labelAerolinea.setBounds(5, 661, 74, 14);
-		contentPane.add(labelAerolinea);
-		
 		textField_idAerolinea = new JTextField();
 		textField_idAerolinea.setBounds(146, 681, 141, 17);
 		contentPane.add(textField_idAerolinea);
 		textField_idAerolinea.setColumns(10);
 		
-		JButton btnAltaCliente = new JButton("Ingresar");
+		btnAltaCliente = new JButton("Ingresar");
 		btnAltaCliente.setBounds(301, 679, 89, 23);
 		contentPane.add(btnAltaCliente);
+		
+		JLabel labelNumero = new JLabel("N\u00FAmero");
+		labelNumero.setBounds(5, 658, 46, 14);
+		contentPane.add(labelNumero);
+		
+		textField_NumPF = new JTextField();
+		textField_NumPF.setBounds(146, 655, 141, 19);
+		contentPane.add(textField_NumPF);
+		textField_NumPF.setColumns(10);
+		btnAltaCliente.addActionListener(new EventoCliente(this));
 		
 		
 	}

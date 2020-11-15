@@ -1,41 +1,34 @@
 package mvc.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.border.SoftBevelBorder;
 
-import mvc.controller.ControladorCliente;
-import mvc.controller.ControladorLineaAerea;
-import mvc.controller.EventosVistaPrincipal;
+import mvc.eventos.EventosVistaPrincipal;
 
 import javax.swing.border.BevelBorder;
+import javax.swing.JButton;
+import java.awt.SystemColor;
 
 public class VistaPrincipal extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
-	public JMenuItem agregarCliente;
-	public JMenuItem consultarCliente;
-	public JMenuItem modificarCliente;
-	public JMenuItem eliminarCliente;
-	public JMenuItem agregarLineaAerea;
-	public JMenuItem modificarLineaAerea;
-	public JMenuItem consultarLineaAerea;
-	public JMenuItem eliminarLineaAerea;
-	public JMenuItem agregarVuelo;
-	public JMenuItem consultarVuelo;
-	public JMenuItem modificarVuelo;
-	public JMenuItem eliminarVuelo;
+	public JButton btnAerolineas;
+	public JButton btnClientes;
+	public JButton btnVentas;
+	public JButton btnVuelos;
+	public JButton btnSalir;
 
 	/**
 	 * Launch the application.
@@ -60,82 +53,6 @@ public class VistaPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu menuCliente = new JMenu("Clientes");
-		menuCliente.setForeground(new Color(0, 0, 0));
-		menuCliente.setBackground(Color.BLACK);
-		menuBar.add(menuCliente);
-		
-		agregarCliente = new JMenuItem("Agregar");
-		menuCliente.add(agregarCliente);
-		agregarCliente.addActionListener(new EventosVistaPrincipal(this));
-		
-		consultarCliente = new JMenuItem("Consultar");
-		menuCliente.add(consultarCliente);
-		consultarCliente.addActionListener(new EventosVistaPrincipal(this));
-		
-		modificarCliente = new JMenuItem("Modificar");
-		menuCliente.add(modificarCliente);
-		modificarCliente.addActionListener(new EventosVistaPrincipal(this));
-		
-		eliminarCliente = new JMenuItem("Eliminar");
-		menuCliente.add(eliminarCliente);
-		eliminarCliente.addActionListener(new EventosVistaPrincipal(this));
-		
-		JMenu menuLineaAerea = new JMenu("Líneas aereas");
-		menuLineaAerea.setBackground(Color.BLACK);
-		menuBar.add(menuLineaAerea);
-		
-		JMenuItem agregarLineaAerea = new JMenuItem("Agregar");
-		menuLineaAerea.add(agregarLineaAerea);
-		agregarLineaAerea.addActionListener(new EventosVistaPrincipal(this));
-		
-		JMenuItem consultarLineaAerea = new JMenuItem("Consultar");
-		menuLineaAerea.add(consultarLineaAerea);
-		consultarLineaAerea.addActionListener(new EventosVistaPrincipal(this));
-		
-		JMenuItem modificarLineaAerea = new JMenuItem("Modificar");
-		menuLineaAerea.add(modificarLineaAerea);
-		modificarLineaAerea.addActionListener(new EventosVistaPrincipal(this));
-		
-		JMenuItem eliminarLineaAerea = new JMenuItem("Eliminar");
-		menuLineaAerea.add(eliminarLineaAerea);
-		eliminarLineaAerea.addActionListener(new EventosVistaPrincipal(this));
-		
-		JMenu menuVuelo = new JMenu("Vuelos");
-		menuVuelo.setBackground(Color.BLACK);
-		menuBar.add(menuVuelo);
-		
-		agregarVuelo = new JMenuItem("Agregar");
-		menuVuelo.add(agregarVuelo);
-		
-		consultarVuelo = new JMenuItem("Consultar");
-		menuVuelo.add(consultarVuelo);
-		
-		modificarVuelo = new JMenuItem("Modificar");
-		menuVuelo.add(modificarVuelo);
-		
-		eliminarVuelo = new JMenuItem("Eliminar");
-		menuVuelo.add(eliminarVuelo);
-		
-		JMenu menuVenta = new JMenu("Ventas");
-		menuVenta.setBackground(new Color(0, 0, 0));
-		menuBar.add(menuVenta);
-		
-		JMenuItem agregarVenta = new JMenuItem("Agregar");
-		menuVenta.add(agregarVenta);
-		
-		JMenuItem consultarVenta = new JMenuItem("Consultar");
-		menuVenta.add(consultarVenta);
-		
-		JMenuItem modificarVenta = new JMenuItem("Modificar");
-		menuVenta.add(modificarVenta);
-		
-		JMenuItem eliminarVenta = new JMenuItem("Eliminar");
-		menuVenta.add(eliminarVenta);
-		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -144,16 +61,39 @@ public class VistaPrincipal extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setToolTipText("");
 		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBackground(Color.ORANGE);
-		panel.setBounds(0, 0, 434, 240);
+		panel.setBackground(SystemColor.controlHighlight);
+		panel.setBounds(0, 0, 434, 261);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel LabelBienvenido = new JLabel("BIENVENIDO!");
-		LabelBienvenido.setBounds(108, 88, 223, 41);
+		LabelBienvenido.setBounds(0, 0, 434, 52);
 		LabelBienvenido.setBackground(Color.ORANGE);
 		LabelBienvenido.setHorizontalAlignment(SwingConstants.CENTER);
 		LabelBienvenido.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		panel.add(LabelBienvenido);
+		
+		btnAerolineas = new JButton("Aerol\u00EDneas");
+		btnAerolineas.setToolTipText("");
+		btnAerolineas.setBounds(159, 63, 115, 23);
+		panel.add(btnAerolineas);
+		
+		btnClientes = new JButton("Clientes");
+		btnClientes.setBounds(159, 97, 115, 23);
+		panel.add(btnClientes);
+		btnClientes.addActionListener(new EventosVistaPrincipal(this));
+		
+		btnVentas = new JButton("Ventas");
+		btnVentas.setBounds(159, 131, 115, 23);
+		panel.add(btnVentas);
+		
+		btnVuelos = new JButton("Vuelos");
+		btnVuelos.setBounds(159, 165, 115, 23);
+		panel.add(btnVuelos);
+		
+		btnSalir = new JButton("Salir");
+		btnSalir.setBounds(159, 199, 115, 23);
+		panel.add(btnSalir);
+		btnSalir.addActionListener(new EventosVistaPrincipal(this));
 	}
 }
