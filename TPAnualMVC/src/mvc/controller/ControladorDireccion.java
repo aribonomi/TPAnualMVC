@@ -30,4 +30,7 @@ public class ControladorDireccion {
 		return direccionDAO.getDireccion(id);
 	}
 	
+	public Direccion obtenerUltimo() {
+		return direccionDAO.obtenerUltimo();
+	}
 }

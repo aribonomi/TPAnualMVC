@@ -3,17 +3,9 @@ package mvc.eventos;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import dao.negocio.Aerolinea;
-import dao.negocio.Alianza;
-import dao.negocio.PasajeroFrecuente;
-import dao.negocio.Pasaporte;
-import dao.negocio.Telefono;
-import mvc.controller.ControladorCliente;
-import mvc.controller.ControladorDireccion;
-import mvc.controller.ControladorLineaAerea;
-import mvc.controller.ControladorPasajeroFrecuente;
-import mvc.controller.ControladorPasaporte;
-import mvc.controller.ControladorTelefono;
+import dao.Interfaces.DireccionDAO;
+import dao.negocio.*;
+import mvc.controller.*;
 import mvc.view.VistaCliente;
 
 public class EventoCliente implements ActionListener{
@@ -41,7 +33,10 @@ public class EventoCliente implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==vista.btnAltaCliente) {
+		if(e.getSource()==vista.btnAtrasMenuCliente) {
+			vista.setVisible(false);
+		}else if(e.getSource()==vista.btnAltaCliente) {
+			
 			String nombre = vista.textFieldNombre.getText();
 			String apellido = vista.textFieldApellido.getText();
 			String dni = vista.textFieldDni.getText();
@@ -55,23 +50,26 @@ public class EventoCliente implements ActionListener{
 			String ciudad = vista.textFieldCiudad.getText();
 			String postal = vista.textFieldCodP.getText();
 			String provincia = (String) vista.comboBox_provincia.getSelectedItem();
-			
-			//Agregar método de consulta a partir del nombre de la provincia para obtener su id y poder generar el objeto
 			String pais = (String) vista.comboBox_pais.getSelectedItem();
+			Direccion d = new Direccion(calle, altura, ciudad, postal, new Provincia(provincia),  new Pais(pais));
+			contDireccion.altaDireccion(d);
 			
 		//Teléfono
 			String celular = vista.textFieldCelular.getText();
 			String personal = vista.textFieldPersonal.getText();
 			String laboral = vista.textFieldLaboral.getText();
 			Telefono t = new Telefono(celular, personal, laboral);
+			contTelefono.altaTelefono(t);
 			
 			
 		//Pasaporte
 			String numero = vista.textFieldNumPas.getText();
 			String autoridad = vista.textFieldAut_emision.getText();
+			String fecha_emision = vista.textField_fechaEmision.getText();
 			String fecha_venc = vista.textField_vencimiento.getText();
 			String pais_emision = (String) vista.comboBox_paisEmision.getSelectedItem();
-			//Pasaporte p = new Pasaporte(numero, autoridad, fecha_venc, pais_emision);
+			Pasaporte p = new Pasaporte(numero, autoridad, fecha_emision, fecha_venc, new Pais(pais_emision));
+			contPasaporte.altaPasaporte(p);
 			
 		//Pasajero frecuente
 			String categoria = vista.textField_CatPF.getText();
@@ -80,7 +78,16 @@ public class EventoCliente implements ActionListener{
 			String id_aerolinea = vista.textField_idAerolinea.getText();
 			Aerolinea aerolinea = contLA.consultarLineaAerea(id_aerolinea);
 			PasajeroFrecuente pf = new PasajeroFrecuente(categoria, numeroPF, Alianza.valueOf(alianza), aerolinea);
+			contPF.altaPasajFrecuente(pf);
 			
+			Cliente c = new Cliente(nombre, apellido, dni, cuit, fecha_nac, email,contDireccion.obtenerUltimo(), contTelefono.obtenerUltimo(), contPasaporte.obtenerUltimo(), contPF.obtenerUltimo());
+			
+			contCliente.altaCliente(c);
+			
+		}else if(e.getSource()==this.vista.btnConsulta) {
+			String id = this.vista.ConstextField_id.getText();
+			Cliente c = contCliente.consultarCliente(id);
+			vista.textArea_resultado.setText("Resultado: "+c.toString());
 		}
 		
 		

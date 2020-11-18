@@ -29,4 +29,8 @@ public class ControladorTelefono {
 		return telefonoDAO.getTelefono(id);
 	}
 	
+	public Telefono obtenerUltimo() {
+		return telefonoDAO.obtenerUltimo();
+	}
+	
 }

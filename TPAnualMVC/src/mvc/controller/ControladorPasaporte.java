@@ -28,4 +28,8 @@ public class ControladorPasaporte {
 	public Pasaporte consultarPasaporte(String id) {
 		return pasaporteDAO.getPasaporte(id);
 	}
+	
+	public Pasaporte obtenerUltimo() {
+		return pasaporteDAO.obtenerUltimo();
+	}
 }

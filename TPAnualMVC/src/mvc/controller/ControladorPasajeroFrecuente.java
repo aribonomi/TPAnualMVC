@@ -28,5 +28,9 @@ public class ControladorPasajeroFrecuente {
 	public PasajeroFrecuente consultarPasajeroFrecuente(String id) {
 		return pfDAO.getPasajeroFrecuente(id);
 	}
+	
+	public PasajeroFrecuente obtenerUltimo() {
+		return pfDAO.obtenerUltimo();
+	}
 
 }
