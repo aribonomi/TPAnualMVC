@@ -85,12 +85,11 @@ public class VistaCliente extends JFrame {
 	public JTextField ModtextFieldCategoria;
 	public JTextField ModtextFieldNumeroPF;
 	public JTextField ModtextFieldFechaEmision;
-	public JTextField ConstextField_id;
 	public JButton btnConsultaMod;
-	public JButton btnConsulta;
 	public JButton btnEliminarCliente;
 	public JButton btnAtrasMenuCliente;
-	public TextArea textArea_resultado;
+	public JComboBox ModcomboBox_paisEmision;
+	public JTextField ModtextField_idAerolinea;
 
 	/**
 	 * Launch the application.
@@ -114,7 +113,7 @@ public class VistaCliente extends JFrame {
 	public VistaCliente() {
 		setTitle("Clientes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 972, 744);
+		setBounds(100, 100, 678, 744);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -163,7 +162,7 @@ public class VistaCliente extends JFrame {
 		textFieldCuit.setColumns(10);
 		
 		JLabel labelNacimiento = new JLabel("Fecha de nacimiento");
-		labelNacimiento.setBounds(5, 136, 105, 14);
+		labelNacimiento.setBounds(5, 136, 131, 14);
 		contentPane.add(labelNacimiento);
 		
 		textFieldNacimiento = new JTextField();
@@ -548,7 +547,7 @@ public class VistaCliente extends JFrame {
 		label_18.setBounds(297, 533, 105, 14);
 		contentPane.add(label_18);
 		
-		JComboBox ModcomboBox_paisEmision = new JComboBox(new ControladorPais().obtenerNombres().toArray());
+		ModcomboBox_paisEmision = new JComboBox(new ControladorPais().obtenerNombres().toArray());
 		ModcomboBox_paisEmision.setBounds(404, 531, 141, 19);
 		contentPane.add(ModcomboBox_paisEmision);
 		
@@ -588,12 +587,12 @@ public class VistaCliente extends JFrame {
 		btnConsultaMod.addActionListener(new EventoCliente(this));
 		
 		btnEliminarCliente = new JButton("Eliminar");
-		btnEliminarCliente.setBounds(857, 77, 89, 23);
+		btnEliminarCliente.setBounds(555, 57, 89, 23);
 		contentPane.add(btnEliminarCliente);
 		btnEliminarCliente.addActionListener(new EventoCliente(this));
 		
 		JButton btnModificarCliente = new JButton("Modificar");
-		btnModificarCliente.setBounds(555, 607, 89, 23);
+		btnModificarCliente.setBounds(424, 654, 89, 23);
 		contentPane.add(btnModificarCliente);
 		btnModificarCliente.addActionListener(new EventoCliente(this));
 		
@@ -621,29 +620,15 @@ public class VistaCliente extends JFrame {
 		contentPane.add(ModtextFieldFechaEmision);
 		ModtextFieldFechaEmision.setColumns(10);
 		
-		JLabel lblId_2 = new JLabel("ID");
-		lblId_2.setBounds(674, 36, 46, 14);
-		contentPane.add(lblId_2);
+		JLabel labelModID_aerolinea = new JLabel("ID aerol\u00EDnea");
+		labelModID_aerolinea.setHorizontalAlignment(SwingConstants.CENTER);
+		labelModID_aerolinea.setBounds(286, 636, 117, 14);
+		contentPane.add(labelModID_aerolinea);
 		
-		ConstextField_id = new JTextField();
-		ConstextField_id.setBounds(730, 34, 117, 17);
-		contentPane.add(ConstextField_id);
-		ConstextField_id.setColumns(10);
-		
-		btnConsulta = new JButton("Consultar");
-		btnConsulta.setBounds(857, 32, 89, 23);
-		contentPane.add(btnConsulta);
-		btnConsulta.addActionListener(new EventoCliente(this));
-		
-		textArea_resultado = new TextArea();
-		textArea_resultado.setBounds(621, 111, 325, 191);
-		contentPane.add(textArea_resultado);
-		
-		JLabel labelConsultar = new JLabel("Consultar cliente");
-		labelConsultar.setHorizontalAlignment(SwingConstants.CENTER);
-		labelConsultar.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		labelConsultar.setBounds(674, 0, 272, 32);
-		contentPane.add(labelConsultar);
+		ModtextField_idAerolinea = new JTextField();
+		ModtextField_idAerolinea.setBounds(404, 633, 141, 17);
+		contentPane.add(ModtextField_idAerolinea);
+		ModtextField_idAerolinea.setColumns(10);
 		btnAltaCliente.addActionListener(new EventoCliente(this));
 		
 		
