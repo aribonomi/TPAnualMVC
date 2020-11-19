@@ -2,20 +2,17 @@ package mvc.view;
 
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
-import mvc.eventos.EventoCliente;
+import mvc.eventos.EventoAerolinea;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import dao.negocio.Alianza;
 
 public class VistaAerolinea extends JFrame {
 
@@ -23,30 +20,17 @@ public class VistaAerolinea extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public JTextField textFieldNombre;
-	public JTextField textFieldAlianza;
 	
-	public JTextField textFieldCiudadMod;
-	public JTextField textFieldCodPMod;
-	public JTextField textFieldCelularMod;
-	public JTextField textFieldPersonalMod;
-	public JTextField textFieldLaboralMod;
-	public JTextField textFieldNumPasMod;
-	public JTextField textFieldAut_emisionMod;
-	public JTextField textField_vencimientoMod;
-	public JTextField textField_CatPFMod;
-	public JTextField textField_idAerolineaMod;
-	public JTextField textFieldNombreMod;
-	public JTextField textFieldApellidoMod;
-	public JTextField textFieldDniMod;
-	public JTextField textFieldCuitMod;
-	public JTextField textFieldNacimientoMod;
-	public JTextField textFieldEmailMod;
-	public JTextField textFieldCalleMod;
-	public JTextField textFieldAlturaMod;
-	private JTextField ModtextFieldNombre;
-	private JTextField ModtextFieldAlianza;
-	private JTextField ModtextFieldID;
+	public JTextField textFieldNombre;
+	public JTextField ModtextFieldNombre;
+	public JTextField ModtextFieldID;
+	public JButton btnConsultaAerolinea;
+	public JButton btnEliminarAerolinea;
+	public JButton btnAltaAerolinea;
+	public JButton btnModificar;
+	public JButton btnAtras;
+	public JComboBox comboBoxAlianza;
+	public JComboBox ModcomboBoxAlianza;
 
 	/**
 	 * Launch the application.
@@ -56,7 +40,7 @@ public class VistaAerolinea extends JFrame {
 			public void run() {
 				try {
 					VistaAerolinea window = new VistaAerolinea();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -95,11 +79,6 @@ public class VistaAerolinea extends JFrame {
 		labelApellido.setBounds(10, 61, 51, 14);
 		contentPane.add(labelApellido);
 		
-		textFieldAlianza = new JTextField();
-		textFieldAlianza.setBounds(97, 58, 141, 19);
-		contentPane.add(textFieldAlianza);
-		textFieldAlianza.setColumns(10);
-		
 		ModtextFieldNombre = new JTextField();
 		ModtextFieldNombre.setColumns(10);
 		ModtextFieldNombre.setBounds(373, 58, 141, 19);
@@ -113,11 +92,6 @@ public class VistaAerolinea extends JFrame {
 		lblAlianza.setBounds(284, 86, 51, 14);
 		contentPane.add(lblAlianza);
 		
-		ModtextFieldAlianza = new JTextField();
-		ModtextFieldAlianza.setColumns(10);
-		ModtextFieldAlianza.setBounds(373, 83, 141, 19);
-		contentPane.add(ModtextFieldAlianza);
-		
 		ModtextFieldID = new JTextField();
 		ModtextFieldID.setColumns(10);
 		ModtextFieldID.setBounds(373, 33, 141, 19);
@@ -127,17 +101,15 @@ public class VistaAerolinea extends JFrame {
 		lblId_1.setBounds(284, 36, 51, 14);
 		contentPane.add(lblId_1);
 		
-		JButton btnConsultaAerolinea = new JButton("Consultar");
-		btnConsultaAerolinea.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		btnConsultaAerolinea = new JButton("Consultar");
+		btnConsultaAerolinea.addActionListener(new EventoAerolinea(this));
 		btnConsultaAerolinea.setBounds(524, 32, 89, 23);
 		contentPane.add(btnConsultaAerolinea);
 		
-		JButton btnEliminarAerolinea = new JButton("Eliminar");
+		btnEliminarAerolinea = new JButton("Eliminar");
 		btnEliminarAerolinea.setBounds(524, 57, 89, 23);
 		contentPane.add(btnEliminarAerolinea);
+		btnEliminarAerolinea.addActionListener(new EventoAerolinea(this));
 		
 		JLabel lblModificarAerolinea = new JLabel("Modificar Aerolinea");
 		lblModificarAerolinea.setHorizontalAlignment(SwingConstants.CENTER);
@@ -145,17 +117,30 @@ public class VistaAerolinea extends JFrame {
 		lblModificarAerolinea.setBounds(352, 0, 173, 32);
 		contentPane.add(lblModificarAerolinea);
 		
-		JButton btnAltaAerolinea = new JButton("Agregar");
+		btnAltaAerolinea = new JButton("Agregar");
 		btnAltaAerolinea.setBounds(124, 88, 89, 23);
 		contentPane.add(btnAltaAerolinea);
+		btnAltaAerolinea.addActionListener(new EventoAerolinea(this));
 		
-		JButton btnModificar = new JButton("Modificar");
+		btnModificar = new JButton("Modificar");
 		btnModificar.setBounds(398, 113, 89, 23);
 		contentPane.add(btnModificar);
+		btnModificar.addActionListener(new EventoAerolinea(this));
 		
-		JButton btnAtras = new JButton("Atras");
-		btnAtras.setBounds(530, 137, 89, 23);
+		btnAtras = new JButton("Atras");
+		btnAtras.setBounds(524, 137, 89, 23);
 		contentPane.add(btnAtras);
+		
+		comboBoxAlianza = new JComboBox();
+		comboBoxAlianza.setModel(new DefaultComboBoxModel(Alianza.values()));
+		comboBoxAlianza.setBounds(97, 58, 141, 20);
+		contentPane.add(comboBoxAlianza);
+		
+		ModcomboBoxAlianza = new JComboBox();
+		ModcomboBoxAlianza.setModel(new DefaultComboBoxModel(Alianza.values()));
+		ModcomboBoxAlianza.setBounds(373, 83, 141, 20);
+		contentPane.add(ModcomboBoxAlianza);
+		btnAtras.addActionListener(new EventoAerolinea(this));
 		
 		
 		

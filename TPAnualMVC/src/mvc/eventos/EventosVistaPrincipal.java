@@ -5,8 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import mvc.view.VistaCliente;
-import mvc.view.VistaPrincipal;
+import mvc.view.*;
 
 public class EventosVistaPrincipal implements ActionListener{
 	
@@ -19,9 +18,12 @@ public class EventosVistaPrincipal implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()==vistaP.btnClientes) {
-			VistaCliente vistaAgregarCliente = new VistaCliente();
-			vistaAgregarCliente.setVisible(true);
-		}if(e.getSource()==vistaP.btnSalir) {
+			VistaCliente vistaCliente = new VistaCliente();
+			vistaCliente.setVisible(true);
+		}else if(e.getSource()==vistaP.btnAerolineas){
+			VistaAerolinea vistaAerolinea = new VistaAerolinea();
+			vistaAerolinea.setVisible(true);
+		}else if(e.getSource()==vistaP.btnSalir) {
 			int resultado = JOptionPane.showConfirmDialog(null, "Está seguro que quiere salir?", "Saliendo", JOptionPane.OK_CANCEL_OPTION);
 			if(resultado == JOptionPane.OK_OPTION) {
 				System.exit(0);

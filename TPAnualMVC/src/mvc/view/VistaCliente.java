@@ -323,7 +323,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelAlianza);
 		
 		comboBoxAlianza = new JComboBox();
-		comboBoxAlianza.setModel(new DefaultComboBoxModel(new String[] {"SKYTEAM", "ONEWORLD", "STARALLIANCE"}));
+		comboBoxAlianza.setModel(new DefaultComboBoxModel(Alianza.values()));
 		comboBoxAlianza.setBounds(146, 633, 141, 17);
 		contentPane.add(comboBoxAlianza);
 		
@@ -567,7 +567,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(label_20);
 		
 		JComboBox ModcomboBoxAlianza = new JComboBox();
-		ModcomboBoxAlianza.setModel(new DefaultComboBoxModel(new String[] {"SKYTEAM", "ONEWORLD", "STARALLIANCE"}));
+		ModcomboBoxAlianza.setModel(new DefaultComboBoxModel(Alianza.values()));
 		ModcomboBoxAlianza.setBounds(404, 585, 141, 17);
 		contentPane.add(ModcomboBoxAlianza);
 		

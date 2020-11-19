@@ -77,6 +77,7 @@ public class VistaPrincipal extends JFrame {
 		btnAerolineas.setToolTipText("");
 		btnAerolineas.setBounds(159, 63, 115, 23);
 		panel.add(btnAerolineas);
+		btnAerolineas.addActionListener(new EventosVistaPrincipal(this));
 		
 		btnClientes = new JButton("Clientes");
 		btnClientes.setBounds(159, 97, 115, 23);
