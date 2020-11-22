@@ -90,6 +90,14 @@ public class VistaCliente extends JFrame {
 	public JButton btnAtrasMenuCliente;
 	public JComboBox ModcomboBox_paisEmision;
 	public JTextField ModtextField_idAerolinea;
+	public JComboBox ModcomboBox_provincia;
+	public JComboBox ModcomboBox_pais;
+	public JComboBox ModcomboBoxAlianza;
+	public JButton btnModificarCliente;
+	public JLabel lbl_idDireccion;
+	public JLabel lbl_idTelefono;
+	public JLabel lbl_idPasaporte;
+	public JLabel lbl_idPF;
 
 	/**
 	 * Launch the application.
@@ -113,7 +121,7 @@ public class VistaCliente extends JFrame {
 	public VistaCliente() {
 		setTitle("Clientes");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 678, 744);
+		setBounds(100, 100, 890, 744);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -130,7 +138,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelNombre);
 		
 		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(146, 33, 141, 19);
+		textFieldNombre.setBounds(170, 33, 141, 19);
 		contentPane.add(textFieldNombre);
 		textFieldNombre.setColumns(10);
 		
@@ -139,7 +147,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelApellido);
 		
 		textFieldApellido = new JTextField();
-		textFieldApellido.setBounds(146, 58, 141, 19);
+		textFieldApellido.setBounds(170, 58, 141, 19);
 		contentPane.add(textFieldApellido);
 		textFieldApellido.setColumns(10);
 		
@@ -148,7 +156,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelDni);
 		
 		textFieldDni = new JTextField();
-		textFieldDni.setBounds(146, 83, 141, 19);
+		textFieldDni.setBounds(170, 83, 141, 19);
 		contentPane.add(textFieldDni);
 		textFieldDni.setColumns(10);
 		
@@ -157,7 +165,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelCuit);
 		
 		textFieldCuit = new JTextField();
-		textFieldCuit.setBounds(146, 108, 141, 19);
+		textFieldCuit.setBounds(170, 108, 141, 19);
 		contentPane.add(textFieldCuit);
 		textFieldCuit.setColumns(10);
 		
@@ -166,7 +174,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelNacimiento);
 		
 		textFieldNacimiento = new JTextField();
-		textFieldNacimiento.setBounds(146, 133, 141, 19);
+		textFieldNacimiento.setBounds(170, 133, 141, 19);
 		contentPane.add(textFieldNacimiento);
 		textFieldNacimiento.setColumns(10);
 		
@@ -175,7 +183,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelEmail);
 		
 		textFieldEmail = new JTextField();
-		textFieldEmail.setBounds(146, 158, 141, 19);
+		textFieldEmail.setBounds(170, 158, 141, 19);
 		contentPane.add(textFieldEmail);
 		textFieldEmail.setColumns(10);
 		
@@ -189,7 +197,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelCalle);
 		
 		textFieldCalle = new JTextField();
-		textFieldCalle.setBounds(146, 208, 141, 19);
+		textFieldCalle.setBounds(170, 208, 141, 19);
 		contentPane.add(textFieldCalle);
 		textFieldCalle.setColumns(10);
 		
@@ -198,7 +206,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelAltura);
 		
 		textFieldAltura = new JTextField();
-		textFieldAltura.setBounds(146, 233, 141, 19);
+		textFieldAltura.setBounds(170, 233, 141, 19);
 		contentPane.add(textFieldAltura);
 		textFieldAltura.setColumns(10);
 		
@@ -207,7 +215,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelCiudad);
 		
 		textFieldCiudad = new JTextField();
-		textFieldCiudad.setBounds(146, 258, 141, 19);
+		textFieldCiudad.setBounds(170, 258, 141, 19);
 		contentPane.add(textFieldCiudad);
 		textFieldCiudad.setColumns(10);
 		
@@ -216,7 +224,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelCodPostal);
 		
 		textFieldCodP = new JTextField();
-		textFieldCodP.setBounds(146, 283, 141, 19);
+		textFieldCodP.setBounds(170, 283, 141, 19);
 		contentPane.add(textFieldCodP);
 		textFieldCodP.setColumns(10);
 		
@@ -225,7 +233,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelProvincia);
 		
 		comboBox_provincia = new JComboBox(new ControladorProvincia().obtenerNombres().toArray());
-		comboBox_provincia.setBounds(146, 309, 141, 19);
+		comboBox_provincia.setBounds(170, 309, 141, 19);
 		contentPane.add(comboBox_provincia);
 		
 		
@@ -234,7 +242,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelPais);
 		
 		comboBox_pais = new JComboBox(new ControladorPais().obtenerNombres().toArray());
-		comboBox_pais.setBounds(146, 334, 141, 19);
+		comboBox_pais.setBounds(170, 334, 141, 19);
 		contentPane.add(comboBox_pais);
 		
 		JLabel labelTelefono = new JLabel("Tel\u00E9fono");
@@ -247,7 +255,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelCelular);
 		
 		textFieldCelular = new JTextField();
-		textFieldCelular.setBounds(146, 384, 141, 17);
+		textFieldCelular.setBounds(170, 384, 141, 17);
 		contentPane.add(textFieldCelular);
 		textFieldCelular.setColumns(10);
 		
@@ -256,7 +264,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelPersonal);
 		
 		textFieldPersonal = new JTextField();
-		textFieldPersonal.setBounds(146, 408, 141, 19);
+		textFieldPersonal.setBounds(170, 408, 141, 19);
 		contentPane.add(textFieldPersonal);
 		textFieldPersonal.setColumns(10);
 		
@@ -265,34 +273,34 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelLaboral);
 		
 		textFieldLaboral = new JTextField();
-		textFieldLaboral.setBounds(146, 433, 141, 19);
+		textFieldLaboral.setBounds(170, 433, 141, 19);
 		contentPane.add(textFieldLaboral);
 		textFieldLaboral.setColumns(10);
 		
 		JLabel labelNumPasaporte = new JLabel("N\u00FAmero de pasaporte");
-		labelNumPasaporte.setBounds(5, 461, 131, 14);
+		labelNumPasaporte.setBounds(5, 461, 155, 14);
 		contentPane.add(labelNumPasaporte);
 		
 		textFieldNumPas = new JTextField();
-		textFieldNumPas.setBounds(146, 458, 141, 19);
+		textFieldNumPas.setBounds(170, 458, 141, 19);
 		contentPane.add(textFieldNumPas);
 		textFieldNumPas.setColumns(10);
 		
 		JLabel labelAutDeEmision = new JLabel("Autoridad de emisi\u00F3n");
-		labelAutDeEmision.setBounds(5, 486, 105, 14);
+		labelAutDeEmision.setBounds(5, 486, 155, 14);
 		contentPane.add(labelAutDeEmision);
 		
 		textFieldAut_emision = new JTextField();
-		textFieldAut_emision.setBounds(146, 484, 141, 17);
+		textFieldAut_emision.setBounds(170, 484, 141, 17);
 		contentPane.add(textFieldAut_emision);
 		textFieldAut_emision.setColumns(10);
 		
 		JLabel labelFecha_vencimiento = new JLabel("Fecha de vencimiento");
-		labelFecha_vencimiento.setBounds(5, 533, 105, 14);
+		labelFecha_vencimiento.setBounds(5, 533, 131, 14);
 		contentPane.add(labelFecha_vencimiento);
 		
 		textField_vencimiento = new JTextField();
-		textField_vencimiento.setBounds(146, 531, 141, 17);
+		textField_vencimiento.setBounds(170, 531, 141, 17);
 		contentPane.add(textField_vencimiento);
 		textField_vencimiento.setColumns(10);
 		
@@ -306,7 +314,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelPasajeroFrecuente);
 		
 		comboBox_paisEmision = new JComboBox(new ControladorPais().obtenerNombres().toArray());
-		comboBox_paisEmision.setBounds(146, 559, 141, 19);
+		comboBox_paisEmision.setBounds(170, 559, 141, 19);
 		contentPane.add(comboBox_paisEmision);
 		
 		JLabel labelCategoria = new JLabel("Categor\u00EDa");
@@ -314,7 +322,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelCategoria);
 		
 		textField_CatPF = new JTextField();
-		textField_CatPF.setBounds(146, 609, 141, 17);
+		textField_CatPF.setBounds(170, 609, 141, 17);
 		contentPane.add(textField_CatPF);
 		textField_CatPF.setColumns(10);
 		
@@ -324,20 +332,20 @@ public class VistaCliente extends JFrame {
 		
 		comboBoxAlianza = new JComboBox();
 		comboBoxAlianza.setModel(new DefaultComboBoxModel(Alianza.values()));
-		comboBoxAlianza.setBounds(146, 633, 141, 17);
+		comboBoxAlianza.setBounds(170, 631, 141, 17);
 		contentPane.add(comboBoxAlianza);
 		
 		JLabel lblId_aerolinea = new JLabel("ID aerol\u00EDnea");
-		lblId_aerolinea.setBounds(5, 683, 105, 14);
+		lblId_aerolinea.setBounds(5, 681, 105, 14);
 		contentPane.add(lblId_aerolinea);
 		
 		textField_idAerolinea = new JTextField();
-		textField_idAerolinea.setBounds(146, 681, 141, 17);
+		textField_idAerolinea.setBounds(170, 679, 141, 17);
 		contentPane.add(textField_idAerolinea);
 		textField_idAerolinea.setColumns(10);
 		
 		btnAltaCliente = new JButton("Agregar");
-		btnAltaCliente.setBounds(301, 679, 89, 23);
+		btnAltaCliente.setBounds(323, 679, 89, 23);
 		contentPane.add(btnAltaCliente);
 		
 		JLabel labelNumero = new JLabel("N\u00FAmero");
@@ -345,7 +353,7 @@ public class VistaCliente extends JFrame {
 		contentPane.add(labelNumero);
 		
 		textField_NumPF = new JTextField();
-		textField_NumPF.setBounds(146, 655, 141, 19);
+		textField_NumPF.setBounds(170, 655, 141, 19);
 		contentPane.add(textField_NumPF);
 		textField_NumPF.setColumns(10);
 		
@@ -357,278 +365,314 @@ public class VistaCliente extends JFrame {
 		
 		ModtextFieldNombre = new JTextField();
 		ModtextFieldNombre.setColumns(10);
-		ModtextFieldNombre.setBounds(404, 58, 141, 19);
+		ModtextFieldNombre.setBounds(503, 58, 141, 19);
 		contentPane.add(ModtextFieldNombre);
 		
 		JLabel label = new JLabel("Nombre");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setBounds(286, 61, 117, 14);
+		label.setBounds(376, 61, 117, 14);
 		contentPane.add(label);
 		
 		JLabel label_1 = new JLabel("Apellido");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setBounds(286, 86, 117, 14);
+		label_1.setBounds(376, 86, 117, 14);
 		contentPane.add(label_1);
 		
 		ModtextFieldApellido = new JTextField();
 		ModtextFieldApellido.setColumns(10);
-		ModtextFieldApellido.setBounds(404, 83, 141, 19);
+		ModtextFieldApellido.setBounds(503, 83, 141, 19);
 		contentPane.add(ModtextFieldApellido);
 		
 		JLabel label_2 = new JLabel("DNI");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setBounds(286, 111, 117, 14);
+		label_2.setBounds(376, 111, 117, 14);
 		contentPane.add(label_2);
 		
 		ModtextFieldDni = new JTextField();
 		ModtextFieldDni.setColumns(10);
-		ModtextFieldDni.setBounds(404, 108, 141, 19);
+		ModtextFieldDni.setBounds(503, 108, 141, 19);
 		contentPane.add(ModtextFieldDni);
 		
 		JLabel label_3 = new JLabel("CUIT/CUIL");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setBounds(297, 136, 106, 14);
+		label_3.setBounds(387, 136, 106, 14);
 		contentPane.add(label_3);
 		
 		ModtextFieldCuit = new JTextField();
 		ModtextFieldCuit.setColumns(10);
-		ModtextFieldCuit.setBounds(404, 133, 141, 19);
+		ModtextFieldCuit.setBounds(503, 133, 141, 19);
 		contentPane.add(ModtextFieldCuit);
 		
 		JLabel label_4 = new JLabel("Fecha de nacimiento");
-		label_4.setBounds(297, 161, 105, 14);
+		label_4.setBounds(376, 161, 117, 14);
 		contentPane.add(label_4);
 		
 		ModtextFieldNacimiento = new JTextField();
 		ModtextFieldNacimiento.setColumns(10);
-		ModtextFieldNacimiento.setBounds(404, 158, 141, 19);
+		ModtextFieldNacimiento.setBounds(503, 158, 141, 19);
 		contentPane.add(ModtextFieldNacimiento);
 		
 		JLabel label_5 = new JLabel("Email");
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setBounds(286, 186, 117, 14);
+		label_5.setBounds(376, 186, 117, 14);
 		contentPane.add(label_5);
 		
 		ModtextFieldEmail = new JTextField();
 		ModtextFieldEmail.setColumns(10);
-		ModtextFieldEmail.setBounds(404, 183, 141, 19);
+		ModtextFieldEmail.setBounds(503, 183, 141, 19);
 		contentPane.add(ModtextFieldEmail);
 		
 		JLabel label_7 = new JLabel("Calle");
 		label_7.setHorizontalAlignment(SwingConstants.CENTER);
-		label_7.setBounds(286, 211, 117, 14);
+		label_7.setBounds(376, 211, 117, 14);
 		contentPane.add(label_7);
 		
 		ModtextFieldCalle = new JTextField();
 		ModtextFieldCalle.setColumns(10);
-		ModtextFieldCalle.setBounds(404, 208, 141, 19);
+		ModtextFieldCalle.setBounds(503, 208, 141, 19);
 		contentPane.add(ModtextFieldCalle);
 		
 		JLabel label_8 = new JLabel("Altura");
 		label_8.setHorizontalAlignment(SwingConstants.CENTER);
-		label_8.setBounds(286, 236, 117, 14);
+		label_8.setBounds(376, 236, 117, 14);
 		contentPane.add(label_8);
 		
 		ModtextFieldAltura = new JTextField();
 		ModtextFieldAltura.setColumns(10);
-		ModtextFieldAltura.setBounds(404, 233, 141, 19);
+		ModtextFieldAltura.setBounds(503, 233, 141, 19);
 		contentPane.add(ModtextFieldAltura);
 		
 		JLabel label_9 = new JLabel("Ciudad");
 		label_9.setHorizontalAlignment(SwingConstants.CENTER);
-		label_9.setBounds(286, 261, 117, 14);
+		label_9.setBounds(376, 261, 117, 14);
 		contentPane.add(label_9);
 		
 		ModtextFieldCiudad = new JTextField();
 		ModtextFieldCiudad.setColumns(10);
-		ModtextFieldCiudad.setBounds(404, 258, 141, 19);
+		ModtextFieldCiudad.setBounds(503, 258, 141, 19);
 		contentPane.add(ModtextFieldCiudad);
 		
 		JLabel label_10 = new JLabel("C\u00F3digo postal");
 		label_10.setHorizontalAlignment(SwingConstants.CENTER);
-		label_10.setBounds(286, 286, 117, 14);
+		label_10.setBounds(376, 286, 117, 14);
 		contentPane.add(label_10);
 		
 		ModtextFieldCodP = new JTextField();
 		ModtextFieldCodP.setColumns(10);
-		ModtextFieldCodP.setBounds(404, 283, 141, 19);
+		ModtextFieldCodP.setBounds(503, 283, 141, 19);
 		contentPane.add(ModtextFieldCodP);
 		
 		JLabel label_11 = new JLabel("Provincia");
 		label_11.setHorizontalAlignment(SwingConstants.CENTER);
-		label_11.setBounds(286, 311, 117, 14);
+		label_11.setBounds(376, 311, 117, 14);
 		contentPane.add(label_11);
 		
-		JComboBox ModcomboBox_provincia = new JComboBox(new ControladorProvincia().obtenerNombres().toArray());
-		ModcomboBox_provincia.setBounds(404, 309, 141, 19);
+		ModcomboBox_provincia = new JComboBox(new ControladorProvincia().obtenerNombres().toArray());
+		ModcomboBox_provincia.setBounds(503, 309, 141, 19);
 		contentPane.add(ModcomboBox_provincia);
 		
 		JLabel label_12 = new JLabel("Pa\u00EDs");
 		label_12.setHorizontalAlignment(SwingConstants.CENTER);
-		label_12.setBounds(286, 336, 117, 14);
+		label_12.setBounds(376, 336, 117, 14);
 		contentPane.add(label_12);
 		
-		JComboBox ModcomboBox_pais = new JComboBox(new ControladorPais().obtenerNombres().toArray());
-		ModcomboBox_pais.setBounds(404, 334, 141, 19);
+		ModcomboBox_pais = new JComboBox(new ControladorPais().obtenerNombres().toArray());
+		ModcomboBox_pais.setBounds(503, 334, 141, 19);
 		contentPane.add(ModcomboBox_pais);
 		
 		JLabel label_14 = new JLabel("Celular");
 		label_14.setHorizontalAlignment(SwingConstants.CENTER);
-		label_14.setBounds(286, 361, 117, 14);
+		label_14.setBounds(376, 361, 117, 14);
 		contentPane.add(label_14);
 		
 		ModtextFieldID = new JTextField();
 		ModtextFieldID.setColumns(10);
-		ModtextFieldID.setBounds(404, 33, 141, 19);
+		ModtextFieldID.setBounds(503, 33, 141, 19);
 		contentPane.add(ModtextFieldID);
 		
 		JLabel lblId_1 = new JLabel("ID");
 		lblId_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblId_1.setBounds(286, 36, 117, 14);
+		lblId_1.setBounds(376, 36, 117, 14);
 		contentPane.add(lblId_1);
 		
 		ModtextFieldCelular = new JTextField();
 		ModtextFieldCelular.setColumns(10);
-		ModtextFieldCelular.setBounds(404, 359, 141, 17);
+		ModtextFieldCelular.setBounds(503, 359, 141, 17);
 		contentPane.add(ModtextFieldCelular);
 		
 		JLabel label_6 = new JLabel("Personal");
 		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setBounds(286, 386, 117, 14);
+		label_6.setBounds(376, 386, 117, 14);
 		contentPane.add(label_6);
 		
 		ModtextFieldPersonal = new JTextField();
 		ModtextFieldPersonal.setColumns(10);
-		ModtextFieldPersonal.setBounds(404, 383, 141, 17);
+		ModtextFieldPersonal.setBounds(503, 384, 141, 17);
 		contentPane.add(ModtextFieldPersonal);
 		
 		JLabel label_13 = new JLabel("Laboral");
 		label_13.setHorizontalAlignment(SwingConstants.CENTER);
-		label_13.setBounds(286, 411, 117, 14);
+		label_13.setBounds(376, 411, 117, 14);
 		contentPane.add(label_13);
 		
 		ModtextFieldLaboral = new JTextField();
 		ModtextFieldLaboral.setColumns(10);
-		ModtextFieldLaboral.setBounds(404, 409, 141, 17);
+		ModtextFieldLaboral.setBounds(503, 409, 141, 17);
 		contentPane.add(ModtextFieldLaboral);
 		
 		JLabel label_15 = new JLabel("N\u00FAmero");
 		label_15.setHorizontalAlignment(SwingConstants.CENTER);
-		label_15.setBounds(286, 436, 117, 14);
+		label_15.setBounds(376, 436, 117, 14);
 		contentPane.add(label_15);
 		
 		ModtextFieldNumero = new JTextField();
 		ModtextFieldNumero.setColumns(10);
-		ModtextFieldNumero.setBounds(404, 433, 141, 19);
+		ModtextFieldNumero.setBounds(503, 433, 141, 19);
 		contentPane.add(ModtextFieldNumero);
 		
 		JLabel label_16 = new JLabel("Autoridad de emisi\u00F3n");
 		label_16.setHorizontalAlignment(SwingConstants.CENTER);
-		label_16.setBounds(286, 461, 120, 14);
+		label_16.setBounds(373, 461, 120, 14);
 		contentPane.add(label_16);
 		
 		ModtextField_emision = new JTextField();
 		ModtextField_emision.setColumns(10);
-		ModtextField_emision.setBounds(404, 458, 141, 17);
+		ModtextField_emision.setBounds(503, 459, 141, 17);
 		contentPane.add(ModtextField_emision);
 		
 		JLabel label_17 = new JLabel("Fecha de vencimiento");
 		label_17.setHorizontalAlignment(SwingConstants.CENTER);
-		label_17.setBounds(298, 508, 105, 14);
+		label_17.setBounds(364, 508, 131, 14);
 		contentPane.add(label_17);
 		
 		ModtextField_vencimiento = new JTextField();
 		ModtextField_vencimiento.setColumns(10);
-		ModtextField_vencimiento.setBounds(404, 506, 141, 17);
+		ModtextField_vencimiento.setBounds(503, 506, 141, 17);
 		contentPane.add(ModtextField_vencimiento);
 		
 		JLabel label_18 = new JLabel("Pa\u00EDs de emisi\u00F3n");
 		label_18.setHorizontalAlignment(SwingConstants.CENTER);
-		label_18.setBounds(297, 533, 105, 14);
+		label_18.setBounds(388, 533, 105, 14);
 		contentPane.add(label_18);
 		
 		ModcomboBox_paisEmision = new JComboBox(new ControladorPais().obtenerNombres().toArray());
-		ModcomboBox_paisEmision.setBounds(404, 531, 141, 19);
+		ModcomboBox_paisEmision.setBounds(503, 531, 141, 19);
 		contentPane.add(ModcomboBox_paisEmision);
 		
 		JLabel label_19 = new JLabel("Categor\u00EDa");
 		label_19.setHorizontalAlignment(SwingConstants.CENTER);
-		label_19.setBounds(286, 561, 117, 14);
+		label_19.setBounds(376, 561, 117, 14);
 		contentPane.add(label_19);
 		
 		ModtextFieldCategoria = new JTextField();
 		ModtextFieldCategoria.setColumns(10);
-		ModtextFieldCategoria.setBounds(404, 559, 141, 17);
+		ModtextFieldCategoria.setBounds(503, 559, 141, 17);
 		contentPane.add(ModtextFieldCategoria);
 		
 		JLabel label_20 = new JLabel("Alianza");
 		label_20.setHorizontalAlignment(SwingConstants.CENTER);
-		label_20.setBounds(286, 586, 117, 14);
+		label_20.setBounds(376, 586, 117, 14);
 		contentPane.add(label_20);
 		
-		JComboBox ModcomboBoxAlianza = new JComboBox();
+		ModcomboBoxAlianza = new JComboBox();
 		ModcomboBoxAlianza.setModel(new DefaultComboBoxModel(Alianza.values()));
-		ModcomboBoxAlianza.setBounds(404, 585, 141, 17);
+		ModcomboBoxAlianza.setBounds(503, 585, 141, 17);
 		contentPane.add(ModcomboBoxAlianza);
 		
 		JLabel label_21 = new JLabel("N\u00FAmero");
 		label_21.setHorizontalAlignment(SwingConstants.CENTER);
-		label_21.setBounds(286, 611, 117, 14);
+		label_21.setBounds(376, 611, 117, 14);
 		contentPane.add(label_21);
 		
 		ModtextFieldNumeroPF = new JTextField();
 		ModtextFieldNumeroPF.setColumns(10);
-		ModtextFieldNumeroPF.setBounds(404, 608, 141, 19);
+		ModtextFieldNumeroPF.setBounds(503, 608, 141, 19);
 		contentPane.add(ModtextFieldNumeroPF);
 		
 		btnConsultaMod = new JButton("Consultar");
-		btnConsultaMod.setBounds(555, 32, 89, 23);
+		btnConsultaMod.setBounds(649, 32, 89, 23);
 		contentPane.add(btnConsultaMod);
 		btnConsultaMod.addActionListener(new EventoCliente(this));
 		
 		btnEliminarCliente = new JButton("Eliminar");
-		btnEliminarCliente.setBounds(555, 57, 89, 23);
+		btnEliminarCliente.setBounds(649, 57, 89, 23);
 		contentPane.add(btnEliminarCliente);
 		btnEliminarCliente.addActionListener(new EventoCliente(this));
 		
-		JButton btnModificarCliente = new JButton("Modificar");
-		btnModificarCliente.setBounds(424, 654, 89, 23);
+		btnModificarCliente = new JButton("Modificar");
+		btnModificarCliente.setBounds(528, 654, 89, 23);
 		contentPane.add(btnModificarCliente);
 		btnModificarCliente.addActionListener(new EventoCliente(this));
 		
 		btnAtrasMenuCliente = new JButton("Atras");
-		btnAtrasMenuCliente.setBounds(819, 457, 89, 23);
+		btnAtrasMenuCliente.setBounds(672, 677, 89, 23);
 		contentPane.add(btnAtrasMenuCliente);
 		btnAtrasMenuCliente.addActionListener(new EventoCliente(this));
 		
 		JLabel labelFecha_emision = new JLabel("Fecha de emision");
-		labelFecha_emision.setBounds(5, 508, 105, 14);
+		labelFecha_emision.setBounds(5, 508, 141, 14);
 		contentPane.add(labelFecha_emision);
 		
 		textField_fechaEmision = new JTextField();
-		textField_fechaEmision.setBounds(146, 508, 141, 17);
+		textField_fechaEmision.setBounds(170, 506, 141, 17);
 		contentPane.add(textField_fechaEmision);
 		textField_fechaEmision.setColumns(10);
 		
 		JLabel Modlabel_fechaEmision = new JLabel("Fecha de emision");
 		Modlabel_fechaEmision.setHorizontalAlignment(SwingConstants.CENTER);
-		Modlabel_fechaEmision.setBounds(297, 486, 106, 14);
+		Modlabel_fechaEmision.setBounds(387, 486, 106, 14);
 		contentPane.add(Modlabel_fechaEmision);
 		
 		ModtextFieldFechaEmision = new JTextField();
-		ModtextFieldFechaEmision.setBounds(404, 483, 141, 17);
+		ModtextFieldFechaEmision.setBounds(503, 484, 141, 17);
 		contentPane.add(ModtextFieldFechaEmision);
 		ModtextFieldFechaEmision.setColumns(10);
 		
 		JLabel labelModID_aerolinea = new JLabel("ID aerol\u00EDnea");
 		labelModID_aerolinea.setHorizontalAlignment(SwingConstants.CENTER);
-		labelModID_aerolinea.setBounds(286, 636, 117, 14);
+		labelModID_aerolinea.setBounds(376, 636, 117, 14);
 		contentPane.add(labelModID_aerolinea);
 		
 		ModtextField_idAerolinea = new JTextField();
-		ModtextField_idAerolinea.setBounds(404, 633, 141, 17);
+		ModtextField_idAerolinea.setBounds(503, 634, 141, 17);
 		contentPane.add(ModtextField_idAerolinea);
 		ModtextField_idAerolinea.setColumns(10);
+		
+		JLabel lblDireccion = new JLabel("Direccion");
+		lblDireccion.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblDireccion.setBounds(654, 211, 64, 14);
+		contentPane.add(lblDireccion);
+		
+		JLabel lblTelefono = new JLabel("Tel\u00E9fono");
+		lblTelefono.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTelefono.setBounds(654, 386, 64, 14);
+		contentPane.add(lblTelefono);
+		
+		JLabel lblPasaporte = new JLabel("Pasaporte");
+		lblPasaporte.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPasaporte.setBounds(654, 436, 64, 14);
+		contentPane.add(lblPasaporte);
+		
+		JLabel lblPasajFrecuente = new JLabel("Pasajero Frecuente");
+		lblPasajFrecuente.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblPasajFrecuente.setBounds(654, 561, 125, 14);
+		contentPane.add(lblPasajFrecuente);
+		
+		lbl_idDireccion = new JLabel("");
+		lbl_idDireccion.setBounds(728, 211, 46, 14);
+		contentPane.add(lbl_idDireccion);
+		
+		lbl_idTelefono = new JLabel("");
+		lbl_idTelefono.setBounds(728, 386, 46, 14);
+		contentPane.add(lbl_idTelefono);
+		
+		lbl_idPasaporte = new JLabel("");
+		lbl_idPasaporte.setBounds(728, 436, 46, 14);
+		contentPane.add(lbl_idPasaporte);
+		
+		lbl_idPF = new JLabel("");
+		lbl_idPF.setBounds(778, 561, 57, 14);
+		contentPane.add(lbl_idPF);
 		btnAltaCliente.addActionListener(new EventoCliente(this));
 		
 		

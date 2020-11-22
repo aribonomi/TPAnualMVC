@@ -37,6 +37,10 @@ public class ControladorCliente {
 		return clienteDAO.getCliente(id);
 	}
 	
+	public Cliente consultaPorId(Integer id) {
+		return clienteDAO.consultaPorId(id);
+	}
+	
 	/*
 	@Override
 	public void actionPerformed(ActionEvent e) {

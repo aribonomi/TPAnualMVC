@@ -35,5 +35,9 @@ public class ControladorProvincia {
 		return provDAO.obtenerNombres();
 	}
 	
+	public Provincia consultarPorNombre(String nombre) {
+		return provDAO.getProvinciaPorNombre(nombre);
+	}
+	
 
 }
