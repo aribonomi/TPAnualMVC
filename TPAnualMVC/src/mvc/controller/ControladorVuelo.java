@@ -2,6 +2,7 @@ package mvc.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -18,7 +19,7 @@ public class ControladorVuelo{
 	
 	
 
-	public ControladorVuelo(VistaPrincipal vista) {
+	public ControladorVuelo() {
 		new Factory();
 		vueloDAO = Factory.getVuelosDaoImplMysql();
 	}
@@ -36,8 +37,12 @@ public class ControladorVuelo{
 		vueloDAO.modificarVuelo(v);
 	}
 	
-	public Vuelo consultarVuelo(String id) {
+	public Vuelo consultarVuelo(Integer id) {
 		return vueloDAO.getVuelos(id);
+	}
+	
+	public List<Integer> obtenerIds(){
+		return vueloDAO.obtenerIDs();
 	}
 
 	/*@Override

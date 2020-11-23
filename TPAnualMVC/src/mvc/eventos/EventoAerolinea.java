@@ -35,6 +35,9 @@ public class EventoAerolinea implements ActionListener{
 				Aerolinea a = new Aerolinea(nombre, al);
 				
 				contLA.altaLineaAerea(a);
+				Aerolinea nueva = contLA.consultaPorNombre(a.getNombre());
+				
+				vista.lbl_idAlta.setText("ID: "+nueva.getId_aeroLinea());
 				
 			}else if(e.getSource()==vista.btnConsultaAerolinea) {
 				

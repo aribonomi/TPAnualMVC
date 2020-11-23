@@ -1,5 +1,7 @@
 package mvc.controller;
 
+import java.util.List;
+
 import Factory.Factory;
 import dao.Interfaces.VentasDAO;
 import dao.negocio.Venta;
@@ -25,8 +27,12 @@ public class ControladorVenta {
 		ventaDAO.modificarVenta(v);
 	}
 	
-	public Venta consultarVenta(String id) {
-		return ventaDAO.getVentas(id);
+	public Venta consultarVenta(Integer id) {
+		return ventaDAO.getVentas(id.toString());
+	}
+	
+	public List<Integer> obtenerIds(){
+		return ventaDAO.obtenerIds();
 	}
 
 }

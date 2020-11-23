@@ -85,8 +85,8 @@ public class EventoCliente implements ActionListener{
 				String categoria = vista.textField_CatPF.getText();
 				String numeroPF = vista.textField_NumPF.getText();
 				Alianza alianza = (Alianza) vista.comboBoxAlianza.getSelectedItem();
-				String id_aerolinea = vista.textField_idAerolinea.getText();
-				Aerolinea aerolinea = contLA.consultarLineaAerea(id_aerolinea);
+				String nombre_aerolinea = (String) vista.comboBoxAerolinea.getSelectedItem();
+				Aerolinea aerolinea = contLA.consultaPorNombre(nombre_aerolinea);
 				PasajeroFrecuente pf = new PasajeroFrecuente(categoria, numeroPF, alianza, aerolinea);
 				contPF.altaPasajFrecuente(pf);
 				
@@ -142,7 +142,7 @@ public class EventoCliente implements ActionListener{
 			vista.ModtextFieldCategoria.setText(pf.getCategoria());
 			vista.ModtextFieldNumeroPF.setText(pf.getNumero());
 			vista.ModcomboBoxAlianza.setSelectedItem(pf.getAlianza());
-			vista.ModtextField_idAerolinea.setText(a.getId_aeroLinea().toString());
+			vista.ModcomboBoxAerolinea.setSelectedItem(a.getNombre());
 			
 			
 		}else if(e.getSource()==vista.btnEliminarCliente) {
@@ -208,8 +208,8 @@ public class EventoCliente implements ActionListener{
 				String categoria = vista.ModtextFieldCategoria.getText();
 				String numeroPF = vista.ModtextFieldNumeroPF.getText();
 				Alianza alianza = (Alianza) vista.ModcomboBoxAlianza.getSelectedItem();
-				String id_aerolinea = vista.ModtextField_idAerolinea.getText();
-				Aerolinea aerolinea = contLA.consultarLineaAerea(id_aerolinea);
+				String nombre_aerolinea = vista.ModcomboBoxAerolinea.getSelectedItem().toString();
+				Aerolinea aerolinea = contLA.consultaPorNombre(nombre_aerolinea);
 				PasajeroFrecuente pf = new PasajeroFrecuente(id_pf,categoria, numeroPF, alianza, aerolinea);
 				contPF.modPasajFrecuente(pf);
 				

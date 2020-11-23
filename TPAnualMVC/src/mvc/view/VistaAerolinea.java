@@ -31,6 +31,7 @@ public class VistaAerolinea extends JFrame {
 	public JButton btnAtras;
 	public JComboBox comboBoxAlianza;
 	public JComboBox ModcomboBoxAlianza;
+	public JLabel lbl_idAlta;
 
 	/**
 	 * Launch the application.
@@ -140,6 +141,10 @@ public class VistaAerolinea extends JFrame {
 		ModcomboBoxAlianza.setModel(new DefaultComboBoxModel(Alianza.values()));
 		ModcomboBoxAlianza.setBounds(373, 83, 141, 20);
 		contentPane.add(ModcomboBoxAlianza);
+		
+		lbl_idAlta = new JLabel("");
+		lbl_idAlta.setBounds(10, 92, 68, 14);
+		contentPane.add(lbl_idAlta);
 		btnAtras.addActionListener(new EventoAerolinea(this));
 		
 		

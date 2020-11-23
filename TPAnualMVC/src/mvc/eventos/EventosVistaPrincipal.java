@@ -23,6 +23,12 @@ public class EventosVistaPrincipal implements ActionListener{
 		}else if(e.getSource()==vistaP.btnAerolineas){
 			VistaAerolinea vistaAerolinea = new VistaAerolinea();
 			vistaAerolinea.setVisible(true);
+		}else if(e.getSource()==vistaP.btnVentas) {
+			VistaVenta vistaVenta = new VistaVenta();
+			vistaVenta.setVisible(true);
+		}else if(e.getSource()==vistaP.btnVuelos){
+			VistaVuelo vistaVuelo = new VistaVuelo();
+			vistaVuelo.setVisible(true);
 		}else if(e.getSource()==vistaP.btnSalir) {
 			int resultado = JOptionPane.showConfirmDialog(null, "Está seguro que quiere salir?", "Saliendo", JOptionPane.OK_CANCEL_OPTION);
 			if(resultado == JOptionPane.OK_OPTION) {

@@ -50,6 +50,7 @@ public class VistaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public VistaPrincipal() {
+		setTitle("Men\u00FA principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		
@@ -87,10 +88,12 @@ public class VistaPrincipal extends JFrame {
 		btnVentas = new JButton("Ventas");
 		btnVentas.setBounds(159, 131, 115, 23);
 		panel.add(btnVentas);
+		btnVentas.addActionListener(new EventosVistaPrincipal(this));
 		
 		btnVuelos = new JButton("Vuelos");
 		btnVuelos.setBounds(159, 165, 115, 23);
 		panel.add(btnVuelos);
+		btnVuelos.addActionListener(new EventosVistaPrincipal(this));
 		
 		btnSalir = new JButton("Salir");
 		btnSalir.setBounds(159, 199, 115, 23);

@@ -1,13 +1,13 @@
 package mvc.main;
 
+import mvc.view.*;
+
 public class Main {
 	
 	public static void main(String[] args) {
-	
-	
-	
-//	VerificarEdad.verificarEdad(_cliente);
-//	MenuPrincipal.menuPrincipal();
+		
+		VistaPrincipal vistaP = new VistaPrincipal();
+		vistaP.setVisible(true);
 
 
 	

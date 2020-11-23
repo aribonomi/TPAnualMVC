@@ -1,5 +1,7 @@
 package mvc.controller;
 
+import java.util.List;
+
 import Factory.Factory;
 import dao.Interfaces.LineaAereaDAO;
 import dao.negocio.Aerolinea;
@@ -29,6 +31,14 @@ public class ControladorLineaAerea {
 	
 	public Aerolinea consultarLineaAerea(String id) {
 		return lineaAereaDAO.getLineaArea(id);
+	}
+	
+	public Aerolinea consultaPorNombre(String nombre) {
+		return lineaAereaDAO.consultarPorNombre(nombre);
+	}
+	
+	public List<String> obtenerNombres(){
+		return lineaAereaDAO.obtenerNombres();
 	}
 	
 	

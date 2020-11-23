@@ -1,5 +1,7 @@
 package mvc.controller;
 
+import java.util.List;
+
 import Factory.Factory;
 import dao.Interfaces.ClienteDAO;
 import dao.negocio.Cliente;
@@ -39,6 +41,10 @@ public class ControladorCliente {
 	
 	public Cliente consultaPorId(Integer id) {
 		return clienteDAO.consultaPorId(id);
+	}
+	
+	public List<Integer> obtenerIds(){
+		return clienteDAO.obtenerDnis();
 	}
 	
 	/*
