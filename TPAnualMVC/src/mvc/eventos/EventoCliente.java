@@ -57,11 +57,31 @@ public class EventoCliente implements ActionListener{
 				String ciudad = vista.textFieldCiudad.getText();
 				String postal = vista.textFieldCodP.getText();
 				String provincia = (String) vista.comboBox_provincia.getSelectedItem();
-				Provincia prov = contProvincia.consultarPorNombre(provincia);
 				String pais = (String) vista.comboBox_pais.getSelectedItem();
-				Pais p = contPais.consultarPais(pais);
-				Direccion d = new Direccion(calle, altura, ciudad, postal, prov,  p);
-				contDireccion.altaDireccion(d);
+				
+				
+				if(provincia.equalsIgnoreCase("Internacional")) {
+					if(pais.equalsIgnoreCase("Otro")) {
+						contPais.altaPais(new Pais(vista.textFieldOtroPais.getText()));
+						contProvincia.altaProv(new Provincia(vista.textFieldProvincia.getText()));
+						Pais p = contPais.consultarPais(vista.textFieldOtroPais.getText());
+						Provincia prov = contProvincia.consultarPorNombre(vista.textFieldProvincia.getText());
+						Direccion d = new Direccion(calle, altura, ciudad, postal, prov,  p);
+						contDireccion.altaDireccion(d);
+					}else {
+						contProvincia.altaProv(new Provincia(vista.textFieldProvincia.getText()));
+						Provincia prov = contProvincia.consultarPorNombre(vista.textFieldProvincia.getText());
+						Pais p = contPais.consultarPais(pais);
+						Direccion d = new Direccion(calle, altura, ciudad, postal, prov,  p);
+						contDireccion.altaDireccion(d);
+					}	
+				}else {
+					Provincia prov = contProvincia.consultarPorNombre(provincia);
+					Pais p = contPais.consultarPais(pais);
+					
+					Direccion d = new Direccion(calle, altura, ciudad, postal, prov,  p);
+					contDireccion.altaDireccion(d);
+				}	
 				
 			//Teléfono
 				String celular = vista.textFieldCelular.getText();
@@ -94,6 +114,7 @@ public class EventoCliente implements ActionListener{
 				
 				contCliente.altaCliente(c);
 				JOptionPane.showMessageDialog(null, c.toString()+" ingresado");
+				
 			}catch(Exception ex) {
 				JOptionPane.showMessageDialog(null,"Compruebe que estén bien todos los datos", "Error", JOptionPane.ERROR_MESSAGE);
 				ex.printStackTrace();
@@ -177,11 +198,34 @@ public class EventoCliente implements ActionListener{
 				String ciudad = vista.ModtextFieldCiudad.getText();
 				String postal = vista.ModtextFieldCodP.getText();
 				String provincia = (String) vista.ModcomboBox_provincia.getSelectedItem();
-				Provincia prov = contProvincia.consultarPorNombre(provincia);
 				String pais = (String) vista.ModcomboBox_pais.getSelectedItem();
-				Pais p = contPais.consultarPais(pais);
-				Direccion d = new Direccion(id_direccion,calle, altura, ciudad, postal, prov,  p);
-				contDireccion.modDireccion(d);;
+				
+				Direccion d;
+				
+				if(provincia.equalsIgnoreCase("Internacional")) {
+					if(pais.equalsIgnoreCase("Otro")) {
+						contPais.altaPais(new Pais(vista.modtextFieldOtroPais.getText()));
+						contProvincia.altaProv(new Provincia(vista.modtextFieldOtraProv.getText()));
+						Pais p = contPais.consultarPais(vista.modtextFieldOtroPais.getText());
+						Provincia prov = contProvincia.consultarPorNombre(vista.modtextFieldOtraProv.getText());
+						d = new Direccion(calle, altura, ciudad, postal, prov,  p);
+						contDireccion.modDireccion(d);
+					}else {
+						contProvincia.altaProv(new Provincia(vista.modtextFieldOtraProv.getText()));
+						Provincia prov = contProvincia.consultarPorNombre(vista.modtextFieldOtraProv.getText());
+						Pais p = contPais.consultarPais(pais);
+						d = new Direccion(calle, altura, ciudad, postal, prov,  p);
+						contDireccion.modDireccion(d);
+					}	
+				}else {
+					Pais p = contPais.consultarPais(pais);
+					Provincia prov = contProvincia.consultarPorNombre(provincia);
+					
+					d = new Direccion(id_direccion,calle, altura, ciudad, postal, prov,  p);
+					contDireccion.modDireccion(d);
+				}	
+			
+				
 				
 			//Teléfono
 				Integer id_telefono = Integer.parseInt(vista.lbl_idTelefono.getText());

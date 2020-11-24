@@ -85,8 +85,6 @@ public class EventoVuelo implements ActionListener{
 				int input =JOptionPane.showConfirmDialog(null, "¡Se eliminará el vuelo!", "WARNING", JOptionPane.OK_CANCEL_OPTION);
 				if(input == JOptionPane.OK_OPTION) {
 					contVuelo.bajaVuelo(vista.comboBoxID.getSelectedItem().toString());
-				}if(input==JOptionPane.CANCEL_OPTION) {
-					JOptionPane.showMessageDialog(null, "Jajaja alto cagón");
 				}
 			}else if(e.getSource()==vista.btnAtras) {
 				vista.setVisible(false);

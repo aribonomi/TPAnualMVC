@@ -23,8 +23,9 @@ public class ControladorCliente {
 
 
 	public void altaCliente(Cliente c) {
-		clienteDAO.altaCliente(c);
 		
+		clienteDAO.altaCliente(c);
+		//Date fecha=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1); 
 	}
 	
 	public void bajaCliente(String id) {
