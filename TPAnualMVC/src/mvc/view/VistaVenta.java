@@ -22,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.TextArea;
+import java.awt.Label;
 
 
 public class VistaVenta extends JFrame {
@@ -49,6 +51,7 @@ public class VistaVenta extends JFrame {
 	public JButton btnEliminar;
 	public JButton btnAtras;
 	public JComboBox modcomboBoxAerolinea;
+	public TextArea textAreaConsulta;
 
 
 	/**
@@ -73,7 +76,7 @@ public class VistaVenta extends JFrame {
 	public VistaVenta() {
 		setTitle("Venta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 648, 276);
+		setBounds(100, 100, 1011, 276);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -100,7 +103,7 @@ public class VistaVenta extends JFrame {
 		contentPane.add(lblModificarAerolinea);
 		
 		btnAtras = new JButton("Atras");
-		btnAtras.setBounds(524, 202, 89, 23);
+		btnAtras.setBounds(524, 188, 89, 23);
 		contentPane.add(btnAtras);
 		btnAtras.addActionListener(new EventoVenta(this));
 		
@@ -189,7 +192,7 @@ public class VistaVenta extends JFrame {
 		contentPane.add(modcomboBoxAerolinea);
 		
 		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(145, 164, 89, 23);
+		btnAgregar.setBounds(144, 188, 89, 23);
 		contentPane.add(btnAgregar);
 		btnAgregar.addActionListener(new EventoVenta(this));
 		
@@ -206,6 +209,16 @@ public class VistaVenta extends JFrame {
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBounds(524, 66, 89, 23);
 		contentPane.add(btnEliminar);
+		
+		textAreaConsulta = new TextArea();
+		textAreaConsulta.setBounds(673, 52, 312, 145);
+		contentPane.add(textAreaConsulta);
+		
+		Label label_1 = new Label("Datos de la consulta");
+		label_1.setFont(new Font("Dialog", Font.BOLD, 12));
+		label_1.setAlignment(Label.CENTER);
+		label_1.setBounds(673, 28, 312, 22);
+		contentPane.add(label_1);
 		btnEliminar.addActionListener(new EventoVenta(this));
 		
 	}

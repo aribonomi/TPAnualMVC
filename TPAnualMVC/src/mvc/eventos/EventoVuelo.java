@@ -34,7 +34,7 @@ public class EventoVuelo implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
 			if(e.getSource()==vista.btnAlta) {
-				String numero = vista.textFieldNumero.getText();
+				
 				Integer cantidad_asientos = Integer.parseInt(vista.textFieldCantidadDeAsientos.getText());
 				String nombre_aerop_llegada = (String) vista.comboBoxAeropLlegada.getSelectedItem();
 				String nombre_aerop_salida = (String) vista.comboBoxAeropSalida.getSelectedItem();
@@ -43,10 +43,16 @@ public class EventoVuelo implements ActionListener{
 				String tiempo_vuelo = vista.textFieldTiempoVuelo.getText();
 				String nombre_aerolinea = (String) vista.comboBoxAerolinea.getSelectedItem();
 				
+				Integer id_vuelo = contVuelo.obtenerUltimoId()+1;
+				
+				String numero_vuelo = nombre_aerolinea.charAt(0)+""+nombre_aerolinea.charAt(4)+"-"+id_vuelo;
+				
+				
 				Aeropuerto aeropuerto_salida=contAeropuerto.consultaPorCodigo(nombre_aerop_salida);
 				Aeropuerto aeropuerto_llegada = contAeropuerto.consultaPorCodigo(nombre_aerop_llegada);
 				Aerolinea aerolinea = contLA.consultaPorNombre(nombre_aerolinea);
-				Vuelo vuelo = new Vuelo(numero, cantidad_asientos, fecha_llegada, fecha_salida, tiempo_vuelo,aeropuerto_llegada, aeropuerto_salida, aerolinea);
+				Vuelo vuelo = new Vuelo(numero_vuelo, cantidad_asientos, fecha_llegada, fecha_salida, tiempo_vuelo,aeropuerto_llegada, aeropuerto_salida, aerolinea);
+				vista.lblNumVuelo.setText(numero_vuelo);
 				
 				contVuelo.altaVuelo(vuelo);
 				
@@ -63,6 +69,9 @@ public class EventoVuelo implements ActionListener{
 				vista.modcomboBoxAerolinea.setSelectedItem(vuelo.getAerolinea().getNombre());
 				vista.modcomboBoxAeropSalida.setSelectedItem(vuelo.getAeropuertoSalida().getIdentificacion());
 				vista.modcomboBoxAeropLlegada.setSelectedItem(vuelo.getAeropuertoLlegada().getIdentificacion());
+				
+				vista.textAreaConsulta.setText(vuelo.toString());
+				
 				
 			}else if(e.getSource()==vista.btnModificar) {
 				Integer id = Integer.parseInt(vista.comboBoxID.getSelectedItem().toString());

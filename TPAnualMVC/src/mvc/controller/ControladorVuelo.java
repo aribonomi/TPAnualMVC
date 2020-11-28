@@ -44,6 +44,14 @@ public class ControladorVuelo{
 	public List<Integer> obtenerIds(){
 		return vueloDAO.obtenerIDs();
 	}
+	
+	public Vuelo obtenerUltimo() {
+		return vueloDAO.obtenerUltimo();
+	}
+	public Integer obtenerUltimoId() {
+		return vueloDAO.obtenerUltimo().getId_Vuelo();
+	}
+	
 
 	/*@Override
 	public void actionPerformed(ActionEvent e) {

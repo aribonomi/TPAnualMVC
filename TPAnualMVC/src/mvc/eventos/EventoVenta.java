@@ -57,6 +57,7 @@ public class EventoVenta implements ActionListener{
 				vista.modcomboBoxCliente.setSelectedItem(venta.getCliente().getId_cliente());
 				vista.modcomboBoxVuelo.setSelectedItem(venta.getVuelo().getId_Vuelo());
 				vista.modcomboBoxAerolinea.setSelectedItem(venta.getAerolinea().getNombre());
+				vista.textAreaConsulta.setText(venta.toString());
 				
 			}else if(e.getSource()==vista.btnModificarVenta) {
 				Integer id = Integer.parseInt(vista.comboBoxId.getSelectedItem().toString());
