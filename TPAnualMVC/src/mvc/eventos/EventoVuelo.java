@@ -45,8 +45,7 @@ public class EventoVuelo implements ActionListener{
 				
 				Integer id_vuelo = contVuelo.obtenerUltimoId()+1;
 				
-				String numero_vuelo = nombre_aerolinea.charAt(0)+""+nombre_aerolinea.charAt(4)+"-"+id_vuelo;
-				
+				String numero_vuelo = formarNumeroVuelo(nombre_aerolinea,id_vuelo); 
 				
 				Aeropuerto aeropuerto_salida=contAeropuerto.consultaPorCodigo(nombre_aerop_salida);
 				Aeropuerto aeropuerto_llegada = contAeropuerto.consultaPorCodigo(nombre_aerop_llegada);
@@ -104,5 +103,40 @@ public class EventoVuelo implements ActionListener{
 		}
 		
 	}
+	
+	
+	
+	private String formarNumeroVuelo (String aerolinea, int numeroVuelo) {
+		
+		String codigoVuelo = null;
+		
+		int cantidadNumeros = 0;
+		cantidadNumeros = Integer.toString(numeroVuelo).length();
+		
+		switch (cantidadNumeros){
+		
+		case 1:
+		codigoVuelo = aerolinea.charAt(0) + "" + aerolinea.charAt(4) +"-000"+numeroVuelo;
+		return codigoVuelo;
+		case 2:
+		codigoVuelo = aerolinea.charAt(0) + "" + aerolinea.charAt(4) +"-00"+numeroVuelo;
+		return codigoVuelo;
+		case 3:
+		codigoVuelo = aerolinea.charAt(0) + "" + aerolinea.charAt(4) +"-0"+numeroVuelo;
+		return codigoVuelo;
+		case 4:
+		codigoVuelo = aerolinea.charAt(0) + "" + aerolinea.charAt(4) +"-"+numeroVuelo;
+		return codigoVuelo;
+		default:
+		codigoVuelo = aerolinea.charAt(0) + "" + aerolinea.charAt(4) +"-" +numeroVuelo;	
+		return codigoVuelo;
+		
+		
+		
+		}
+	}
+	
+	
+	
 
 }
