@@ -716,27 +716,27 @@ public class VistaCliente extends JFrame {
 		modlblOtroPais.setBounds(769, 336, 46, 14);
 		contentPane.add(modlblOtroPais);
 		
-		JLabel lblNewLabel = new JLabel("yyyy/MM/dd");
+		JLabel lblNewLabel = new JLabel("yyyy-MM-dd");
 		lblNewLabel.setBounds(321, 136, 74, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("yyyy/MM/dd");
+		JLabel lblNewLabel_1 = new JLabel("yyyy-MM-dd");
 		lblNewLabel_1.setBounds(321, 508, 74, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("yyyy/MM/dd");
+		JLabel lblNewLabel_2 = new JLabel("yyyy-MM-dd");
 		lblNewLabel_2.setBounds(321, 533, 74, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("yyyy/MM/dd");
+		JLabel lblNewLabel_3 = new JLabel("yyyy-MM-dd");
 		lblNewLabel_3.setBounds(769, 161, 66, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("yyyy/MM/dd");
+		JLabel lblNewLabel_4 = new JLabel("yyyy-MM-dd");
 		lblNewLabel_4.setBounds(769, 486, 66, 14);
 		contentPane.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("yyyy/MM/dd");
+		JLabel lblNewLabel_5 = new JLabel("yyyy-MM-dd");
 		lblNewLabel_5.setBounds(769, 508, 66, 14);
 		contentPane.add(lblNewLabel_5);
 		btnAltaCliente.addActionListener(new EventoCliente(this));

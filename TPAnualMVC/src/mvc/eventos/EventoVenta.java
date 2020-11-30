@@ -32,7 +32,12 @@ public class EventoVenta implements ActionListener{
 		try {
 			if(e.getSource()==vista.btnAgregar) {
 				String fecha = vista.textFieldFecha.getText();
-				String forma_pago = vista.textFieldFormaDePago.getText();
+				String forma_pago = (String) vista.comboBoxFormaPago.getSelectedItem();
+				
+				if(forma_pago.equalsIgnoreCase("Crédito")) {
+					forma_pago = forma_pago.concat(" "+(String) vista.comboBoxIntereses.getSelectedItem());
+				}
+				
 				Integer id_cliente = (Integer) vista.comboBoxCliente.getSelectedItem();
 				String nombre_aerolinea = (String) vista.comboBoxAerolinea.getSelectedItem();
 				Integer id_vuelo = (Integer)vista.comboBoxVuelo.getSelectedItem();
@@ -46,23 +51,33 @@ public class EventoVenta implements ActionListener{
 				Venta venta = new Venta(fecha, forma_pago, cliente, vuelo, aerolinea);
 				
 				contVenta.altaVenta(venta);
+				Venta ventaAgregada = contVenta.obtenerUltima();
+				
+				JOptionPane.showMessageDialog(null,  ventaAgregada.toString(), "Venta ingresada", JOptionPane.INFORMATION_MESSAGE);
+				
 				
 			}else if(e.getSource()==vista.btnConsulta) {
-				Integer id = Integer.parseInt(vista.comboBoxId.getSelectedItem().toString());
+				Integer id = Integer.parseInt(vista.textField_idVenta.getText());
 				Venta venta = contVenta.consultarVenta(id);
 				
 				
 				vista.ModtextFieldFecha.setText(venta.getFecha());
-				vista.ModtextFieldFormaDePago.setText(venta.getFormaDePago());
+				vista.modcomboBox_formaPago.setSelectedItem(contVenta.obtenerFormaPago(venta.getFormaDePago()));
+				vista.modcomboBoxIntereses.setSelectedItem(contVenta.obtenerCuotas(venta.getFormaDePago()));
 				vista.modcomboBoxCliente.setSelectedItem(venta.getCliente().getId_cliente());
 				vista.modcomboBoxVuelo.setSelectedItem(venta.getVuelo().getId_Vuelo());
 				vista.modcomboBoxAerolinea.setSelectedItem(venta.getAerolinea().getNombre());
 				vista.textAreaConsulta.setText(venta.toString());
 				
 			}else if(e.getSource()==vista.btnModificarVenta) {
-				Integer id = Integer.parseInt(vista.comboBoxId.getSelectedItem().toString());
+				Integer id = Integer.parseInt(vista.textField_idVenta.getText());
 				String fecha = vista.ModtextFieldFecha.getText();
-				String forma_pago = vista.ModtextFieldFormaDePago.getText();
+				String forma_pago = (String) vista.modcomboBox_formaPago.getSelectedItem();
+				
+				if(forma_pago.equalsIgnoreCase("Crédito")) {
+					forma_pago = forma_pago.concat(" "+(String) vista.modcomboBoxIntereses.getSelectedItem());
+				}
+				
 				Integer id_cliente = (Integer) vista.modcomboBoxCliente.getSelectedItem();
 				String nombre_aerolinea = (String) vista.modcomboBoxAerolinea.getSelectedItem();
 				Integer id_vuelo = (Integer)vista.modcomboBoxVuelo.getSelectedItem();
@@ -78,7 +93,7 @@ public class EventoVenta implements ActionListener{
 			}else if(e.getSource()==vista.btnEliminar) {
 				int input =JOptionPane.showConfirmDialog(null, "¡Se eliminará la venta!", "WARNING", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 				if(input == JOptionPane.OK_OPTION) {
-					contVenta.bajaVenta(vista.comboBoxId.getSelectedItem().toString());
+					contVenta.bajaVenta(vista.textField_idVenta.getText());
 				}
 			}else if(e.getSource()==vista.btnAtras) {
 				vista.setVisible(false);

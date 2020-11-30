@@ -54,9 +54,13 @@ public class EventoVuelo implements ActionListener{
 				vista.lblNumVuelo.setText(numero_vuelo);
 				
 				contVuelo.altaVuelo(vuelo);
+				Vuelo vueloAgregado = contVuelo.consultarVuelo(contVuelo.obtenerUltimoId());
+				
+				JOptionPane.showMessageDialog(null,  vueloAgregado.toString(), "Vuelo ingresado", JOptionPane.INFORMATION_MESSAGE);
+				
 				
 			}else if(e.getSource()==vista.btnConsultar) {
-				Integer id = Integer.parseInt(vista.comboBoxID.getSelectedItem().toString());
+				Integer id = Integer.parseInt(vista.textFieldVueloCons.getText());
 				Vuelo vuelo = contVuelo.consultarVuelo(id);
 				
 				
@@ -73,7 +77,7 @@ public class EventoVuelo implements ActionListener{
 				
 				
 			}else if(e.getSource()==vista.btnModificar) {
-				Integer id = Integer.parseInt(vista.comboBoxID.getSelectedItem().toString());
+				Integer id = Integer.parseInt(vista.textFieldVueloCons.getText());
 				String numero = vista.ModtextFieldNumero.getText();
 				Integer cantidad_asientos = Integer.parseInt(vista.ModtextFieldCantidadAsientos.getText());
 				String nombre_aerop_llegada = (String) vista.modcomboBoxAeropLlegada.getSelectedItem();
@@ -92,7 +96,7 @@ public class EventoVuelo implements ActionListener{
 			}else if(e.getSource()==vista.btnEliminar) {
 				int input =JOptionPane.showConfirmDialog(null, "¡Se eliminará el vuelo!", "WARNING", JOptionPane.OK_CANCEL_OPTION);
 				if(input == JOptionPane.OK_OPTION) {
-					contVuelo.bajaVuelo(vista.comboBoxID.getSelectedItem().toString());
+					contVuelo.bajaVuelo(vista.textFieldVueloCons.getText());
 				}
 			}else if(e.getSource()==vista.btnAtras) {
 				vista.setVisible(false);

@@ -74,5 +74,34 @@ public class ControladorVenta {
 	public List<Integer> obtenerIds(){
 		return ventaDAO.obtenerIds();
 	}
+	
+	public Venta obtenerUltima() {
+		return ventaDAO.obtenerUltima();
+	}
+	
+	public String obtenerFormaPago(String forma_pago) {
+		if(forma_pago.startsWith("C")) {
+			return "Crédito";
+		}else if(forma_pago.startsWith("E")) {
+			return "Efectivo";
+		}else if(forma_pago.startsWith("D")) {
+			return "Débito";
+		}
+		return null;
+	}
+	
+	public String obtenerCuotas(String cuotas) {
+		if(cuotas.contains("3")) {
+			return "3 s/i";
+		}else if(cuotas.contains("6")) {
+			return "6 s/i";
+		}else if(cuotas.contains("12")) {
+			return "12 (10% interes)";
+		}else if(cuotas.contains("24")) {
+			return "24 (10% interes)";
+		}
+		return null;
+	}
+	
 
 }

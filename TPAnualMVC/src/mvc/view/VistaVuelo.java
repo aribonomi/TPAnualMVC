@@ -52,9 +52,9 @@ public class VistaVuelo extends JFrame{
 	public JComboBox comboBoxAeropSalida;
 	public JComboBox modcomboBoxAeropLlegada;
 	public JComboBox modcomboBoxAeropSalida;
-	public JComboBox comboBoxID;
 	public TextArea textAreaConsulta;
 	public JLabel lblNumVuelo;
+	public JTextField textFieldVueloCons;
 
 
 	/**
@@ -260,10 +260,6 @@ public class VistaVuelo extends JFrame{
 		modcomboBoxAeropLlegada.setBounds(409, 109, 141, 19);
 		contentPane.add(modcomboBoxAeropLlegada);
 		
-		comboBoxID = new JComboBox(new ControladorVuelo().obtenerIds().toArray());
-		comboBoxID.setBounds(409, 35, 141, 17);
-		contentPane.add(comboBoxID);
-		
 		textAreaConsulta = new TextArea();
 		textAreaConsulta.setBounds(594, 113, 289, 140);
 		contentPane.add(textAreaConsulta);
@@ -275,8 +271,13 @@ public class VistaVuelo extends JFrame{
 		contentPane.add(lblNewLabel);
 		
 		lblNumVuelo = new JLabel("");
-		lblNumVuelo.setBounds(124, 36, 46, 14);
+		lblNumVuelo.setBounds(133, 36, 141, 14);
 		contentPane.add(lblNumVuelo);
+		
+		textFieldVueloCons = new JTextField();
+		textFieldVueloCons.setBounds(409, 33, 141, 17);
+		contentPane.add(textFieldVueloCons);
+		textFieldVueloCons.setColumns(10);
 		
 	}
 }

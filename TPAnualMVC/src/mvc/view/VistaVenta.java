@@ -24,6 +24,7 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.TextArea;
 import java.awt.Label;
+import javax.swing.DefaultComboBoxModel;
 
 
 public class VistaVenta extends JFrame {
@@ -36,13 +37,10 @@ public class VistaVenta extends JFrame {
 	public JTextField textFieldNombreMod;
 	public JTextField textFieldApellidoMod;
 	public JTextField textFieldFecha;
-	public JTextField textFieldFormaDePago;
 	public JTextField ModtextFieldFecha;
-	public JTextField ModtextFieldFormaDePago;
 	public JComboBox comboBoxCliente;
 	public JComboBox comboBoxVuelo;
 	public JComboBox comboBoxAerolinea;
-	public JComboBox comboBoxId;
 	public JComboBox modcomboBoxCliente;
 	public JComboBox modcomboBoxVuelo;
 	public JButton btnAgregar;
@@ -52,6 +50,11 @@ public class VistaVenta extends JFrame {
 	public JButton btnAtras;
 	public JComboBox modcomboBoxAerolinea;
 	public TextArea textAreaConsulta;
+	public JTextField textField_idVenta;
+	public JComboBox comboBoxFormaPago;
+	public JComboBox comboBoxIntereses;
+	public JComboBox modcomboBox_formaPago;
+	public JComboBox modcomboBoxIntereses;
 
 
 	/**
@@ -76,7 +79,7 @@ public class VistaVenta extends JFrame {
 	public VistaVenta() {
 		setTitle("Venta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1011, 276);
+		setBounds(100, 100, 1011, 291);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -103,7 +106,7 @@ public class VistaVenta extends JFrame {
 		contentPane.add(lblModificarAerolinea);
 		
 		btnAtras = new JButton("Atras");
-		btnAtras.setBounds(524, 188, 89, 23);
+		btnAtras.setBounds(524, 218, 89, 23);
 		contentPane.add(btnAtras);
 		btnAtras.addActionListener(new EventoVenta(this));
 		
@@ -115,11 +118,6 @@ public class VistaVenta extends JFrame {
 		textFieldFecha.setColumns(10);
 		textFieldFecha.setBounds(119, 110, 141, 19);
 		contentPane.add(textFieldFecha);
-		
-		textFieldFormaDePago = new JTextField();
-		textFieldFormaDePago.setColumns(10);
-		textFieldFormaDePago.setBounds(119, 134, 141, 19);
-		contentPane.add(textFieldFormaDePago);
 		
 		JLabel lblFecha = new JLabel("Fecha");
 		lblFecha.setBounds(10, 113, 51, 14);
@@ -154,11 +152,6 @@ public class VistaVenta extends JFrame {
 		ModtextFieldFecha.setBounds(373, 134, 141, 19);
 		contentPane.add(ModtextFieldFecha);
 		
-		ModtextFieldFormaDePago = new JTextField();
-		ModtextFieldFormaDePago.setColumns(10);
-		ModtextFieldFormaDePago.setBounds(373, 158, 141, 19);
-		contentPane.add(ModtextFieldFormaDePago);
-		
 		JLabel lblId = new JLabel("ID");
 		lblId.setBounds(292, 36, 51, 14);
 		contentPane.add(lblId);
@@ -174,10 +167,6 @@ public class VistaVenta extends JFrame {
 		comboBoxCliente = new JComboBox(new ControladorCliente().obtenerIds().toArray());
 		comboBoxCliente.setBounds(119, 33, 141, 20);
 		contentPane.add(comboBoxCliente);
-		
-		comboBoxId = new JComboBox(new ControladorVenta().obtenerIds().toArray());
-		comboBoxId.setBounds(373, 33, 141, 20);
-		contentPane.add(comboBoxId);
 		
 		modcomboBoxCliente = new JComboBox(new ControladorCliente().obtenerIds().toArray());
 		modcomboBoxCliente.setBounds(373, 58, 141, 20);
@@ -197,7 +186,7 @@ public class VistaVenta extends JFrame {
 		btnAgregar.addActionListener(new EventoVenta(this));
 		
 		btnModificarVenta = new JButton("Modificar");
-		btnModificarVenta.setBounds(403, 188, 89, 23);
+		btnModificarVenta.setBounds(402, 218, 89, 23);
 		contentPane.add(btnModificarVenta);
 		btnModificarVenta.addActionListener(new EventoVenta(this));
 		
@@ -219,6 +208,47 @@ public class VistaVenta extends JFrame {
 		label_1.setAlignment(Label.CENTER);
 		label_1.setBounds(673, 28, 312, 22);
 		contentPane.add(label_1);
+		
+		textField_idVenta = new JTextField();
+		textField_idVenta.setBounds(373, 33, 141, 17);
+		contentPane.add(textField_idVenta);
+		textField_idVenta.setColumns(10);
+		
+		comboBoxIntereses = new JComboBox();
+		comboBoxIntereses.setModel(new DefaultComboBoxModel(new String[] {"3 s/i", "6 s/i", "12 (10% interes)", "24 (10% interes)"}));
+		comboBoxIntereses.setBounds(119, 158, 141, 17);
+		contentPane.add(comboBoxIntereses);
+		
+		comboBoxFormaPago = new JComboBox();
+		comboBoxFormaPago.setModel(new DefaultComboBoxModel(new String[] {"Efectivo", "Cr\u00E9dito", "D\u00E9bito"}));
+		comboBoxFormaPago.setBounds(119, 134, 141, 17);
+		contentPane.add(comboBoxFormaPago);
+		
+		modcomboBox_formaPago = new JComboBox();
+		modcomboBox_formaPago.setModel(new DefaultComboBoxModel(new String[] {"Efectivo", "Cr\u00E9dito", "D\u00E9bito"}));
+		modcomboBox_formaPago.setBounds(373, 158, 141, 17);
+		contentPane.add(modcomboBox_formaPago);
+		
+		modcomboBoxIntereses = new JComboBox();
+		modcomboBoxIntereses.setModel(new DefaultComboBoxModel(new String[] {"3 s/i", "6 s/i", "12 (10% interes)", "24 (10% interes)"}));
+		modcomboBoxIntereses.setBounds(373, 183, 141, 20);
+		contentPane.add(modcomboBoxIntereses);
+		
+		JLabel lblCuotas = new JLabel("Cuotas");
+		lblCuotas.setBounds(10, 161, 46, 14);
+		contentPane.add(lblCuotas);
+		
+		JLabel lblNewLabel = new JLabel("Cuotas");
+		lblNewLabel.setBounds(292, 188, 46, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("yyyy-mm-dd");
+		lblNewLabel_1.setBounds(524, 137, 75, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("(Si paga con credito)");
+		lblNewLabel_2.setBounds(10, 183, 107, 14);
+		contentPane.add(lblNewLabel_2);
 		btnEliminar.addActionListener(new EventoVenta(this));
 		
 	}
