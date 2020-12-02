@@ -101,6 +101,9 @@ public class EventoVuelo implements ActionListener{
 			}else if(e.getSource()==vista.btnAtras) {
 				vista.setVisible(false);
 			}
+		}catch(NullPointerException np) {
+			JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
+			np.printStackTrace();
 		}catch(Exception ex) {
 			JOptionPane.showMessageDialog(null, "Verifique que los datos sean correctos", "Error", JOptionPane.ERROR_MESSAGE);
 			ex.printStackTrace();

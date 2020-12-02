@@ -28,29 +28,32 @@ public class ControladorVenta {
 	}
 	
 	public void altaVenta(Venta v) {
-		
-		LocalDate fecha_emision = LocalDate.parse(v.getCliente().getpasaporte().getFechaEmision(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		LocalDate fecha_vencimiento = LocalDate.parse(v.getCliente().getpasaporte().getFechaVencimiento(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		LocalDate nacimiento = LocalDate.parse(v.getCliente().getFecha_nacimiento(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		if(v.getVuelo().getCantidadAsientos()>0) {
-			if(fecha_emision.isBefore(LocalDate.now()) && fecha_vencimiento.isAfter(LocalDate.now())) {
-				if((LocalDate.now().getYear()-nacimiento.getYear())>=18) {
-					ventaDAO.altaVenta(v);
-					v.getVuelo().setCantidadAsientos(v.getVuelo().getCantidadAsientos()-1);
-					vueloDAO.modificarVuelo(v.getVuelo());
+		try {
+			LocalDate fecha_emision = LocalDate.parse(v.getCliente().getpasaporte().getFechaEmision(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			LocalDate fecha_vencimiento = LocalDate.parse(v.getCliente().getpasaporte().getFechaVencimiento(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			LocalDate nacimiento = LocalDate.parse(v.getCliente().getFecha_nacimiento(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			if(v.getVuelo().getCantidadAsientos()>0) {
+				if(fecha_emision.isBefore(LocalDate.now()) && fecha_vencimiento.isAfter(LocalDate.now())) {
+					if((LocalDate.now().getYear()-nacimiento.getYear())>=18) {
+						ventaDAO.altaVenta(v);
+						v.getVuelo().setCantidadAsientos(v.getVuelo().getCantidadAsientos()-1);
+						vueloDAO.modificarVuelo(v.getVuelo());
+					}else {
+						JOptionPane.showMessageDialog(null, "El cliente tiene menos de 18 años. Fecha de nacimiento: "+nacimiento,"Error", JOptionPane.ERROR_MESSAGE);
+					}
+					
 				}else {
-					JOptionPane.showMessageDialog(null, "El cliente tiene menos de 18 años. Fecha de nacimiento: "+nacimiento,"Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "La fecha de emisión del pasaporte "+fecha_emision+" es posterior a la fecha actual"
+							+ " o su pasaporte está vencido", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}else {
-				JOptionPane.showMessageDialog(null, "La fecha de emisión del pasaporte "+fecha_emision+" es posterior a la fecha actual"
-						+ " o su pasaporte está vencido", "Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "No hay asientos disponibles", "Error",JOptionPane.ERROR_MESSAGE);
 			}
-			
-		}else {
-			JOptionPane.showMessageDialog(null, "No hay asientos disponibles", "Error",JOptionPane.ERROR_MESSAGE);
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "Verifique que la fecha de nacimiento del cliente sea yyyy-MM-dd", "Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
 		}
-		
 		
 	}
 	

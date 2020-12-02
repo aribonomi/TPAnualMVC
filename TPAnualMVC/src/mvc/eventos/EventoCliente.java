@@ -115,6 +115,8 @@ public class EventoCliente implements ActionListener{
 				contCliente.altaCliente(c);
 				JOptionPane.showMessageDialog(null, c.toString()+" ingresado");
 				
+			}catch(NullPointerException np) {
+				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
 			}catch(Exception ex) {
 				JOptionPane.showMessageDialog(null,"Compruebe que estén bien todos los datos", "Error", JOptionPane.ERROR_MESSAGE);
 				ex.printStackTrace();

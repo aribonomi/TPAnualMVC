@@ -33,8 +33,6 @@ public class EventosVistaPrincipal implements ActionListener{
 			int resultado = JOptionPane.showConfirmDialog(null, "Está seguro que quiere salir?", "Saliendo", JOptionPane.OK_CANCEL_OPTION);
 			if(resultado == JOptionPane.OK_OPTION) {
 				System.exit(0);
-			}else {
-				
 			}
 		}
 		

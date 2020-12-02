@@ -63,9 +63,9 @@ public class EventoAerolinea implements ActionListener{
 					contLA.bajaLineaAerea(vista.ModtextFieldID.getText());
 				}
 			}
-		}catch(Exception ex) {
-			//JOptionPane.showMessageDialog(null, "Compruebe que los campos sean correctos", "Error", JOptionPane.ERROR_MESSAGE);
-			ex.printStackTrace();
+		}catch(NullPointerException ex) {
+			JOptionPane.showMessageDialog(null, "Compruebe que todos los campos estén completos", "Error", JOptionPane.ERROR_MESSAGE);
+			
 		}
 		
 		
