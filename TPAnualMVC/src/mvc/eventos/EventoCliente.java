@@ -113,7 +113,8 @@ public class EventoCliente implements ActionListener{
 				Cliente c = new Cliente(nombre, apellido, dni, cuit, fecha_nac, email,contDireccion.obtenerUltimo(), contTelefono.obtenerUltimo(), contPasaporte.obtenerUltimo(), contPF.obtenerUltimo());
 				
 				contCliente.altaCliente(c);
-				JOptionPane.showMessageDialog(null, c.toString()+" ingresado");
+				
+				JOptionPane.showMessageDialog(null, contCliente.obtenerUltimo()+" ingresado");
 				
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
@@ -127,7 +128,7 @@ public class EventoCliente implements ActionListener{
 			Integer id = Integer.parseInt(this.vista.ModtextFieldID.getText());
 			
 			Cliente c = contCliente.consultaPorId(id);
-		//Me da null porque el cliente consultado tiene esos objetos en null	
+
 			Direccion d = contDireccion.consultar(c.getdireccion().getId_direccion().toString());
 			Telefono t = contTelefono.consultarTelefono(c.gettelefono().getId_Telefono().toString());
 			Pasaporte p = contPasaporte.consultarPasaporte(c.getpasaporte().getId_Pasaporte().toString());
@@ -169,19 +170,22 @@ public class EventoCliente implements ActionListener{
 			
 			
 		}else if(e.getSource()==vista.btnEliminarCliente) {
-			
-			int resultado = JOptionPane.showConfirmDialog(null, "Se eliminará el registro", "Warning", 
-					JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-			if(resultado == 0) {
-				
-									
-				contDireccion.bajaDireccion(vista.lbl_idDireccion.getText());
-				contTelefono.bajaTelefono(vista.lbl_idTelefono.getText());
-				contPasaporte.bajaPasaporte(vista.lbl_idPasaporte.getText());
-				contPF.bajaPasajFrecuente(vista.lbl_idPF.getText());
-				
-				contCliente.bajaCliente(vista.ModtextFieldID.getText());
-
+			try {
+				int resultado = JOptionPane.showConfirmDialog(null, "Se eliminará el registro", "Warning", 
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+				if(resultado == 0) {
+					
+										
+					contDireccion.bajaDireccion(vista.lbl_idDireccion.getText());
+					contTelefono.bajaTelefono(vista.lbl_idTelefono.getText());
+					contPasaporte.bajaPasaporte(vista.lbl_idPasaporte.getText());
+					contPF.bajaPasajFrecuente(vista.lbl_idPF.getText());
+					
+					contCliente.bajaCliente(vista.ModtextFieldID.getText());
+	
+				}
+			}catch(NullPointerException np) {
+				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}else if(e.getSource()==vista.btnModificarCliente) {
 			try {
@@ -202,21 +206,25 @@ public class EventoCliente implements ActionListener{
 				String provincia = (String) vista.ModcomboBox_provincia.getSelectedItem();
 				String pais = (String) vista.ModcomboBox_pais.getSelectedItem();
 				
-				Direccion d;
+				Pais p = contPais.consultarPais(pais);
+				Provincia prov = contProvincia.consultarPorNombre(provincia);
 				
-				if(provincia.equalsIgnoreCase("Internacional")) {
+				Direccion d = new Direccion(id_direccion, calle, altura, ciudad, postal, prov,  p);
+				contDireccion.modDireccion(d);
+				
+				/*if(provincia.equalsIgnoreCase("Internacional")) {
 					if(pais.equalsIgnoreCase("Otro")) {
 						contPais.altaPais(new Pais(vista.modtextFieldOtroPais.getText()));
 						contProvincia.altaProv(new Provincia(vista.modtextFieldOtraProv.getText()));
 						Pais p = contPais.consultarPais(vista.modtextFieldOtroPais.getText());
 						Provincia prov = contProvincia.consultarPorNombre(vista.modtextFieldOtraProv.getText());
-						d = new Direccion(calle, altura, ciudad, postal, prov,  p);
+						d = new Direccion(id_direccion, calle, altura, ciudad, postal, prov,  p);
 						contDireccion.modDireccion(d);
 					}else {
 						contProvincia.altaProv(new Provincia(vista.modtextFieldOtraProv.getText()));
 						Provincia prov = contProvincia.consultarPorNombre(vista.modtextFieldOtraProv.getText());
 						Pais p = contPais.consultarPais(pais);
-						d = new Direccion(calle, altura, ciudad, postal, prov,  p);
+						d = new Direccion(id_direccion, calle, altura, ciudad, postal, prov,  p);
 						contDireccion.modDireccion(d);
 					}	
 				}else {
@@ -225,7 +233,7 @@ public class EventoCliente implements ActionListener{
 					
 					d = new Direccion(id_direccion,calle, altura, ciudad, postal, prov,  p);
 					contDireccion.modDireccion(d);
-				}	
+				}	*/
 			
 				
 				
@@ -263,6 +271,8 @@ public class EventoCliente implements ActionListener{
 				
 				contCliente.modificarCliente(c);
 				JOptionPane.showMessageDialog(null, c.toString()+" ingresado");
+			}catch(NullPointerException np) {
+				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
 			}catch(Exception ex) {
 				JOptionPane.showMessageDialog(null,"Compruebe que estén bien todos los datos", "Error", JOptionPane.ERROR_MESSAGE);
 				ex.printStackTrace();

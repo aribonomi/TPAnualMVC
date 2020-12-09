@@ -101,8 +101,6 @@ public class VistaCliente extends JFrame {
 	public JComboBox ModcomboBoxAerolinea;
 	public JTextField textFieldProvincia;
 	public JTextField textFieldOtroPais;
-	public JTextField modtextFieldOtraProv;
-	public JTextField modtextFieldOtroPais;
 	
 
 	/**
@@ -696,25 +694,6 @@ public class VistaCliente extends JFrame {
 		textFieldOtroPais.setBounds(377, 333, 86, 17);
 		contentPane.add(textFieldOtroPais);
 		textFieldOtroPais.setColumns(10);
-		
-		JLabel lblOtraProvincia = new JLabel("Otro");
-		lblOtraProvincia.setBounds(769, 311, 46, 14);
-		contentPane.add(lblOtraProvincia);
-		
-		modtextFieldOtraProv = new JTextField();
-		modtextFieldOtraProv.setBounds(828, 308, 86, 17);
-		contentPane.add(modtextFieldOtraProv);
-		modtextFieldOtraProv.setColumns(10);
-		
-		modtextFieldOtroPais = new JTextField();
-		modtextFieldOtroPais.setText("");
-		modtextFieldOtroPais.setBounds(828, 333, 86, 17);
-		contentPane.add(modtextFieldOtroPais);
-		modtextFieldOtroPais.setColumns(10);
-		
-		JLabel modlblOtroPais = new JLabel("Otro");
-		modlblOtroPais.setBounds(769, 336, 46, 14);
-		contentPane.add(modlblOtroPais);
 		
 		JLabel lblNewLabel = new JLabel("yyyy-MM-dd");
 		lblNewLabel.setBounds(321, 136, 74, 14);
