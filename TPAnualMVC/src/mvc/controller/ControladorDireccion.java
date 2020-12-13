@@ -9,6 +9,8 @@ public class ControladorDireccion {
 	DireccionDAO direccionDAO;
 	
 	public ControladorDireccion() {
+		
+	//Llamo a la implementación mediante el factory
 		new Factory();
 		direccionDAO = Factory.getDireccionDaoImplMysql();
 	}

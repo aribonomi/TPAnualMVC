@@ -15,6 +15,7 @@ public class ControladorCliente {
 	
 	public ControladorCliente() {
 
+	//Llamo a la implementación mediante el factory	
 		new Factory();
 		clienteDAO = Factory.getClienteDaoImplMysql();
 
@@ -25,7 +26,6 @@ public class ControladorCliente {
 	public void altaCliente(Cliente c) {
 		
 		clienteDAO.altaCliente(c);
-		//Date fecha=new SimpleDateFormat("dd/MM/yyyy").parse(sDate1); 
 	}
 	
 	public void bajaCliente(String id) {

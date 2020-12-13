@@ -9,6 +9,8 @@ public class ControladorTelefono {
 	TelefonoDAO telefonoDAO;
 
 	public ControladorTelefono() {
+		
+	//Llamo a la implementación mediante el factory	
 		new Factory();
 		this.telefonoDAO = Factory.getTelefonoDaoImplMysql();
 	}

@@ -11,6 +11,8 @@ public class ControladorProvincia {
 	ProvinciaDAO provDAO;
 	
 	public ControladorProvincia() {
+		
+	//Llamo a la implementación mediante el factory
 		new Factory();
 		provDAO = Factory.getProvinciaDaoImplMysql();
 	}

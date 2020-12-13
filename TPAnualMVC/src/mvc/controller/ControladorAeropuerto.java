@@ -7,10 +7,12 @@ import dao.Interfaces.*;
 import dao.negocio.*;
 
 public class ControladorAeropuerto {
-	
+		
 	AeropuertoDAO aeropDAO;
 
 	public ControladorAeropuerto() {
+		
+	//Llamo a la implementación mediante el factory	
 		new Factory();
 		this.aeropDAO = Factory.getAeropuertoDaoImplMysql();
 	}

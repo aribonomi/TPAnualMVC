@@ -9,6 +9,7 @@ import mvc.view.*;
 
 public class EventosVistaPrincipal implements ActionListener{
 	
+//Se llama a la vista principal	
 	VistaPrincipal vistaP;
 
 	public EventosVistaPrincipal(VistaPrincipal vistaP) {
@@ -17,18 +18,28 @@ public class EventosVistaPrincipal implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+	//Aparece la vista del cliente	
 		if(e.getSource()==vistaP.btnClientes) {
 			VistaCliente vistaCliente = new VistaCliente();
 			vistaCliente.setVisible(true);
+			
+	//Aparece la vista de la aerolínea	
 		}else if(e.getSource()==vistaP.btnAerolineas){
 			VistaAerolinea vistaAerolinea = new VistaAerolinea();
 			vistaAerolinea.setVisible(true);
+			
+	//Aparece la vista de las ventas		
 		}else if(e.getSource()==vistaP.btnVentas) {
 			VistaVenta vistaVenta = new VistaVenta();
 			vistaVenta.setVisible(true);
+			
+	//Aparece la vista de los vuelos		
 		}else if(e.getSource()==vistaP.btnVuelos){
 			VistaVuelo vistaVuelo = new VistaVuelo();
 			vistaVuelo.setVisible(true);
+			
+	//Finaliza la ejecución		
 		}else if(e.getSource()==vistaP.btnSalir) {
 			int resultado = JOptionPane.showConfirmDialog(null, "Está seguro que quiere salir?", "Saliendo", JOptionPane.OK_CANCEL_OPTION);
 			if(resultado == JOptionPane.OK_OPTION) {

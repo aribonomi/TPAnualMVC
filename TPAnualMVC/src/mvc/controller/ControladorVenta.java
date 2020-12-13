@@ -22,6 +22,8 @@ public class ControladorVenta {
 	VuelosDAO vueloDAO;
 	
 	public ControladorVenta() {
+		
+	//Llamo a la implementación mediante el factory	
 		new Factory();
 		ventaDAO = Factory.getVentasDaoImplMysql();
 		vueloDAO = Factory.getVuelosDaoImplMysql();
@@ -29,12 +31,22 @@ public class ControladorVenta {
 	
 	public void altaVenta(Venta v) {
 		try {
+			
+		//Paso las fechas en String al formato Date yyyy-MM-dd	
 			LocalDate fecha_emision = LocalDate.parse(v.getCliente().getpasaporte().getFechaEmision(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			LocalDate fecha_vencimiento = LocalDate.parse(v.getCliente().getpasaporte().getFechaVencimiento(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 			LocalDate nacimiento = LocalDate.parse(v.getCliente().getFecha_nacimiento(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+			
+		//Si no hay asientos disponibles, no se efectuará la venta	
 			if(v.getVuelo().getCantidadAsientos()>0) {
+				
+			//Si la fehca de emisión no es anterior a la fecha de hoy y el pasaporte está vencido, no se efectuará la venta	
 				if(fecha_emision.isBefore(LocalDate.now()) && fecha_vencimiento.isAfter(LocalDate.now())) {
+					
+				//Si el cliente tiene menos de 18 años, no se efectuará la venta	
 					if((LocalDate.now().getYear()-nacimiento.getYear())>=18) {
+						
+					//Se efectúa la venta y se reduce en 1 la cantidad de asientos en el vuelo	
 						ventaDAO.altaVenta(v);
 						v.getVuelo().setCantidadAsientos(v.getVuelo().getCantidadAsientos()-1);
 						vueloDAO.modificarVuelo(v.getVuelo());
@@ -83,6 +95,8 @@ public class ControladorVenta {
 	}
 	
 	public String obtenerFormaPago(String forma_pago) {
+		
+	//Método para determinar qué forma de pago se eligió cuando se realiza la consulta	
 		if(forma_pago.startsWith("C")) {
 			return "Crédito";
 		}else if(forma_pago.startsWith("E")) {
@@ -94,6 +108,8 @@ public class ControladorVenta {
 	}
 	
 	public String obtenerCuotas(String cuotas) {
+		
+	//Método para determinar en cuántas cuotas pagó cuando se realiza la consulta	
 		if(cuotas.contains("3")) {
 			return "3 s/i";
 		}else if(cuotas.contains("6")) {

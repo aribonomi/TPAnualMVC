@@ -11,6 +11,8 @@ public class ControladorPais {
 	PaisDAO paisDAO;
 	
 	public ControladorPais() {
+	
+	//Llamo a la implementación mediante el factory	
 		new Factory();
 		paisDAO = Factory.getPaisDao();
 	}

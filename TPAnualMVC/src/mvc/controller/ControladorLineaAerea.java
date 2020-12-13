@@ -13,6 +13,7 @@ public class ControladorLineaAerea {
 	
 	public ControladorLineaAerea() {
 
+	//Llamo a la implementación mediante el factory	
 		new Factory();
 		lineaAereaDAO = Factory.getLineaAereaDaoImplMysql();
 	}

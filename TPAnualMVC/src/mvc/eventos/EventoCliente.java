@@ -13,6 +13,7 @@ import mvc.view.VistaCliente;
 public class EventoCliente implements ActionListener{
 	
 	
+//Se llama a los controladores y la vista del cliente	
 	VistaCliente vista;
 	ControladorCliente contCliente;
 	ControladorDireccion contDireccion;
@@ -39,11 +40,15 @@ public class EventoCliente implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+	//Botón atras para que desaparezca la vista actual	
 		if(e.getSource()==vista.btnAtrasMenuCliente) {
 			vista.setVisible(false);
+		
+	//Alta	
 		}else if(e.getSource()==vista.btnAltaCliente) {
 			try {
-				
+			
+			//Obtiene los datos de los campos	
 				String nombre = vista.textFieldNombre.getText();
 				String apellido = vista.textFieldApellido.getText();
 				String dni = vista.textFieldDni.getText();
@@ -60,6 +65,7 @@ public class EventoCliente implements ActionListener{
 				String pais = (String) vista.comboBox_pais.getSelectedItem();
 				
 				
+			//Chequea si se ingresó el país y la provincia mediante los campos "Otro"	
 				if(provincia.equalsIgnoreCase("Internacional")) {
 					if(pais.equalsIgnoreCase("Otro")) {
 						contPais.altaPais(new Pais(vista.textFieldOtroPais.getText()));
@@ -112,6 +118,7 @@ public class EventoCliente implements ActionListener{
 				
 				Cliente c = new Cliente(nombre, apellido, dni, cuit, fecha_nac, email,contDireccion.obtenerUltimo(), contTelefono.obtenerUltimo(), contPasaporte.obtenerUltimo(), contPF.obtenerUltimo());
 				
+			//Se realiza la alta y se muestra por pantalla el cliente ingresado	
 				contCliente.altaCliente(c);
 				
 				JOptionPane.showMessageDialog(null, contCliente.obtenerUltimo()+" ingresado");
@@ -124,17 +131,21 @@ public class EventoCliente implements ActionListener{
 			
 			}
 			
+	//Consulta	
 		}else if(e.getSource()==this.vista.btnConsultaMod) {
+		//Se consulta el cliente mediante el campo id	
 			Integer id = Integer.parseInt(this.vista.ModtextFieldID.getText());
 			
 			Cliente c = contCliente.consultaPorId(id);
 
+		//Se consultan los objetos contenidos dentro del cliente mediante el cliente consultado	
 			Direccion d = contDireccion.consultar(c.getdireccion().getId_direccion().toString());
 			Telefono t = contTelefono.consultarTelefono(c.gettelefono().getId_Telefono().toString());
 			Pasaporte p = contPasaporte.consultarPasaporte(c.getpasaporte().getId_Pasaporte().toString());
 			PasajeroFrecuente pf = contPF.consultarPasajeroFrecuente(c.getpasajeroFrecuente().getId_pasajeroFrecuente().toString());
 			Aerolinea a = contLA.consultarLineaAerea(pf.getAerolinea().getId_aeroLinea().toString());
 			
+		//Se setean los datos del cliente mediante las consultas hechas	
 			vista.ModtextFieldNombre.setText(c.getNombre());
 			vista.ModtextFieldApellido.setText(c.getApellido());
 			vista.ModtextFieldDni.setText(c.getDni());
@@ -169,13 +180,15 @@ public class EventoCliente implements ActionListener{
 			vista.ModcomboBoxAerolinea.setSelectedItem(a.getNombre());
 			
 			
+	//Eliminación	
 		}else if(e.getSource()==vista.btnEliminarCliente) {
+		//Confirma la eliminación	
 			try {
 				int resultado = JOptionPane.showConfirmDialog(null, "Se eliminará el registro", "Warning", 
 						JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 				if(resultado == 0) {
 					
-										
+				//Se dan de baja todos los datos del cliente						
 					contDireccion.bajaDireccion(vista.lbl_idDireccion.getText());
 					contTelefono.bajaTelefono(vista.lbl_idTelefono.getText());
 					contPasaporte.bajaPasaporte(vista.lbl_idPasaporte.getText());
@@ -187,8 +200,12 @@ public class EventoCliente implements ActionListener{
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
 			}
+	
+	//Modificación		
 		}else if(e.getSource()==vista.btnModificarCliente) {
 			try {
+				
+			//Obtiene los campos completados en la consulta y realiza la modificación	
 				Integer id = Integer.parseInt(vista.ModtextFieldID.getText());
 				String nombre = vista.ModtextFieldNombre.getText();
 				String apellido = vista.ModtextFieldApellido.getText();
@@ -210,31 +227,7 @@ public class EventoCliente implements ActionListener{
 				Provincia prov = contProvincia.consultarPorNombre(provincia);
 				
 				Direccion d = new Direccion(id_direccion, calle, altura, ciudad, postal, prov,  p);
-				contDireccion.modDireccion(d);
-				
-				/*if(provincia.equalsIgnoreCase("Internacional")) {
-					if(pais.equalsIgnoreCase("Otro")) {
-						contPais.altaPais(new Pais(vista.modtextFieldOtroPais.getText()));
-						contProvincia.altaProv(new Provincia(vista.modtextFieldOtraProv.getText()));
-						Pais p = contPais.consultarPais(vista.modtextFieldOtroPais.getText());
-						Provincia prov = contProvincia.consultarPorNombre(vista.modtextFieldOtraProv.getText());
-						d = new Direccion(id_direccion, calle, altura, ciudad, postal, prov,  p);
-						contDireccion.modDireccion(d);
-					}else {
-						contProvincia.altaProv(new Provincia(vista.modtextFieldOtraProv.getText()));
-						Provincia prov = contProvincia.consultarPorNombre(vista.modtextFieldOtraProv.getText());
-						Pais p = contPais.consultarPais(pais);
-						d = new Direccion(id_direccion, calle, altura, ciudad, postal, prov,  p);
-						contDireccion.modDireccion(d);
-					}	
-				}else {
-					Pais p = contPais.consultarPais(pais);
-					Provincia prov = contProvincia.consultarPorNombre(provincia);
-					
-					d = new Direccion(id_direccion,calle, altura, ciudad, postal, prov,  p);
-					contDireccion.modDireccion(d);
-				}	*/
-			
+				contDireccion.modDireccion(d);		
 				
 				
 			//Teléfono

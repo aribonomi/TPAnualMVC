@@ -9,6 +9,8 @@ public class ControladorPasaporte {
 	PasaporteDAO pasaporteDAO;
 	
 	public ControladorPasaporte() {
+		
+	//Llamo a la implementación mediante el factory		
 		new Factory();
 		pasaporteDAO = Factory.getPasaporteDaoImplMysql();
 	}

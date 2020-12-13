@@ -13,6 +13,7 @@ import mvc.view.VistaVuelo;
 
 public class EventoVuelo implements ActionListener{
 	
+//Llama a los controladores y a la vista	
 	VistaVuelo vista;
 	ControladorVuelo contVuelo;
 	ControladorAeropuerto contAeropuerto;
@@ -33,8 +34,10 @@ public class EventoVuelo implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
+		//Alta	
 			if(e.getSource()==vista.btnAlta) {
 				
+			//Obtiene los valores de los campos	
 				Integer cantidad_asientos = Integer.parseInt(vista.textFieldCantidadDeAsientos.getText());
 				String nombre_aerop_llegada = (String) vista.comboBoxAeropLlegada.getSelectedItem();
 				String nombre_aerop_salida = (String) vista.comboBoxAeropSalida.getSelectedItem();
@@ -43,10 +46,12 @@ public class EventoVuelo implements ActionListener{
 				String tiempo_vuelo = vista.textFieldTiempoVuelo.getText();
 				String nombre_aerolinea = (String) vista.comboBoxAerolinea.getSelectedItem();
 				
+			//Forma el número de vuelo mediante el id y el nombre de la aerolínea	
 				Integer id_vuelo = contVuelo.obtenerUltimoId()+1;
 				
 				String numero_vuelo = formarNumeroVuelo(nombre_aerolinea,id_vuelo); 
 				
+			//Obtiene los aeropuertos y la aerolínea mediante sus ids	
 				Aeropuerto aeropuerto_salida=contAeropuerto.consultaPorCodigo(nombre_aerop_salida);
 				Aeropuerto aeropuerto_llegada = contAeropuerto.consultaPorCodigo(nombre_aerop_llegada);
 				Aerolinea aerolinea = contLA.consultaPorNombre(nombre_aerolinea);
@@ -54,16 +59,20 @@ public class EventoVuelo implements ActionListener{
 				vista.lblNumVuelo.setText(numero_vuelo);
 				
 				contVuelo.altaVuelo(vuelo);
+				
+			//Muestra el vuelo agregado por pantalla	
 				Vuelo vueloAgregado = contVuelo.consultarVuelo(contVuelo.obtenerUltimoId());
 				
 				JOptionPane.showMessageDialog(null,  vueloAgregado.toString(), "Vuelo ingresado", JOptionPane.INFORMATION_MESSAGE);
 				
 				
+		//Consulta	
 			}else if(e.getSource()==vista.btnConsultar) {
+			//Realiza la consulta mediante el id ingresado	
 				Integer id = Integer.parseInt(vista.textFieldVueloCons.getText());
 				Vuelo vuelo = contVuelo.consultarVuelo(id);
 				
-				
+			//Setea los campos con los datos del vuelo consultado	
 				vista.ModtextFieldNumero.setText(vuelo.getNumero());
 				vista.ModtextFieldCantidadAsientos.setText(vuelo.getCantidadAsientos().toString());
 				vista.ModtextFieldFechaSalida.setText(vuelo.getFechaSalida());
@@ -76,7 +85,10 @@ public class EventoVuelo implements ActionListener{
 				vista.textAreaConsulta.setText(vuelo.toString());
 				
 				
+		//Modificación	
 			}else if(e.getSource()==vista.btnModificar) {
+				
+			//Se obtienen los campos de la consulta y se realiza la modificación	
 				Integer id = Integer.parseInt(vista.textFieldVueloCons.getText());
 				String numero = vista.ModtextFieldNumero.getText();
 				Integer cantidad_asientos = Integer.parseInt(vista.ModtextFieldCantidadAsientos.getText());
@@ -87,17 +99,24 @@ public class EventoVuelo implements ActionListener{
 				String tiempo_vuelo = vista.ModtextFieldTiempoVuelo.getText();
 				String nombre_aerolinea = (String) vista.modcomboBoxAerolinea.getSelectedItem();
 				
+			//Se obtienen los aeropuertos y la aerolínea a través de sus códigos o nombre	
 				Aeropuerto aeropuerto_salida=contAeropuerto.consultaPorCodigo(nombre_aerop_salida);
 				Aeropuerto aeropuerto_llegada = contAeropuerto.consultaPorCodigo(nombre_aerop_llegada);
 				Aerolinea aerolinea = contLA.consultaPorNombre(nombre_aerolinea);
 				Vuelo vuelo = new Vuelo(id, numero, cantidad_asientos, fecha_llegada, fecha_salida, tiempo_vuelo,aeropuerto_llegada, aeropuerto_salida, aerolinea);
 				
 				contVuelo.modVuelo(vuelo);
+			
+		//Eliminación	
 			}else if(e.getSource()==vista.btnEliminar) {
+				
+			//Confirma la eliminación	
 				int input =JOptionPane.showConfirmDialog(null, "¡Se eliminará el vuelo!", "WARNING", JOptionPane.OK_CANCEL_OPTION);
 				if(input == JOptionPane.OK_OPTION) {
 					contVuelo.bajaVuelo(vista.textFieldVueloCons.getText());
 				}
+			
+		//Vuelve al menú	
 			}else if(e.getSource()==vista.btnAtras) {
 				vista.setVisible(false);
 			}

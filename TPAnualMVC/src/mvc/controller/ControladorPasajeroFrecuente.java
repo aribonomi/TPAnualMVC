@@ -9,6 +9,8 @@ public class ControladorPasajeroFrecuente {
 	PasajeroFrecuenteDAO pfDAO;
 	
 	public ControladorPasajeroFrecuente() {
+		
+	//Llamo a la implementación mediante el factory	
 		new Factory();
 		pfDAO = Factory.getPasajeroFrecuenteDaoImplMysql();
 	}

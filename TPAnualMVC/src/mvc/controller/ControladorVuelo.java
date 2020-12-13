@@ -20,6 +20,8 @@ public class ControladorVuelo{
 	
 
 	public ControladorVuelo() {
+		
+	//Llamo a la implementación mediante el factory	
 		new Factory();
 		vueloDAO = Factory.getVuelosDaoImplMysql();
 	}
