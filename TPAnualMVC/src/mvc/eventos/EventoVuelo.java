@@ -33,10 +33,10 @@ public class EventoVuelo implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try {
-		//Alta	
-			if(e.getSource()==vista.btnAlta) {
-				
+		
+	//Alta	
+		if(e.getSource()==vista.btnAlta) {
+			try {
 			//Obtiene los valores de los campos	
 				Integer cantidad_asientos = Integer.parseInt(vista.textFieldCantidadDeAsientos.getText());
 				String nombre_aerop_llegada = (String) vista.comboBoxAeropLlegada.getSelectedItem();
@@ -64,10 +64,18 @@ public class EventoVuelo implements ActionListener{
 				Vuelo vueloAgregado = contVuelo.consultarVuelo(contVuelo.obtenerUltimoId());
 				
 				JOptionPane.showMessageDialog(null,  vueloAgregado.toString(), "Vuelo ingresado", JOptionPane.INFORMATION_MESSAGE);
+			}catch(NullPointerException ex) {
+				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, "Verifique que los datos sean correctos", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}
 				
-				
-		//Consulta	
-			}else if(e.getSource()==vista.btnConsultar) {
+			
+	//Consulta	
+		}else if(e.getSource()==vista.btnConsultar) {
+			try {
 			//Realiza la consulta mediante el id ingresado	
 				Integer id = Integer.parseInt(vista.textFieldVueloCons.getText());
 				Vuelo vuelo = contVuelo.consultarVuelo(id);
@@ -83,11 +91,20 @@ public class EventoVuelo implements ActionListener{
 				vista.modcomboBoxAeropLlegada.setSelectedItem(vuelo.getAeropuertoLlegada().getIdentificacion());
 				
 				vista.textAreaConsulta.setText(vuelo.toString());
-				
-				
-		//Modificación	
-			}else if(e.getSource()==vista.btnModificar) {
-				
+			}catch(NullPointerException np) {
+				JOptionPane.showMessageDialog(null, "Compruebe que el id ingresado exista", "Error", JOptionPane.ERROR_MESSAGE);
+				np.printStackTrace();
+			}catch(NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null,"Los id son numeros enteros", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, "Verifique que los datos sean correctos", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}					
+			
+	//Modificación	
+		}else if(e.getSource()==vista.btnModificar) {
+			try {
 			//Se obtienen los campos de la consulta y se realiza la modificación	
 				Integer id = Integer.parseInt(vista.textFieldVueloCons.getText());
 				String numero = vista.ModtextFieldNumero.getText();
@@ -106,28 +123,37 @@ public class EventoVuelo implements ActionListener{
 				Vuelo vuelo = new Vuelo(id, numero, cantidad_asientos, fecha_llegada, fecha_salida, tiempo_vuelo,aeropuerto_llegada, aeropuerto_salida, aerolinea);
 				
 				contVuelo.modVuelo(vuelo);
-			
-		//Eliminación	
-			}else if(e.getSource()==vista.btnEliminar) {
+			}catch(NullPointerException np) {
+				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
+				np.printStackTrace();
+			}catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, "Verifique que los datos sean correctos", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}
 				
+	//Eliminación	
+		}else if(e.getSource()==vista.btnEliminar) {
+			try {	
 			//Confirma la eliminación	
 				int input =JOptionPane.showConfirmDialog(null, "¡Se eliminará el vuelo!", "WARNING", JOptionPane.OK_CANCEL_OPTION);
 				if(input == JOptionPane.OK_OPTION) {
 					contVuelo.bajaVuelo(vista.textFieldVueloCons.getText());
 				}
-			
-		//Vuelve al menú	
-			}else if(e.getSource()==vista.btnAtras) {
-				vista.setVisible(false);
+			}catch(NullPointerException np) {
+				JOptionPane.showMessageDialog(null, "Compruebe que el id ingresado exista", "Error", JOptionPane.ERROR_MESSAGE);
+				np.printStackTrace();
+			}catch(NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null,"Los id son numeros enteros", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, "Error en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
 			}
-		}catch(NullPointerException np) {
-			JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
-			np.printStackTrace();
-		}catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, "Verifique que los datos sean correctos", "Error", JOptionPane.ERROR_MESSAGE);
-			ex.printStackTrace();
+					
+	//Vuelve al menú	
+		}else if(e.getSource()==vista.btnAtras) {
+			vista.setVisible(false);
 		}
-		
 	}
 	
 	

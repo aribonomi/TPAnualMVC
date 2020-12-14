@@ -14,25 +14,25 @@ public class EventoAerolinea implements ActionListener{
 
 //Se llama a los controladores y la vista de la aerolínea	
 	ControladorLineaAerea contLA;
-	ControladorAlianza contAlianza;
+	
 	VistaAerolinea vista;
 	
 	public EventoAerolinea(VistaAerolinea vista) {
 		this.vista = vista;
 		contLA = new ControladorLineaAerea();
-		contAlianza = new ControladorAlianza();
+		
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try {
-		//Botón que va a hacer que desaparezca la vista de la aerolínea	
-			if(e.getSource()== vista.btnAtras) {
+		
+	//Botón que va a hacer que desaparezca la vista de la aerolínea	
+		if(e.getSource()== vista.btnAtras) {
 				vista.setVisible(false);
 				
-		//Alta de la aerolínea	
-			}else if(e.getSource()==vista.btnAltaAerolinea) {
-				
+	//Alta de la aerolínea	
+		}else if(e.getSource()==vista.btnAltaAerolinea) {
+			try {	
 			//Se obtienen los datos de los campos	
 				String nombre = vista.textFieldNombre.getText();
 				Alianza al = (Alianza) vista.comboBoxAlianza.getSelectedItem();
@@ -45,10 +45,13 @@ public class EventoAerolinea implements ActionListener{
 				
 			//Se muestra por pantalla el id de la aerolínea agregada	
 				vista.lbl_idAlta.setText("ID: "+nueva.getId_aeroLinea());
-				
-		//Consulta	
-			}else if(e.getSource()==vista.btnConsultaAerolinea) {
-				
+			}catch(NumberFormatException ex) {
+					JOptionPane.showMessageDialog(null,"Los id son numeros enteros", "Error", JOptionPane.ERROR_MESSAGE);
+					ex.printStackTrace();
+			}	
+	//Consulta	
+		}else if(e.getSource()==vista.btnConsultaAerolinea) {
+			try {	
 			//Se consulta mediante el campo del id	
 				String id = vista.ModtextFieldID.getText();
 				Aerolinea a =contLA.consultarLineaAerea(id);
@@ -56,10 +59,16 @@ public class EventoAerolinea implements ActionListener{
 			//se setean los otros campos en	
 				vista.ModtextFieldNombre.setText(a.getNombre());
 				vista.ModcomboBoxAlianza.setSelectedItem(a.getAlianza());
-				
+			}catch(NullPointerException ex) {
+				JOptionPane.showMessageDialog(null,"Compruebe que exista el id ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}catch(NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null,"Los id son numeros enteros", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}	
 		//Modificación	
-			}else if(e.getSource()==vista.btnModificar) {
-				
+		}else if(e.getSource()==vista.btnModificar) {
+			try {	
 			//Se obtienen los datos de los campos y se realiza la modificación		
 				String id = vista.ModtextFieldID.getText();
 				String nombre = vista.ModtextFieldNombre.getText();
@@ -67,24 +76,29 @@ public class EventoAerolinea implements ActionListener{
 				Aerolinea aerolinea = new Aerolinea(Integer.parseInt(id), nombre, alianza);
 				
 				contLA.modLineaAerea(aerolinea);
+			}catch(NullPointerException ex) {
+				JOptionPane.showMessageDialog(null, "Compruebe que todos los campos estén completos", "Error", JOptionPane.ERROR_MESSAGE);
+			}catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, "Compruebe que todos los campos estén correctos", "Error", JOptionPane.ERROR_MESSAGE);
 				
+			}	
 		//Eliminar	
-			}else if(e.getSource()==vista.btnEliminarAerolinea) {
-				
-			//Confirma la eliminación	
+		}else if(e.getSource()==vista.btnEliminarAerolinea) {
+			try {	
+		//Confirma la eliminación	
 				int input =JOptionPane.showConfirmDialog(null, "Se eliminará la aerolínea", "WARNING", JOptionPane.OK_CANCEL_OPTION);
 				if(input == 0) {
 					contLA.bajaLineaAerea(vista.ModtextFieldID.getText());
 				}
+			}catch(NullPointerException ex) {
+				JOptionPane.showMessageDialog(null, "Compruebe que el id ingresado exista", "Error", JOptionPane.ERROR_MESSAGE);
+				
+			}catch(NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null,"Los id son numeros enteros", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
 			}
-		}catch(NullPointerException ex) {
-			JOptionPane.showMessageDialog(null, "Compruebe que todos los campos estén completos", "Error", JOptionPane.ERROR_MESSAGE);
-			
-		}
+		}		
 		
-		
-	}
-	
-	
+	}	
 
 }

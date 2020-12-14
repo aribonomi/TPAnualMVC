@@ -30,10 +30,11 @@ public class EventoVenta implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		try {
-		//Alta	
-			if(e.getSource()==vista.btnAgregar) {
-				
+		
+	//Alta	
+		if(e.getSource()==vista.btnAgregar) {
+			try {
+			
 			//Obtiene los valores de los campos	
 				String fecha = vista.textFieldFecha.getText();
 				String forma_pago = (String) vista.comboBoxFormaPago.getSelectedItem();
@@ -60,12 +61,19 @@ public class EventoVenta implements ActionListener{
 			//Se obtiene la venta ingresada y se muestra por pantalla	
 				Venta ventaAgregada = contVenta.obtenerUltima();
 				
-				JOptionPane.showMessageDialog(null,  ventaAgregada.toString(), "Venta ingresada", JOptionPane.INFORMATION_MESSAGE);
-				
-				
-		//Consulta	
-			}else if(e.getSource()==vista.btnConsulta) {
-				
+				JOptionPane.showMessageDialog(null,  ventaAgregada.toString(), "Datos de la venta", JOptionPane.INFORMATION_MESSAGE);
+			
+			}catch(NullPointerException np) {
+				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar en la venta/vuelo/cliente/aerolinea", "Error", JOptionPane.ERROR_MESSAGE);
+				np.printStackTrace();
+			}catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, "Verifique que los datos sean correctos", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}
+			
+	//Consulta	
+		}else if(e.getSource()==vista.btnConsulta) {
+			try {
 			//Se consulta la venta mediante el campo id	
 				Integer id = Integer.parseInt(vista.textField_idVenta.getText());
 				Venta venta = contVenta.consultarVenta(id);
@@ -80,10 +88,17 @@ public class EventoVenta implements ActionListener{
 				vista.modcomboBoxAerolinea.setSelectedItem(venta.getAerolinea().getNombre());
 				vista.textAreaConsulta.setText(venta.toString());
 				
-			
-		//Modificación		
-			}else if(e.getSource()==vista.btnModificarVenta) {
-				
+			}catch(NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null,"Los id son numeros enteros", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}catch(NullPointerException np) {
+				JOptionPane.showMessageDialog(null, "Compruebe que el id ingresado exista", "Error", JOptionPane.ERROR_MESSAGE);
+				np.printStackTrace();
+			}
+		
+	//Modificación		
+		}else if(e.getSource()==vista.btnModificarVenta) {
+			try {
 			//Obtiene los datos de la venta y realiza la modificación	
 				Integer id = Integer.parseInt(vista.textField_idVenta.getText());
 				String fecha = vista.ModtextFieldFecha.getText();
@@ -105,25 +120,33 @@ public class EventoVenta implements ActionListener{
 				Venta venta = new Venta(id, cliente, vuelo, aerolinea, fecha, forma_pago);
 				
 				contVenta.modVenta(venta);
-				
-		//Eliminación	
-			}else if(e.getSource()==vista.btnEliminar) {
+			}catch(NullPointerException np) {
+				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
+				np.printStackTrace();
+			}catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, "Verifique que los datos sean correctos", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}
+			
+	//Eliminación	
+		}else if(e.getSource()==vista.btnEliminar) {
+			try {
 			//Confirma la eliminación	
 				int input =JOptionPane.showConfirmDialog(null, "¡Se eliminará la venta!", "WARNING", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 				if(input == JOptionPane.OK_OPTION) {
 					contVenta.bajaVenta(vista.textField_idVenta.getText());
 				}
-			
-		//Vuelve al menú	
-			}else if(e.getSource()==vista.btnAtras) {
-				vista.setVisible(false);
+			}catch(NullPointerException ex) {
+				JOptionPane.showMessageDialog(null, "Compruebe que el id ingresado exista", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}catch(NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null,"Los id son numeros enteros", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
 			}
-		}catch(NullPointerException np) {
-			JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar en la venta/vuelo/cliente/aerolinea", "Error", JOptionPane.ERROR_MESSAGE);
-			np.printStackTrace();
-		}catch(Exception ex) {
-			JOptionPane.showMessageDialog(null, "Verifique que los datos sean correctos", "Error", JOptionPane.ERROR_MESSAGE);
-			ex.printStackTrace();
+		
+	//Vuelve al menú	
+		}else if(e.getSource()==vista.btnAtras) {
+			vista.setVisible(false);
 		}
 		
 	}

@@ -121,7 +121,7 @@ public class EventoCliente implements ActionListener{
 			//Se realiza la alta y se muestra por pantalla el cliente ingresado	
 				contCliente.altaCliente(c);
 				
-				JOptionPane.showMessageDialog(null, contCliente.obtenerUltimo()+" ingresado");
+				JOptionPane.showMessageDialog(null, contCliente.obtenerUltimo(), "Datos del cliente", JOptionPane.INFORMATION_MESSAGE);
 				
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
@@ -133,51 +133,60 @@ public class EventoCliente implements ActionListener{
 			
 	//Consulta	
 		}else if(e.getSource()==this.vista.btnConsultaMod) {
-		//Se consulta el cliente mediante el campo id	
-			Integer id = Integer.parseInt(this.vista.ModtextFieldID.getText());
-			
-			Cliente c = contCliente.consultaPorId(id);
+			try {
+				//Se consulta el cliente mediante el campo id	
+				Integer id = Integer.parseInt(this.vista.ModtextFieldID.getText());
+				
+				Cliente c = contCliente.consultaPorId(id);
 
-		//Se consultan los objetos contenidos dentro del cliente mediante el cliente consultado	
-			Direccion d = contDireccion.consultar(c.getdireccion().getId_direccion().toString());
-			Telefono t = contTelefono.consultarTelefono(c.gettelefono().getId_Telefono().toString());
-			Pasaporte p = contPasaporte.consultarPasaporte(c.getpasaporte().getId_Pasaporte().toString());
-			PasajeroFrecuente pf = contPF.consultarPasajeroFrecuente(c.getpasajeroFrecuente().getId_pasajeroFrecuente().toString());
-			Aerolinea a = contLA.consultarLineaAerea(pf.getAerolinea().getId_aeroLinea().toString());
-			
-		//Se setean los datos del cliente mediante las consultas hechas	
-			vista.ModtextFieldNombre.setText(c.getNombre());
-			vista.ModtextFieldApellido.setText(c.getApellido());
-			vista.ModtextFieldDni.setText(c.getDni());
-			vista.ModtextFieldCuit.setText(c.getCuit_cuil());
-			vista.ModtextFieldNacimiento.setText(c.getFecha_nacimiento());
-			vista.ModtextFieldEmail.setText(c.getEmail());
-			
-			vista.lbl_idDireccion.setText(d.getId_direccion().toString());
-			vista.ModtextFieldCalle.setText(d.getCalle());
-			vista.ModtextFieldAltura.setText(d.getAltura());
-			vista.ModtextFieldCiudad.setText(d.getCiudad());
-			vista.ModtextFieldCodP.setText(d.getCodigoPostal());
-			vista.ModcomboBox_provincia.setSelectedItem(d.getProvincia().getNombreProvincia());
-			vista.ModcomboBox_pais.setSelectedItem(d.getPais().getNombrePais());
-			
-			vista.lbl_idTelefono.setText(t.getId_Telefono().toString());
-			vista.ModtextFieldCelular.setText(t.getCelular());
-			vista.ModtextFieldPersonal.setText(t.getPersona());
-			vista.ModtextFieldLaboral.setText(t.getLaboral());
-			
-			vista.lbl_idPasaporte.setText(p.getId_Pasaporte().toString());
-			vista.ModtextFieldNumero.setText(p.getNumero());
-			vista.ModtextField_emision.setText(p.getAutoridadEmision());
-			vista.ModtextFieldFechaEmision.setText(p.getFechaEmision());
-			vista.ModtextField_vencimiento.setText(p.getFechaVencimiento());
-			vista.ModcomboBox_paisEmision.setSelectedItem(p.getPaisEmision().getNombrePais());
-			
-			vista.lbl_idPF.setText(pf.getId_pasajeroFrecuente().toString());
-			vista.ModtextFieldCategoria.setText(pf.getCategoria());
-			vista.ModtextFieldNumeroPF.setText(pf.getNumero());
-			vista.ModcomboBoxAlianza.setSelectedItem(pf.getAlianza());
-			vista.ModcomboBoxAerolinea.setSelectedItem(a.getNombre());
+			//Se consultan los objetos contenidos dentro del cliente mediante el cliente consultado	
+				Direccion d = contDireccion.consultar(c.getdireccion().getId_direccion().toString());
+				Telefono t = contTelefono.consultarTelefono(c.gettelefono().getId_Telefono().toString());
+				Pasaporte p = contPasaporte.consultarPasaporte(c.getpasaporte().getId_Pasaporte().toString());
+				PasajeroFrecuente pf = contPF.consultarPasajeroFrecuente(c.getpasajeroFrecuente().getId_pasajeroFrecuente().toString());
+				Aerolinea a = contLA.consultarLineaAerea(pf.getAerolinea().getId_aeroLinea().toString());
+				
+			//Se setean los datos del cliente mediante las consultas hechas	
+				vista.ModtextFieldNombre.setText(c.getNombre());
+				vista.ModtextFieldApellido.setText(c.getApellido());
+				vista.ModtextFieldDni.setText(c.getDni());
+				vista.ModtextFieldCuit.setText(c.getCuit_cuil());
+				vista.ModtextFieldNacimiento.setText(c.getFecha_nacimiento());
+				vista.ModtextFieldEmail.setText(c.getEmail());
+				
+				vista.lbl_idDireccion.setText(d.getId_direccion().toString());
+				vista.ModtextFieldCalle.setText(d.getCalle());
+				vista.ModtextFieldAltura.setText(d.getAltura());
+				vista.ModtextFieldCiudad.setText(d.getCiudad());
+				vista.ModtextFieldCodP.setText(d.getCodigoPostal());
+				vista.ModcomboBox_provincia.setSelectedItem(d.getProvincia().getNombreProvincia());
+				vista.ModcomboBox_pais.setSelectedItem(d.getPais().getNombrePais());
+				
+				vista.lbl_idTelefono.setText(t.getId_Telefono().toString());
+				vista.ModtextFieldCelular.setText(t.getCelular());
+				vista.ModtextFieldPersonal.setText(t.getPersona());
+				vista.ModtextFieldLaboral.setText(t.getLaboral());
+				
+				vista.lbl_idPasaporte.setText(p.getId_Pasaporte().toString());
+				vista.ModtextFieldNumero.setText(p.getNumero());
+				vista.ModtextField_emision.setText(p.getAutoridadEmision());
+				vista.ModtextFieldFechaEmision.setText(p.getFechaEmision());
+				vista.ModtextField_vencimiento.setText(p.getFechaVencimiento());
+				vista.ModcomboBox_paisEmision.setSelectedItem(p.getPaisEmision().getNombrePais());
+				
+				vista.lbl_idPF.setText(pf.getId_pasajeroFrecuente().toString());
+				vista.ModtextFieldCategoria.setText(pf.getCategoria());
+				vista.ModtextFieldNumeroPF.setText(pf.getNumero());
+				vista.ModcomboBoxAlianza.setSelectedItem(pf.getAlianza());
+				vista.ModcomboBoxAerolinea.setSelectedItem(a.getNombre());
+			}catch(NullPointerException ex) {
+				JOptionPane.showMessageDialog(null,"Compruebe que exista el id ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}catch(NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null,"Los id son numeros enteros", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}
+		
 			
 			
 	//Eliminación	
@@ -198,7 +207,13 @@ public class EventoCliente implements ActionListener{
 	
 				}
 			}catch(NullPointerException np) {
-				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Compruebe que exista el id ingresado", "Error", JOptionPane.ERROR_MESSAGE);
+			}catch(NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null,"Los id son numeros enteros", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}catch(Exception ex) {
+				JOptionPane.showMessageDialog(null, "Error en la base de datos");
+				ex.printStackTrace();
 			}
 	
 	//Modificación		
@@ -263,7 +278,7 @@ public class EventoCliente implements ActionListener{
 				Cliente c = new Cliente(id, nombre, apellido, dni, cuit, fecha_nac, email, d, t, pasaporte, pf);
 				
 				contCliente.modificarCliente(c);
-				JOptionPane.showMessageDialog(null, c.toString()+" ingresado");
+				JOptionPane.showMessageDialog(null, c.toString(), "Datos del cliente", JOptionPane.INFORMATION_MESSAGE);
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
 			}catch(Exception ex) {
