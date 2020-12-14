@@ -121,8 +121,6 @@ public class EventoCliente implements ActionListener{
 			//Se realiza la alta y se muestra por pantalla el cliente ingresado	
 				contCliente.altaCliente(c);
 				
-				JOptionPane.showMessageDialog(null, contCliente.obtenerUltimo(), "Datos del cliente", JOptionPane.INFORMATION_MESSAGE);
-				
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
 			}catch(Exception ex) {
@@ -179,6 +177,7 @@ public class EventoCliente implements ActionListener{
 				vista.ModtextFieldNumeroPF.setText(pf.getNumero());
 				vista.ModcomboBoxAlianza.setSelectedItem(pf.getAlianza());
 				vista.ModcomboBoxAerolinea.setSelectedItem(a.getNombre());
+				
 			}catch(NullPointerException ex) {
 				JOptionPane.showMessageDialog(null,"Compruebe que exista el id ingresado", "Error", JOptionPane.ERROR_MESSAGE);
 				ex.printStackTrace();
@@ -278,7 +277,9 @@ public class EventoCliente implements ActionListener{
 				Cliente c = new Cliente(id, nombre, apellido, dni, cuit, fecha_nac, email, d, t, pasaporte, pf);
 				
 				contCliente.modificarCliente(c);
+				
 				JOptionPane.showMessageDialog(null, c.toString(), "Datos del cliente", JOptionPane.INFORMATION_MESSAGE);
+				
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
 			}catch(Exception ex) {

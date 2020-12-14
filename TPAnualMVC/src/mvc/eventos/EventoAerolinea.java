@@ -45,9 +45,12 @@ public class EventoAerolinea implements ActionListener{
 				
 			//Se muestra por pantalla el id de la aerolínea agregada	
 				vista.lbl_idAlta.setText("ID: "+nueva.getId_aeroLinea());
-			}catch(NumberFormatException ex) {
-					JOptionPane.showMessageDialog(null,"Los id son numeros enteros", "Error", JOptionPane.ERROR_MESSAGE);
-					ex.printStackTrace();
+			}catch(NullPointerException ex) {
+				JOptionPane.showMessageDialog(null,"Compruebe que todos los campos estén completos", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
+			}catch(Exception ex) {
+				JOptionPane.showMessageDialog(null,"Compruebe que los datos estén bien", "Error", JOptionPane.ERROR_MESSAGE);
+				ex.printStackTrace();
 			}	
 	//Consulta	
 		}else if(e.getSource()==vista.btnConsultaAerolinea) {

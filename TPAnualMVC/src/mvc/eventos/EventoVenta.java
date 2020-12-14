@@ -58,10 +58,6 @@ public class EventoVenta implements ActionListener{
 				Venta venta = new Venta(fecha, forma_pago, cliente, vuelo, aerolinea);
 				
 				contVenta.altaVenta(venta);
-			//Se obtiene la venta ingresada y se muestra por pantalla	
-				Venta ventaAgregada = contVenta.obtenerUltima();
-				
-				JOptionPane.showMessageDialog(null,  ventaAgregada.toString(), "Datos de la venta", JOptionPane.INFORMATION_MESSAGE);
 			
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar en la venta/vuelo/cliente/aerolinea", "Error", JOptionPane.ERROR_MESSAGE);
@@ -120,6 +116,7 @@ public class EventoVenta implements ActionListener{
 				Venta venta = new Venta(id, cliente, vuelo, aerolinea, fecha, forma_pago);
 				
 				contVenta.modVenta(venta);
+				
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
 				np.printStackTrace();

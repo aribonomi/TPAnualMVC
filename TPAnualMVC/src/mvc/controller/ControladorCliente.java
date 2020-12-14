@@ -45,7 +45,7 @@ public class ControladorCliente {
 	}
 	
 	public List<Integer> obtenerIds(){
-		return clienteDAO.obtenerDnis();
+		return clienteDAO.obtenerIDs();
 	}
 	
 	public Cliente obtenerUltimo() {

@@ -60,10 +60,6 @@ public class EventoVuelo implements ActionListener{
 				
 				contVuelo.altaVuelo(vuelo);
 				
-			//Muestra el vuelo agregado por pantalla	
-				Vuelo vueloAgregado = contVuelo.consultarVuelo(contVuelo.obtenerUltimoId());
-				
-				JOptionPane.showMessageDialog(null,  vueloAgregado.toString(), "Vuelo ingresado", JOptionPane.INFORMATION_MESSAGE);
 			}catch(NullPointerException ex) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
 				ex.printStackTrace();
