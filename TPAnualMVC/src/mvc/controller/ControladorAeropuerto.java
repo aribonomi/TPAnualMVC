@@ -2,7 +2,7 @@ package mvc.controller;
 
 import java.util.List;
 
-import Factory.Factory;
+import Factory.FactoryAeropuerto;
 import dao.Interfaces.*;
 import dao.negocio.*;
 
@@ -13,8 +13,8 @@ public class ControladorAeropuerto {
 	public ControladorAeropuerto() {
 		
 	//Llamo a la implementación mediante el factory	
-		new Factory();
-		this.aeropDAO = Factory.getAeropuertoDaoImplMysql();
+		new FactoryAeropuerto();
+		this.aeropDAO = FactoryAeropuerto.getAeropuertoDaoImplMysql();
 	}
 	
 	public void altaAeropuerto(Aeropuerto a){

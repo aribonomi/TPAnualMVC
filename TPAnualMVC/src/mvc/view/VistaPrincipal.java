@@ -16,6 +16,8 @@ import mvc.eventos.EventosVistaPrincipal;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 import java.awt.SystemColor;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class VistaPrincipal extends JFrame {
 
@@ -24,11 +26,11 @@ public class VistaPrincipal extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
-	public JButton btnAerolineas;
-	public JButton btnClientes;
-	public JButton btnVentas;
-	public JButton btnVuelos;
-	public JButton btnSalir;
+	public JMenuItem mntmVentas;
+	public JMenuItem mntmVuelos;
+	public JMenuItem mntmAerolineas;
+	public JMenuItem mntmClientes;
+	public JMenuItem mntmSalir;
 
 	/**
 	 * Launch the application.
@@ -68,36 +70,34 @@ public class VistaPrincipal extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel LabelBienvenido = new JLabel("BIENVENIDO!");
-		LabelBienvenido.setBounds(0, 0, 434, 52);
+		LabelBienvenido.setBounds(0, 105, 434, 52);
 		LabelBienvenido.setBackground(Color.ORANGE);
 		LabelBienvenido.setHorizontalAlignment(SwingConstants.CENTER);
 		LabelBienvenido.setFont(new Font("Times New Roman", Font.PLAIN, 35));
 		panel.add(LabelBienvenido);
 		
-		btnAerolineas = new JButton("Aerol\u00EDneas");
-		btnAerolineas.setToolTipText("");
-		btnAerolineas.setBounds(159, 63, 115, 23);
-		panel.add(btnAerolineas);
-		btnAerolineas.addActionListener(new EventosVistaPrincipal(this));
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 434, 21);
+		panel.add(menuBar);
 		
-		btnClientes = new JButton("Clientes");
-		btnClientes.setBounds(159, 97, 115, 23);
-		panel.add(btnClientes);
-		btnClientes.addActionListener(new EventosVistaPrincipal(this));
+		mntmClientes = new JMenuItem("Clientes");
+		menuBar.add(mntmClientes);
+		mntmClientes.addActionListener(new EventosVistaPrincipal(this));
 		
-		btnVentas = new JButton("Ventas");
-		btnVentas.setBounds(159, 131, 115, 23);
-		panel.add(btnVentas);
-		btnVentas.addActionListener(new EventosVistaPrincipal(this));
+		mntmAerolineas = new JMenuItem("Aerolineas");
+		menuBar.add(mntmAerolineas);
+		mntmAerolineas.addActionListener(new EventosVistaPrincipal(this));
 		
-		btnVuelos = new JButton("Vuelos");
-		btnVuelos.setBounds(159, 165, 115, 23);
-		panel.add(btnVuelos);
-		btnVuelos.addActionListener(new EventosVistaPrincipal(this));
+		mntmVuelos = new JMenuItem("Vuelos");
+		menuBar.add(mntmVuelos);
+		mntmVuelos.addActionListener(new EventosVistaPrincipal(this));
 		
-		btnSalir = new JButton("Salir");
-		btnSalir.setBounds(159, 199, 115, 23);
-		panel.add(btnSalir);
-		btnSalir.addActionListener(new EventosVistaPrincipal(this));
+		mntmVentas = new JMenuItem("Ventas");
+		menuBar.add(mntmVentas);
+		mntmVentas.addActionListener(new EventosVistaPrincipal(this));
+		
+		mntmSalir = new JMenuItem("Salir");
+		menuBar.add(mntmSalir);
+		mntmSalir.addActionListener(new EventosVistaPrincipal(this));
 	}
 }

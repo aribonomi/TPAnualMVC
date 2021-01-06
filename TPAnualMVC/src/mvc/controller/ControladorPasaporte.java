@@ -1,6 +1,6 @@
 package mvc.controller;
 
-import Factory.Factory;
+import Factory.FactoryPasaporte;
 import dao.Interfaces.PasaporteDAO;
 import dao.negocio.Pasaporte;
 
@@ -11,8 +11,8 @@ public class ControladorPasaporte {
 	public ControladorPasaporte() {
 		
 	//Llamo a la implementación mediante el factory		
-		new Factory();
-		pasaporteDAO = Factory.getPasaporteDaoImplMysql();
+		new FactoryPasaporte();
+		pasaporteDAO = FactoryPasaporte.getPasaporteDaoImplMysql();
 	}
 	
 	public void altaPasaporte(Pasaporte p) {

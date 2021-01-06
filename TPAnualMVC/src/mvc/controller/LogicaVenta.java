@@ -4,8 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.JOptionPane;
-
-import Factory.Factory;
+import Factory.FactoryVenta;
+import Factory.FactoryVuelo;
 import dao.Interfaces.VentasDAO;
 import dao.Interfaces.VuelosDAO;
 import dao.negocio.Venta;
@@ -17,9 +17,10 @@ public class LogicaVenta {
 		
 	public LogicaVenta() {
 	//Llamo a la implementación mediante el factory	
-		new Factory();
-		ventaDAO = Factory.getVentasDaoImplMysql();
-		vueloDAO = Factory.getVuelosDaoImplMysql();
+		new FactoryVenta();
+		new FactoryVuelo();
+		ventaDAO = FactoryVenta.getVentasDaoImplMysql();
+		vueloDAO = FactoryVuelo.getVuelosDaoImplMysql();
 	}
 	
 	public static void realizarAltaVenta(Venta v) {

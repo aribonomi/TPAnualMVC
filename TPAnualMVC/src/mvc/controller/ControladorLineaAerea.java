@@ -2,7 +2,7 @@ package mvc.controller;
 
 import java.util.List;
 
-import Factory.Factory;
+import Factory.FactoryLineaAerea;
 import dao.Interfaces.LineaAereaDAO;
 import dao.negocio.Aerolinea;
 
@@ -14,8 +14,8 @@ public class ControladorLineaAerea {
 	public ControladorLineaAerea() {
 
 	//Llamo a la implementación mediante el factory	
-		new Factory();
-		lineaAereaDAO = Factory.getLineaAereaDaoImplMysql();
+		new FactoryLineaAerea();
+		lineaAereaDAO = FactoryLineaAerea.getLineaAereaDaoImplMysql();
 	}
 	
 	public void altaLineaAerea(Aerolinea a) {

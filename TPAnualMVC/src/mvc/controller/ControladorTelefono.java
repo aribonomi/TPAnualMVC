@@ -1,6 +1,6 @@
 package mvc.controller;
 
-import Factory.Factory;
+import Factory.FactoryTelefono;
 import dao.Interfaces.TelefonoDAO;
 import dao.negocio.Telefono;
 
@@ -11,8 +11,8 @@ public class ControladorTelefono {
 	public ControladorTelefono() {
 		
 	//Llamo a la implementación mediante el factory	
-		new Factory();
-		this.telefonoDAO = Factory.getTelefonoDaoImplMysql();
+		new FactoryTelefono();
+		this.telefonoDAO = FactoryTelefono.getTelefonoDaoImplMysql();
 	}
 	
 	public void altaTelefono(Telefono t) {

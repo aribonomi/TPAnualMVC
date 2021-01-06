@@ -1,6 +1,6 @@
 package mvc.controller;
 
-import Factory.Factory;
+import Factory.FactoryDireccion;
 import dao.Interfaces.DireccionDAO;
 import dao.negocio.Direccion;
 
@@ -11,8 +11,8 @@ public class ControladorDireccion {
 	public ControladorDireccion() {
 		
 	//Llamo a la implementación mediante el factory
-		new Factory();
-		direccionDAO = Factory.getDireccionDaoImplMysql();
+		new FactoryDireccion();
+		direccionDAO = FactoryDireccion.getDireccionDaoImplMysql();
 	}
 
 	

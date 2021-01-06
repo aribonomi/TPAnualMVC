@@ -2,7 +2,7 @@ package mvc.controller;
 
 import java.util.List;
 
-import Factory.Factory;
+import Factory.FactoryCliente;
 import dao.Interfaces.ClienteDAO;
 import dao.negocio.Cliente;
 
@@ -16,8 +16,8 @@ public class ControladorCliente {
 	public ControladorCliente() {
 
 	//Llamo a la implementación mediante el factory	
-		new Factory();
-		clienteDAO = Factory.getClienteDaoImplMysql();
+		new FactoryCliente();
+		clienteDAO = FactoryCliente.getClienteDaoImplMysql();
 
 	}
 

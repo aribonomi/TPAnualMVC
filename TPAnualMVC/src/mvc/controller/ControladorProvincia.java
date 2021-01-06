@@ -2,7 +2,7 @@ package mvc.controller;
 
 import java.util.List;
 
-import Factory.Factory;
+import Factory.FactoryProvincia;
 import dao.Interfaces.ProvinciaDAO;
 import dao.negocio.Provincia;
 
@@ -13,8 +13,8 @@ public class ControladorProvincia {
 	public ControladorProvincia() {
 		
 	//Llamo a la implementación mediante el factory
-		new Factory();
-		provDAO = Factory.getProvinciaDaoImplMysql();
+		new FactoryProvincia();
+		provDAO = FactoryProvincia.getProvinciaDaoImplMysql();
 	}
 	
 	public void altaProv(Provincia p) {

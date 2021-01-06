@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import Factory.Factory;
+import Factory.FactoryVenta;
+import Factory.FactoryVuelo;
 import dao.Interfaces.VentasDAO;
 import dao.Interfaces.VuelosDAO;
 import dao.negocio.Venta;
@@ -17,9 +18,10 @@ public class ControladorVenta {
 	public ControladorVenta() {
 		
 	//Llamo a la implementación mediante el factory	
-		new Factory();
-		ventaDAO = Factory.getVentasDaoImplMysql();
-		vueloDAO = Factory.getVuelosDaoImplMysql();
+		new FactoryVenta();
+		new FactoryVuelo();
+		ventaDAO = FactoryVenta.getVentasDaoImplMysql();
+		vueloDAO = FactoryVuelo.getVuelosDaoImplMysql();
 	}
 	
 	public void altaVenta(Venta v) {

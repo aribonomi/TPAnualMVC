@@ -1,17 +1,9 @@
 package mvc.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
-
-import javax.swing.JOptionPane;
-
-import Factory.Factory;
-import dao.Interfaces.AeropuertoDAO;
+import Factory.FactoryVuelo;
 import dao.Interfaces.VuelosDAO;
-import dao.negocio.Aeropuerto;
 import dao.negocio.Vuelo;
-import mvc.view.VistaPrincipal;
 
 public class ControladorVuelo{
 	
@@ -22,8 +14,8 @@ public class ControladorVuelo{
 	public ControladorVuelo() {
 		
 	//Llamo a la implementación mediante el factory	
-		new Factory();
-		vueloDAO = Factory.getVuelosDaoImplMysql();
+		new FactoryVuelo();
+		vueloDAO = FactoryVuelo.getVuelosDaoImplMysql();
 	}
 
 

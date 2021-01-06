@@ -2,7 +2,7 @@ package mvc.controller;
 
 import java.util.List;
 
-import Factory.Factory;
+import Factory.FactoryPais;
 import dao.Interfaces.PaisDAO;
 import dao.negocio.Pais;
 
@@ -13,8 +13,8 @@ public class ControladorPais {
 	public ControladorPais() {
 	
 	//Llamo a la implementación mediante el factory	
-		new Factory();
-		paisDAO = Factory.getPaisDao();
+		new FactoryPais();
+		paisDAO = FactoryPais.getPaisDao();
 	}
 	
 	public void altaPais(Pais p) {
