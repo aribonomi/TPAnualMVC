@@ -23,17 +23,30 @@ public class ControladorCliente {
 
 
 
-	public void altaCliente(Cliente c) {
+	public boolean altaCliente(Cliente c) {
 		
-		clienteDAO.altaCliente(c);
+		if(clienteDAO.altaCliente(c)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
-	public void bajaCliente(String id) {
-		clienteDAO.bajaCliente(id);
+	public boolean bajaCliente(String id) {
+		if(clienteDAO.bajaCliente(id)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
-	public void modificarCliente(Cliente c) {
-		clienteDAO.modificarCliente(c);
+	public boolean modificarCliente(Cliente c) {
+		if(clienteDAO.modificarCliente(c)) {
+			return false;
+		}else {
+			return true;
+		}
+		
 	}
 	
 	public Cliente consultarCliente(String id) {

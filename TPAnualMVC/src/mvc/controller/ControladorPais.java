@@ -40,5 +40,9 @@ public class ControladorPais {
 	public List<String> obtenerNombres(){
 		return paisDAO.obtenerNombres();
 	}
+	
+	public Pais consultaPorID(Integer id) {
+		return paisDAO.getPaisPorID(id);
+	}
 
 }

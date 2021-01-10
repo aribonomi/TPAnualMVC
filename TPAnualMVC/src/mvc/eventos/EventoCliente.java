@@ -119,7 +119,11 @@ public class EventoCliente implements ActionListener{
 				Cliente c = new Cliente(nombre, apellido, dni, cuit, fecha_nac, email,contDireccion.obtenerUltimo(), contTelefono.obtenerUltimo(), contPasaporte.obtenerUltimo(), contPF.obtenerUltimo());
 				
 			//Se realiza la alta y se muestra por pantalla el cliente ingresado	
-				contCliente.altaCliente(c);
+				if(contCliente.altaCliente(c)) {
+					JOptionPane.showMessageDialog(null, "Cliente agregado", "Alta de cliente", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al agregar al cliente", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 				
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
@@ -136,13 +140,27 @@ public class EventoCliente implements ActionListener{
 				Integer id = Integer.parseInt(this.vista.ModtextFieldID.getText());
 				
 				Cliente c = contCliente.consultaPorId(id);
-
+				
 			//Se consultan los objetos contenidos dentro del cliente mediante el cliente consultado	
 				Direccion d = contDireccion.consultar(c.getdireccion().getId_direccion().toString());
+				d.setPais(contPais.consultaPorID(d.getPais().getId_pais()));
+				d.setProvincia(contProvincia.consultarProvincia(d.getProvincia().getId_provincia().toString()));
+				
 				Telefono t = contTelefono.consultarTelefono(c.gettelefono().getId_Telefono().toString());
+				
 				Pasaporte p = contPasaporte.consultarPasaporte(c.getpasaporte().getId_Pasaporte().toString());
+				p.setPaisEmision(contPais.consultaPorID(p.getPaisEmision().getId_pais()));
+				
 				PasajeroFrecuente pf = contPF.consultarPasajeroFrecuente(c.getpasajeroFrecuente().getId_pasajeroFrecuente().toString());
+				
 				Aerolinea a = contLA.consultarLineaAerea(pf.getAerolinea().getId_aeroLinea().toString());
+				
+				c.setId_direccion(d);
+				c.setId_telefono(t);
+				c.setId_pasaporte(p);
+				c.setpasajeroFrecuente(pf);
+				c.getpasajeroFrecuente().setAerolinea(a);
+
 				
 			//Se setean los datos del cliente mediante las consultas hechas	
 				vista.ModtextFieldNombre.setText(c.getNombre());
@@ -152,7 +170,7 @@ public class EventoCliente implements ActionListener{
 				vista.ModtextFieldNacimiento.setText(c.getFecha_nacimiento());
 				vista.ModtextFieldEmail.setText(c.getEmail());
 				
-				vista.lbl_idDireccion.setText(d.getId_direccion().toString());
+				vista.lbl_idDireccion.setText(c.getdireccion().getId_direccion().toString());
 				vista.ModtextFieldCalle.setText(d.getCalle());
 				vista.ModtextFieldAltura.setText(d.getAltura());
 				vista.ModtextFieldCiudad.setText(d.getCiudad());
@@ -202,7 +220,11 @@ public class EventoCliente implements ActionListener{
 					contPasaporte.bajaPasaporte(vista.lbl_idPasaporte.getText());
 					contPF.bajaPasajFrecuente(vista.lbl_idPF.getText());
 					
-					contCliente.bajaCliente(vista.ModtextFieldID.getText());
+					if(contCliente.bajaCliente(vista.ModtextFieldID.getText())) {
+						JOptionPane.showMessageDialog(null, "Cliente eliminado", "Baja cliente", JOptionPane.INFORMATION_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(null, "Error al eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+					}
 	
 				}
 			}catch(NullPointerException np) {
@@ -276,7 +298,11 @@ public class EventoCliente implements ActionListener{
 				
 				Cliente c = new Cliente(id, nombre, apellido, dni, cuit, fecha_nac, email, d, t, pasaporte, pf);
 				
-				contCliente.modificarCliente(c);
+				if(contCliente.modificarCliente(c)) {
+					JOptionPane.showMessageDialog(null, "Cliente modificado", "Modificación de cliente", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al modificar al cliente", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 				
 				JOptionPane.showMessageDialog(null, c.toString(), "Datos del cliente", JOptionPane.INFORMATION_MESSAGE);
 				

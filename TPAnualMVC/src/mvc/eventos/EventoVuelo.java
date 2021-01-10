@@ -18,6 +18,8 @@ public class EventoVuelo implements ActionListener{
 	ControladorVuelo contVuelo;
 	ControladorAeropuerto contAeropuerto;
 	ControladorLineaAerea contLA;
+	ControladorPais contPais;
+	ControladorProvincia contProvincia;
 	
 	
 
@@ -27,6 +29,8 @@ public class EventoVuelo implements ActionListener{
 		contVuelo = new ControladorVuelo();
 		contAeropuerto = new ControladorAeropuerto();
 		contLA = new ControladorLineaAerea();
+		contPais = new ControladorPais();
+		contProvincia = new ControladorProvincia();
 	}
 
 
@@ -75,6 +79,20 @@ public class EventoVuelo implements ActionListener{
 			//Realiza la consulta mediante el id ingresado	
 				Integer id = Integer.parseInt(vista.textFieldVueloCons.getText());
 				Vuelo vuelo = contVuelo.consultarVuelo(id);
+				
+				Aerolinea aerolinea = contLA.consultarLineaAerea((vuelo.getAerolinea().getId_aeroLinea().toString()));
+				vuelo.setAerolinea(aerolinea);
+				
+				Aeropuerto aeropSalida = contAeropuerto.consultarAeropuerto(vuelo.getAeropuertoSalida().getId_Aeropuerto());
+				aeropSalida.setPais(contPais.consultaPorID(aeropSalida.getPais().getId_pais()));
+				aeropSalida.setProvincia(contProvincia.consultarProvincia(aeropSalida.getProvincia().getId_provincia().toString()));
+				
+				Aeropuerto aeropLlegada = contAeropuerto.consultarAeropuerto(vuelo.getAeropuertoLlegada().getId_Aeropuerto());
+				aeropLlegada.setPais(contPais.consultaPorID(aeropLlegada.getPais().getId_pais()));
+				aeropLlegada.setProvincia(contProvincia.consultarProvincia(aeropLlegada.getProvincia().getId_provincia().toString()));
+				
+				vuelo.setAeropuertoSalida(aeropSalida);
+				vuelo.setAeropuertoLlegada(aeropLlegada);
 				
 			//Setea los campos con los datos del vuelo consultado	
 				vista.ModtextFieldNumero.setText(vuelo.getNumero());
