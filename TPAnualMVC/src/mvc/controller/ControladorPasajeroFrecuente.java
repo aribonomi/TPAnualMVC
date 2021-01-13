@@ -15,16 +15,16 @@ public class ControladorPasajeroFrecuente {
 		pfDAO = FactoryPasajeroFrecuente.getPasajeroFrecuenteDaoImplMysql();
 	}
 	
-	public void altaPasajFrecuente(PasajeroFrecuente p) {
-		pfDAO.addPasajeroFrecuente(p);
+	public boolean altaPasajFrecuente(PasajeroFrecuente p) {
+		return pfDAO.addPasajeroFrecuente(p);
 	}
 	
-	public void bajaPasajFrecuente(String id) {
-		pfDAO.deletePasajeroFrecuente(id);
+	public boolean bajaPasajFrecuente(String id) {
+		return pfDAO.deletePasajeroFrecuente(id);
 	}
 	
-	public void modPasajFrecuente(PasajeroFrecuente p) {
-		pfDAO.updatePasajeroFrecuente(p);
+	public boolean modPasajFrecuente(PasajeroFrecuente p) {
+		return pfDAO.updatePasajeroFrecuente(p);
 	}
 	
 	public PasajeroFrecuente consultarPasajeroFrecuente(String id) {

@@ -15,16 +15,16 @@ public class ControladorPasaporte {
 		pasaporteDAO = FactoryPasaporte.getPasaporteDaoImplMysql();
 	}
 	
-	public void altaPasaporte(Pasaporte p) {
-		pasaporteDAO.addPasaporte(p);
+	public boolean altaPasaporte(Pasaporte p) {
+		return pasaporteDAO.addPasaporte(p);
 	}
 	
-	public void bajaPasaporte(String id) {
-		pasaporteDAO.deletePasaporte(id);
+	public boolean bajaPasaporte(String id) {
+		return pasaporteDAO.deletePasaporte(id);
 	}
 	
-	public void modPasaporte(Pasaporte p) {
-		pasaporteDAO.updatePasaporte(p);
+	public boolean modPasaporte(Pasaporte p) {
+		return pasaporteDAO.updatePasaporte(p);
 	}
 	
 	public Pasaporte consultarPasaporte(String id) {

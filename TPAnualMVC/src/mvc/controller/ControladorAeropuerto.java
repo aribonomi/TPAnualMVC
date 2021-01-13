@@ -17,12 +17,12 @@ public class ControladorAeropuerto {
 		this.aeropDAO = FactoryAeropuerto.getAeropuertoDaoImplMysql();
 	}
 	
-	public void altaAeropuerto(Aeropuerto a){
-		aeropDAO.altaAeropuerto(a);
+	public boolean altaAeropuerto(Aeropuerto a){
+		return aeropDAO.altaAeropuerto(a);
 	}
 	
-	public void bajaAeropuerto(String id) {
-		aeropDAO.bajaAeropuerto(id);
+	public boolean bajaAeropuerto(String id) {
+		return aeropDAO.bajaAeropuerto(id);
 	}
 	
 	public Aeropuerto consultarAeropuerto(Integer id) {

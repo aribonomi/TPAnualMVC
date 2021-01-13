@@ -103,14 +103,14 @@ public class VistaAerolinea extends JFrame {
 		contentPane.add(lblId_1);
 		
 		btnConsultaAerolinea = new JButton("Consultar");
-		btnConsultaAerolinea.addActionListener(new EventoAerolinea(this));
+		//btnConsultaAerolinea.addActionListener(new EventoAerolinea(this));
 		btnConsultaAerolinea.setBounds(524, 32, 89, 23);
 		contentPane.add(btnConsultaAerolinea);
 		
 		btnEliminarAerolinea = new JButton("Eliminar");
 		btnEliminarAerolinea.setBounds(524, 57, 89, 23);
 		contentPane.add(btnEliminarAerolinea);
-		btnEliminarAerolinea.addActionListener(new EventoAerolinea(this));
+		//btnEliminarAerolinea.addActionListener(new EventoAerolinea(this));
 		
 		JLabel lblModificarAerolinea = new JLabel("Modificar Aerolinea");
 		lblModificarAerolinea.setHorizontalAlignment(SwingConstants.CENTER);
@@ -121,12 +121,12 @@ public class VistaAerolinea extends JFrame {
 		btnAltaAerolinea = new JButton("Agregar");
 		btnAltaAerolinea.setBounds(124, 88, 89, 23);
 		contentPane.add(btnAltaAerolinea);
-		btnAltaAerolinea.addActionListener(new EventoAerolinea(this));
+		//btnAltaAerolinea.addActionListener(new EventoAerolinea(this));
 		
 		btnModificar = new JButton("Modificar");
 		btnModificar.setBounds(398, 113, 89, 23);
 		contentPane.add(btnModificar);
-		btnModificar.addActionListener(new EventoAerolinea(this));
+		//btnModificar.addActionListener(new EventoAerolinea(this));
 		
 		btnAtras = new JButton("Atras");
 		btnAtras.setBounds(524, 137, 89, 23);
@@ -145,7 +145,7 @@ public class VistaAerolinea extends JFrame {
 		lbl_idAlta = new JLabel("");
 		lbl_idAlta.setBounds(10, 92, 68, 14);
 		contentPane.add(lbl_idAlta);
-		btnAtras.addActionListener(new EventoAerolinea(this));
+		//btnAtras.addActionListener(new EventoAerolinea(this));
 		
 		
 		

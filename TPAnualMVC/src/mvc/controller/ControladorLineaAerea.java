@@ -18,16 +18,16 @@ public class ControladorLineaAerea {
 		lineaAereaDAO = FactoryLineaAerea.getLineaAereaDaoImplMysql();
 	}
 	
-	public void altaLineaAerea(Aerolinea a) {
-		lineaAereaDAO.altaLineaAerea(a);
+	public boolean altaLineaAerea(Aerolinea a) {
+		return lineaAereaDAO.altaLineaAerea(a);
 	}
 	
-	public void bajaLineaAerea(String id) {
-		lineaAereaDAO.bajaLineaAerea(id);
+	public boolean bajaLineaAerea(String id) {
+		return lineaAereaDAO.bajaLineaAerea(id);
 	}
 
-	public void modLineaAerea(Aerolinea a) {
-		lineaAereaDAO.modificarLineaAerea(a);
+	public boolean modLineaAerea(Aerolinea a) {
+		return lineaAereaDAO.modificarLineaAerea(a);
 	}
 	
 	public Aerolinea consultarLineaAerea(String id) {

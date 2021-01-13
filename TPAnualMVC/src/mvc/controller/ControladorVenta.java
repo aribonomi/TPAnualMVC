@@ -28,12 +28,12 @@ public class ControladorVenta {
 		LogicaVenta.realizarAltaVenta(v);
 	}
 	
-	public void bajaVenta(String id) {
-		ventaDAO.bajaVenta(id);
+	public boolean bajaVenta(String id) {
+		return ventaDAO.bajaVenta(id);
 	}
 	
-	public void modVenta(Venta v) {
-		ventaDAO.modificarVenta(v);
+	public boolean modVenta(Venta v) {
+		return ventaDAO.modificarVenta(v);
 	}
 	
 	public Venta consultarVenta(Integer id) {

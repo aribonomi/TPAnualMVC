@@ -30,10 +30,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import dao.negocio.Alianza;
+import mvc.eventos.EventoAerolinea;
 
 public class VistaAerolinea2 extends JFrame {
-	private JTextField tf_id;
-	private JTextField tf_nombre;
+	public JTextField tf_id;
+	public JTextField tf_nombre;
+	public JComboBox comboAlianza;
+	public JButton btnConsultar;
+	public JButton btnModificar;
+	public JButton btnAgregar;
+	public JButton btnAtras;
+	public JButton btnEliminar;
 
 	/**
 	 * Launch the application.
@@ -56,6 +63,7 @@ public class VistaAerolinea2 extends JFrame {
 	 */
 	public VistaAerolinea2() {
 		setTitle("Gesti\u00F3n de aerol\u00EDneas");
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new FormLayout(new ColumnSpec[] {
@@ -87,6 +95,10 @@ public class VistaAerolinea2 extends JFrame {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,}));
 		
 		JLabel lblNewLabel = new JLabel("Aerol\u00EDneas");
@@ -101,8 +113,9 @@ public class VistaAerolinea2 extends JFrame {
 		getContentPane().add(tf_id, "6, 6, fill, default");
 		tf_id.setColumns(10);
 		
-		JButton btnConsultar = new JButton("Consultar");
+		btnConsultar = new JButton("Consultar");
 		getContentPane().add(btnConsultar, "10, 6");
+		btnConsultar.addActionListener(new EventoAerolinea(this));
 		
 		JLabel lblNewLabel_2 = new JLabel("Nombre");
 		getContentPane().add(lblNewLabel_2, "2, 8");
@@ -111,17 +124,27 @@ public class VistaAerolinea2 extends JFrame {
 		getContentPane().add(tf_nombre, "6, 8, fill, default");
 		tf_nombre.setColumns(10);
 		
-		JButton btnModificar = new JButton("Modificar");
-		getContentPane().add(btnModificar, "10, 8");
+		btnEliminar = new JButton("Eliminar");
+		getContentPane().add(btnEliminar, "10, 8");
+		btnEliminar.addActionListener(new EventoAerolinea(this));
 		
 		JLabel lblNewLabel_3 = new JLabel("Alianza");
 		getContentPane().add(lblNewLabel_3, "2, 10");
 		
-		JComboBox comboAlianza = new JComboBox();
+		comboAlianza = new JComboBox();
 		comboAlianza.setModel(new DefaultComboBoxModel(Alianza.values()));
 		getContentPane().add(comboAlianza, "6, 10, fill, default");
 		
-		JButton btnAgregar = new JButton("Agregar");
-		getContentPane().add(btnAgregar, "10, 10");
+		btnModificar = new JButton("Modificar");
+		getContentPane().add(btnModificar, "10, 10");
+		btnModificar.addActionListener(new EventoAerolinea(this));
+		
+		btnAtras = new JButton("Atr\u00E1s");
+		getContentPane().add(btnAtras, "2, 12");
+		btnAtras.addActionListener(new EventoAerolinea(this));
+		
+		btnAgregar = new JButton("Agregar");
+		getContentPane().add(btnAgregar, "6, 12");
+		btnAgregar.addActionListener(new EventoAerolinea(this));
 	}
 }

@@ -98,7 +98,7 @@ public class VistaVuelo extends JFrame{
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBounds(563, 57, 89, 23);
 		contentPane.add(btnEliminar);
-		btnEliminar.addActionListener(new EventoVuelo(this));
+		//btnEliminar.addActionListener(new EventoVuelo(this));
 		
 		JLabel lblModificarAerolinea = new JLabel("Modificar Vuelo");
 		lblModificarAerolinea.setHorizontalAlignment(SwingConstants.CENTER);
@@ -109,18 +109,18 @@ public class VistaVuelo extends JFrame{
 		btnAlta = new JButton("Agregar");
 		btnAlta.setBounds(148, 239, 89, 23);
 		contentPane.add(btnAlta);
-		btnAlta.addActionListener(new EventoVuelo(this));
+		//btnAlta.addActionListener(new EventoVuelo(this));
 		
 		
 		btnModificar = new JButton("Modificar");
 		btnModificar.setBounds(429, 271, 89, 23);
 		contentPane.add(btnModificar);
-		btnModificar.addActionListener(new EventoVuelo(this));
+		//btnModificar.addActionListener(new EventoVuelo(this));
 		
 		btnAtras = new JButton("Atras");
 		btnAtras.setBounds(563, 271, 89, 23);
 		contentPane.add(btnAtras);
-		btnAtras.addActionListener(new EventoVuelo(this));
+		//btnAtras.addActionListener(new EventoVuelo(this));
 		
 		JLabel lblCantidadDeAsientos = new JLabel("Cantidad de Asientos");
 		lblCantidadDeAsientos.setBounds(10, 61, 123, 14);
@@ -242,7 +242,7 @@ public class VistaVuelo extends JFrame{
 		btnConsultar = new JButton("Consultar");
 		btnConsultar.setBounds(563, 32, 89, 23);
 		contentPane.add(btnConsultar);
-		btnConsultar.addActionListener(new EventoVuelo(this));
+		//btnConsultar.addActionListener(new EventoVuelo(this));
 		
 		comboBoxAeropLlegada = new JComboBox(new ControladorAeropuerto().obtenerNombres().toArray());
 		comboBoxAeropLlegada.setBounds(133, 85, 141, 17);

@@ -19,16 +19,16 @@ public class ControladorVuelo{
 	}
 
 
-	public void altaVuelo(Vuelo v) {
-		vueloDAO.altaVuelo(v);
+	public boolean altaVuelo(Vuelo v) {
+		return vueloDAO.altaVuelo(v);
 	}
 	
-	public void bajaVuelo(String id) {
-		vueloDAO.bajaVuelo(id);
+	public boolean bajaVuelo(String id) {
+		return vueloDAO.bajaVuelo(id);
 	}
 	
-	public void modVuelo(Vuelo v) {
-		vueloDAO.modificarVuelo(v);
+	public boolean modVuelo(Vuelo v) {
+		return vueloDAO.modificarVuelo(v);
 	}
 	
 	public Vuelo consultarVuelo(Integer id) {

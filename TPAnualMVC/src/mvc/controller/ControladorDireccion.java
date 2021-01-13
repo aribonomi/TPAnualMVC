@@ -16,16 +16,16 @@ public class ControladorDireccion {
 	}
 
 	
-	public void altaDireccion(Direccion d) {
-		direccionDAO.altaDireccion(d);
+	public boolean altaDireccion(Direccion d) {
+		return direccionDAO.altaDireccion(d);
 	}
 	
-	public void bajaDireccion(String id) {
-		direccionDAO.bajaDireccion(id);
+	public boolean bajaDireccion(String id) {
+		return direccionDAO.bajaDireccion(id);
 	}
 	
-	public void modDireccion(Direccion d) {
-		direccionDAO.modificacionDireccion(d);
+	public boolean modDireccion(Direccion d) {
+		return direccionDAO.modificacionDireccion(d);
 	}
 	
 	public Direccion consultar(String id) {

@@ -15,16 +15,16 @@ public class ControladorTelefono {
 		this.telefonoDAO = FactoryTelefono.getTelefonoDaoImplMysql();
 	}
 	
-	public void altaTelefono(Telefono t) {
-		telefonoDAO.addTelefono(t);
+	public boolean altaTelefono(Telefono t) {
+		return telefonoDAO.addTelefono(t);
 	}
 	
-	public void bajaTelefono(String id) {
-		telefonoDAO.deleteTelefono(id);
+	public boolean bajaTelefono(String id) {
+		return telefonoDAO.deleteTelefono(id);
 	}
 	
-	public void modTelefono(Telefono t) {
-		telefonoDAO.updateTelefono(t);
+	public boolean modTelefono(Telefono t) {
+		return telefonoDAO.updateTelefono(t);
 	}
 	
 	public Telefono consultarTelefono(String id) {

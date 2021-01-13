@@ -15,9 +15,9 @@ public class EventoAerolinea implements ActionListener{
 //Se llama a los controladores y la vista de la aerolínea	
 	ControladorLineaAerea contLA;
 	
-	VistaAerolinea vista;
+	VistaAerolinea2 vista;
 	
-	public EventoAerolinea(VistaAerolinea vista) {
+	public EventoAerolinea(VistaAerolinea2 vista) {
 		this.vista = vista;
 		contLA = new ControladorLineaAerea();
 		
@@ -31,20 +31,25 @@ public class EventoAerolinea implements ActionListener{
 				vista.setVisible(false);
 				
 	//Alta de la aerolínea	
-		}else if(e.getSource()==vista.btnAltaAerolinea) {
+		}else if(e.getSource()==vista.btnAgregar) {
 			try {	
 			//Se obtienen los datos de los campos	
-				String nombre = vista.textFieldNombre.getText();
-				Alianza al = (Alianza) vista.comboBoxAlianza.getSelectedItem();
+				String nombre = vista.tf_nombre.getText();
+				Alianza al = (Alianza) vista.comboAlianza.getSelectedItem();
 				Aerolinea a = new Aerolinea(nombre, al);
 				
-				contLA.altaLineaAerea(a);
+				if(contLA.altaLineaAerea(a)) {
+//				//Se obtiene la aerolínea agregada para mostrar su id	
+//					Aerolinea nueva = contLA.consultaPorNombre(a.getNombre());
+//					
+//				//Se muestra por pantalla el id de la aerolínea agregada	
+//					vista.lbl_idAlta.setText("ID: "+nueva.getId_aeroLinea());
+					JOptionPane.showMessageDialog(null, "Aerolínea agregada!", "Alta", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al agregar la aerolínea", "Alta", JOptionPane.ERROR_MESSAGE);
+				}
 				
-			//Se obtiene la aerolínea agregada para mostrar su id	
-				Aerolinea nueva = contLA.consultaPorNombre(a.getNombre());
-				
-			//Se muestra por pantalla el id de la aerolínea agregada	
-				vista.lbl_idAlta.setText("ID: "+nueva.getId_aeroLinea());
+			
 			}catch(NullPointerException ex) {
 				JOptionPane.showMessageDialog(null,"Compruebe que todos los campos estén completos", "Error", JOptionPane.ERROR_MESSAGE);
 				ex.printStackTrace();
@@ -53,15 +58,15 @@ public class EventoAerolinea implements ActionListener{
 				ex.printStackTrace();
 			}	
 	//Consulta	
-		}else if(e.getSource()==vista.btnConsultaAerolinea) {
+		}else if(e.getSource()==vista.btnConsultar) {
 			try {	
 			//Se consulta mediante el campo del id	
-				String id = vista.ModtextFieldID.getText();
+				String id = vista.tf_id.getText();
 				Aerolinea a =contLA.consultarLineaAerea(id);
 				
 			//se setean los otros campos en	
-				vista.ModtextFieldNombre.setText(a.getNombre());
-				vista.ModcomboBoxAlianza.setSelectedItem(a.getAlianza());
+				vista.tf_nombre.setText(a.getNombre());
+				vista.comboAlianza.setSelectedItem(a.getAlianza());
 			}catch(NullPointerException ex) {
 				JOptionPane.showMessageDialog(null,"Compruebe que exista el id ingresado", "Error", JOptionPane.ERROR_MESSAGE);
 				ex.printStackTrace();
@@ -73,12 +78,16 @@ public class EventoAerolinea implements ActionListener{
 		}else if(e.getSource()==vista.btnModificar) {
 			try {	
 			//Se obtienen los datos de los campos y se realiza la modificación		
-				String id = vista.ModtextFieldID.getText();
-				String nombre = vista.ModtextFieldNombre.getText();
-				Alianza alianza = (Alianza) vista.ModcomboBoxAlianza.getSelectedItem();
+				String id = vista.tf_id.getText();
+				String nombre = vista.tf_nombre.getText();
+				Alianza alianza = (Alianza) vista.comboAlianza.getSelectedItem();
 				Aerolinea aerolinea = new Aerolinea(Integer.parseInt(id), nombre, alianza);
 				
-				contLA.modLineaAerea(aerolinea);
+				if(contLA.modLineaAerea(aerolinea)) {
+					JOptionPane.showMessageDialog(null, "Aerolínea modificada!", "Modificación", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Error al modificar", "Modificación", JOptionPane.ERROR_MESSAGE);
+				}
 			}catch(NullPointerException ex) {
 				JOptionPane.showMessageDialog(null, "Compruebe que todos los campos estén completos", "Error", JOptionPane.ERROR_MESSAGE);
 			}catch(Exception ex) {
@@ -86,12 +95,16 @@ public class EventoAerolinea implements ActionListener{
 				
 			}	
 		//Eliminar	
-		}else if(e.getSource()==vista.btnEliminarAerolinea) {
+		}else if(e.getSource()==vista.btnEliminar) {
 			try {	
 		//Confirma la eliminación	
 				int input =JOptionPane.showConfirmDialog(null, "Se eliminará la aerolínea", "WARNING", JOptionPane.OK_CANCEL_OPTION);
 				if(input == 0) {
-					contLA.bajaLineaAerea(vista.ModtextFieldID.getText());
+					if(contLA.bajaLineaAerea(vista.tf_id.getText())) {
+						JOptionPane.showMessageDialog(null, "Aerolínea eliminada!", "Baja", JOptionPane.INFORMATION_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(null, "Error al eliminar", "Baja", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}catch(NullPointerException ex) {
 				JOptionPane.showMessageDialog(null, "Compruebe que el id ingresado exista", "Error", JOptionPane.ERROR_MESSAGE);
