@@ -24,8 +24,8 @@ public class ControladorVenta {
 		vueloDAO = FactoryVuelo.getVuelosDaoImplMysql();
 	}
 	
-	public void altaVenta(Venta v) {
-		LogicaVenta.realizarAltaVenta(v);
+	public boolean altaVenta(Venta v) {
+		return LogicaVenta.realizarAltaVenta(v);
 	}
 	
 	public boolean bajaVenta(String id) {

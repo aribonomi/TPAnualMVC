@@ -1,18 +1,22 @@
 package mvc.controller;
 
+import Factory.FactoryLineaAerea;
 import Factory.FactoryPasajeroFrecuente;
 import dao.Interfaces.PasajeroFrecuenteDAO;
+import dao.negocio.Aerolinea;
 import dao.negocio.PasajeroFrecuente;
 
 public class ControladorPasajeroFrecuente {
 	
 	PasajeroFrecuenteDAO pfDAO;
+	ControladorLineaAerea contLA;
 	
 	public ControladorPasajeroFrecuente() {
 		
 	//Llamo a la implementación mediante el factory	
 		new FactoryPasajeroFrecuente();
 		pfDAO = FactoryPasajeroFrecuente.getPasajeroFrecuenteDaoImplMysql();
+		contLA = new ControladorLineaAerea();
 	}
 	
 	public boolean altaPasajFrecuente(PasajeroFrecuente p) {
@@ -28,7 +32,12 @@ public class ControladorPasajeroFrecuente {
 	}
 	
 	public PasajeroFrecuente consultarPasajeroFrecuente(String id) {
-		return pfDAO.getPasajeroFrecuente(id);
+		PasajeroFrecuente pasajeroFrecuente = pfDAO.getPasajeroFrecuente(id);
+		Aerolinea aerolinea = contLA.consultarLineaAerea(pasajeroFrecuente.getAerolinea().getId_aeroLinea().toString());
+		
+		pasajeroFrecuente.setAerolinea(aerolinea);
+		
+		return pasajeroFrecuente;
 	}
 	
 	public PasajeroFrecuente obtenerUltimo() {

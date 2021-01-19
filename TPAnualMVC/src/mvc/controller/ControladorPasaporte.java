@@ -2,17 +2,20 @@ package mvc.controller;
 
 import Factory.FactoryPasaporte;
 import dao.Interfaces.PasaporteDAO;
+import dao.negocio.Pais;
 import dao.negocio.Pasaporte;
 
 public class ControladorPasaporte {
 	
 	PasaporteDAO pasaporteDAO;
+	ControladorPais contPais;
 	
 	public ControladorPasaporte() {
 		
 	//Llamo a la implementación mediante el factory		
 		new FactoryPasaporte();
 		pasaporteDAO = FactoryPasaporte.getPasaporteDaoImplMysql();
+		contPais = new ControladorPais();
 	}
 	
 	public boolean altaPasaporte(Pasaporte p) {
@@ -28,7 +31,12 @@ public class ControladorPasaporte {
 	}
 	
 	public Pasaporte consultarPasaporte(String id) {
-		return pasaporteDAO.getPasaporte(id);
+		Pasaporte pasaporte = pasaporteDAO.getPasaporte(id);
+		Pais pais = contPais.consultaPorID(pasaporte.getId_Pasaporte());
+		
+		pasaporte.setPaisEmision(pais);
+		
+		return pasaporte;
 	}
 	
 	public Pasaporte obtenerUltimo() {

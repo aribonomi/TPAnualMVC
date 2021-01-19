@@ -591,22 +591,22 @@ public class VistaCliente extends JFrame {
 		btnConsultaMod = new JButton("Consultar");
 		btnConsultaMod.setBounds(775, 32, 89, 23);
 		contentPane.add(btnConsultaMod);
-		btnConsultaMod.addActionListener(new EventoCliente(this));
+		//btnConsultaMod.addActionListener(new EventoCliente(this));
 		
 		btnEliminarCliente = new JButton("Eliminar");
 		btnEliminarCliente.setBounds(775, 57, 89, 23);
 		contentPane.add(btnEliminarCliente);
-		btnEliminarCliente.addActionListener(new EventoCliente(this));
+		//btnEliminarCliente.addActionListener(new EventoCliente(this));
 		
 		btnModificarCliente = new JButton("Modificar");
 		btnModificarCliente.setBounds(647, 672, 89, 23);
 		contentPane.add(btnModificarCliente);
-		btnModificarCliente.addActionListener(new EventoCliente(this));
+		//btnModificarCliente.addActionListener(new EventoCliente(this));
 		
 		btnAtrasMenuCliente = new JButton("Atras");
 		btnAtrasMenuCliente.setBounds(861, 672, 89, 23);
 		contentPane.add(btnAtrasMenuCliente);
-		btnAtrasMenuCliente.addActionListener(new EventoCliente(this));
+		//btnAtrasMenuCliente.addActionListener(new EventoCliente(this));
 		
 		JLabel labelFecha_emision = new JLabel("Fecha de emision");
 		labelFecha_emision.setBounds(5, 508, 141, 14);
@@ -718,7 +718,7 @@ public class VistaCliente extends JFrame {
 		JLabel lblNewLabel_5 = new JLabel("yyyy-MM-dd");
 		lblNewLabel_5.setBounds(769, 508, 66, 14);
 		contentPane.add(lblNewLabel_5);
-		btnAltaCliente.addActionListener(new EventoCliente(this));
+		//btnAltaCliente.addActionListener(new EventoCliente(this));
 		
 		
 		

@@ -23,7 +23,7 @@ public class LogicaVenta {
 		vueloDAO = FactoryVuelo.getVuelosDaoImplMysql();
 	}
 	
-	public static void realizarAltaVenta(Venta v) {
+	public static boolean realizarAltaVenta(Venta v) {
 		
 		try {
 			
@@ -45,21 +45,26 @@ public class LogicaVenta {
 						ventaDAO.altaVenta(v);
 						v.getVuelo().setCantidadAsientos(v.getVuelo().getCantidadAsientos()-1);
 						vueloDAO.modificarVuelo(v.getVuelo());
+						return true;
 					}else {
 						JOptionPane.showMessageDialog(null, "El cliente tiene menos de 18 años. Fecha de nacimiento: "+nacimiento,"Error", JOptionPane.ERROR_MESSAGE);
+						return false;
 					}
 					
 				}else {
 					JOptionPane.showMessageDialog(null, "La fecha de emisión del pasaporte "+fecha_emision+" es posterior a la fecha actual"
 							+ " o su pasaporte está vencido", "Error",JOptionPane.ERROR_MESSAGE);
+					return false;
 				}
 				
 			}else {
 				JOptionPane.showMessageDialog(null, "No hay asientos disponibles", "Error",JOptionPane.ERROR_MESSAGE);
+				return false;
 			}
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "Verifique que la fecha de nacimiento del cliente sea yyyy-MM-dd", "Error", JOptionPane.ERROR_MESSAGE);
 			e.printStackTrace();
+			return false;
 		}
 	}
 	

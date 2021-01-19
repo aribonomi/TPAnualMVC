@@ -5,16 +5,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import dao.Interfaces.DireccionDAO;
 import dao.negocio.*;
 import mvc.controller.*;
-import mvc.view.VistaCliente;
+import mvc.view.VistaCliente2;
 
 public class EventoCliente implements ActionListener{
 	
 	
 //Se llama a los controladores y la vista del cliente	
-	VistaCliente vista;
+	VistaCliente2 vista;
 	ControladorCliente contCliente;
 	ControladorDireccion contDireccion;
 	ControladorTelefono contTelefono;
@@ -24,7 +23,7 @@ public class EventoCliente implements ActionListener{
 	ControladorPais contPais;
 	ControladorProvincia contProvincia;
 	
-	public EventoCliente(VistaCliente vista) {
+	public EventoCliente(VistaCliente2 vista) {
 		this.vista = vista;
 		contCliente = new ControladorCliente();
 		contDireccion = new ControladorDireccion();
@@ -41,42 +40,42 @@ public class EventoCliente implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 	//Botón atras para que desaparezca la vista actual	
-		if(e.getSource()==vista.btnAtrasMenuCliente) {
+		if(e.getSource()==vista.btnAtras) {
 			vista.setVisible(false);
 		
 	//Alta	
-		}else if(e.getSource()==vista.btnAltaCliente) {
+		}else if(e.getSource()==vista.btnAgregar) {
 			try {
 			
 			//Obtiene los datos de los campos	
-				String nombre = vista.textFieldNombre.getText();
-				String apellido = vista.textFieldApellido.getText();
-				String dni = vista.textFieldDni.getText();
-				String cuit = vista.textFieldCuit.getText();
-				String fecha_nac = vista.textFieldNacimiento.getText();
-				String email = vista.textFieldEmail.getText();
+				String nombre = vista.tf_nombre.getText();
+				String apellido = vista.tf_apellido.getText();
+				String dni = vista.tf_dni.getText();
+				String cuit = vista.tf_cuit.getText();
+				String fecha_nac = vista.tf_fecha_nacimiento.getText();
+				String email = vista.tf_email.getText();
 				
 			//Dirección	
-				String calle = vista.textFieldCalle.getText();
-				String altura = vista.textFieldAltura.getText();
-				String ciudad = vista.textFieldCiudad.getText();
-				String postal = vista.textFieldCodP.getText();
-				String provincia = (String) vista.comboBox_provincia.getSelectedItem();
-				String pais = (String) vista.comboBox_pais.getSelectedItem();
+				String calle = vista.tf_calle.getText();
+				String altura = vista.tf_altura.getText();
+				String ciudad = vista.tf_ciudad.getText();
+				String postal = vista.tf_codigo_postal.getText();
+				String provincia = (String) vista.comboProvincia.getSelectedItem();
+				String pais = (String) vista.comboPais.getSelectedItem();
 				
 				
 			//Chequea si se ingresó el país y la provincia mediante los campos "Otro"	
 				if(provincia.equalsIgnoreCase("Internacional")) {
 					if(pais.equalsIgnoreCase("Otro")) {
-						contPais.altaPais(new Pais(vista.textFieldOtroPais.getText()));
-						contProvincia.altaProv(new Provincia(vista.textFieldProvincia.getText()));
-						Pais p = contPais.consultarPais(vista.textFieldOtroPais.getText());
-						Provincia prov = contProvincia.consultarPorNombre(vista.textFieldProvincia.getText());
+						contPais.altaPais(new Pais(vista.tf_otroPais.getText()));
+						contProvincia.altaProv(new Provincia(vista.tf_otraProvincia.getText()));
+						Pais p = contPais.consultarPais(vista.tf_otroPais.getText());
+						Provincia prov = contProvincia.consultarPorNombre(vista.tf_otraProvincia.getText());
 						Direccion d = new Direccion(calle, altura, ciudad, postal, prov,  p);
 						contDireccion.altaDireccion(d);
 					}else {
-						contProvincia.altaProv(new Provincia(vista.textFieldProvincia.getText()));
-						Provincia prov = contProvincia.consultarPorNombre(vista.textFieldProvincia.getText());
+						contProvincia.altaProv(new Provincia(vista.tf_otraProvincia.getText()));
+						Provincia prov = contProvincia.consultarPorNombre(vista.tf_otraProvincia.getText());
 						Pais p = contPais.consultarPais(pais);
 						Direccion d = new Direccion(calle, altura, ciudad, postal, prov,  p);
 						contDireccion.altaDireccion(d);
@@ -90,28 +89,28 @@ public class EventoCliente implements ActionListener{
 				}	
 				
 			//Teléfono
-				String celular = vista.textFieldCelular.getText();
-				String personal = vista.textFieldPersonal.getText();
-				String laboral = vista.textFieldLaboral.getText();
+				String celular = vista.tf_celular.getText();
+				String personal = vista.tf_personal.getText();
+				String laboral = vista.tf_laboral.getText();
 				Telefono t = new Telefono(celular, personal, laboral);
 				contTelefono.altaTelefono(t);
 				
 				
 			//Pasaporte
-				String numero = vista.textFieldNumPas.getText();
-				String autoridad = vista.textFieldAut_emision.getText();
-				String fecha_emision = vista.textField_fechaEmision.getText();
-				String fecha_venc = vista.textField_vencimiento.getText();
-				String pais_emision = (String) vista.comboBox_paisEmision.getSelectedItem();
+				String numero = vista.tf_numeroPasaporte.getText();
+				String autoridad = vista.tf_autoridadEmision.getText();
+				String fecha_emision = vista.tf_fechaEmision.getText();
+				String fecha_venc = vista.tf_fechaVencimiento.getText();
+				String pais_emision = (String) vista.comboPaisEmision.getSelectedItem();
 				Pais paisEmision = contPais.consultarPais(pais_emision);
 				Pasaporte pasaporte = new Pasaporte(numero, autoridad, fecha_emision, fecha_venc, paisEmision);
 				contPasaporte.altaPasaporte(pasaporte);
 				
 			//Pasajero frecuente
-				String categoria = vista.textField_CatPF.getText();
-				String numeroPF = vista.textField_NumPF.getText();
-				Alianza alianza = (Alianza) vista.comboBoxAlianza.getSelectedItem();
-				String nombre_aerolinea = (String) vista.comboBoxAerolinea.getSelectedItem();
+				String categoria = vista.tf_categoria.getText();
+				String numeroPF = vista.tf_numeroPF.getText();
+				Alianza alianza = (Alianza) vista.comboAlianza.getSelectedItem();
+				String nombre_aerolinea = (String) vista.comboAerolinea.getSelectedItem();
 				Aerolinea aerolinea = contLA.consultaPorNombre(nombre_aerolinea);
 				PasajeroFrecuente pf = new PasajeroFrecuente(categoria, numeroPF, alianza, aerolinea);
 				contPF.altaPasajFrecuente(pf);
@@ -134,10 +133,10 @@ public class EventoCliente implements ActionListener{
 			}
 			
 	//Consulta	
-		}else if(e.getSource()==this.vista.btnConsultaMod) {
+		}else if(e.getSource()==this.vista.btnConsultar) {
 			try {
 				//Se consulta el cliente mediante el campo id	
-				Integer id = Integer.parseInt(this.vista.ModtextFieldID.getText());
+				Integer id = Integer.parseInt(this.vista.tf_id.getText());
 				
 				Cliente c = contCliente.consultaPorId(id);
 				
@@ -163,38 +162,38 @@ public class EventoCliente implements ActionListener{
 
 				
 			//Se setean los datos del cliente mediante las consultas hechas	
-				vista.ModtextFieldNombre.setText(c.getNombre());
-				vista.ModtextFieldApellido.setText(c.getApellido());
-				vista.ModtextFieldDni.setText(c.getDni());
-				vista.ModtextFieldCuit.setText(c.getCuit_cuil());
-				vista.ModtextFieldNacimiento.setText(c.getFecha_nacimiento());
-				vista.ModtextFieldEmail.setText(c.getEmail());
+				vista.tf_nombre.setText(c.getNombre());
+				vista.tf_apellido.setText(c.getApellido());
+				vista.tf_dni.setText(c.getDni());
+				vista.tf_cuit.setText(c.getCuit_cuil());
+				vista.tf_fecha_nacimiento.setText(c.getFecha_nacimiento());
+				vista.tf_email.setText(c.getEmail());
 				
-				vista.lbl_idDireccion.setText(c.getdireccion().getId_direccion().toString());
-				vista.ModtextFieldCalle.setText(d.getCalle());
-				vista.ModtextFieldAltura.setText(d.getAltura());
-				vista.ModtextFieldCiudad.setText(d.getCiudad());
-				vista.ModtextFieldCodP.setText(d.getCodigoPostal());
-				vista.ModcomboBox_provincia.setSelectedItem(d.getProvincia().getNombreProvincia());
-				vista.ModcomboBox_pais.setSelectedItem(d.getPais().getNombrePais());
+				vista.lbl_id_direccion.setText(c.getdireccion().getId_direccion().toString());
+				vista.tf_calle.setText(d.getCalle());
+				vista.tf_altura.setText(d.getAltura());
+				vista.tf_ciudad.setText(d.getCiudad());
+				vista.tf_codigo_postal.setText(d.getCodigoPostal());
+				vista.comboProvincia.setSelectedItem(d.getProvincia().getNombreProvincia());
+				vista.comboPais.setSelectedItem(d.getPais().getNombrePais());
 				
-				vista.lbl_idTelefono.setText(t.getId_Telefono().toString());
-				vista.ModtextFieldCelular.setText(t.getCelular());
-				vista.ModtextFieldPersonal.setText(t.getPersona());
-				vista.ModtextFieldLaboral.setText(t.getLaboral());
+				vista.lbl_id_telefono.setText(t.getId_Telefono().toString());
+				vista.tf_celular.setText(t.getCelular());
+				vista.tf_personal.setText(t.getPersona());
+				vista.tf_laboral.setText(t.getLaboral());
 				
-				vista.lbl_idPasaporte.setText(p.getId_Pasaporte().toString());
-				vista.ModtextFieldNumero.setText(p.getNumero());
-				vista.ModtextField_emision.setText(p.getAutoridadEmision());
-				vista.ModtextFieldFechaEmision.setText(p.getFechaEmision());
-				vista.ModtextField_vencimiento.setText(p.getFechaVencimiento());
-				vista.ModcomboBox_paisEmision.setSelectedItem(p.getPaisEmision().getNombrePais());
+				vista.lbl_id_pasaporte.setText(p.getId_Pasaporte().toString());
+				vista.tf_numeroPasaporte.setText(p.getNumero());
+				vista.tf_autoridadEmision.setText(p.getAutoridadEmision());
+				vista.tf_fechaEmision.setText(p.getFechaEmision());
+				vista.tf_fechaVencimiento.setText(p.getFechaVencimiento());
+				vista.comboPaisEmision.setSelectedItem(p.getPaisEmision().getNombrePais());
 				
-				vista.lbl_idPF.setText(pf.getId_pasajeroFrecuente().toString());
-				vista.ModtextFieldCategoria.setText(pf.getCategoria());
-				vista.ModtextFieldNumeroPF.setText(pf.getNumero());
-				vista.ModcomboBoxAlianza.setSelectedItem(pf.getAlianza());
-				vista.ModcomboBoxAerolinea.setSelectedItem(a.getNombre());
+				vista.lbl_id_pasajeroFrecuente.setText(pf.getId_pasajeroFrecuente().toString());
+				vista.tf_categoria.setText(pf.getCategoria());
+				vista.tf_numeroPF.setText(pf.getNumero());
+				vista.comboAlianza.setSelectedItem(pf.getAlianza());
+				vista.comboAerolinea.setSelectedItem(a.getNombre());
 				
 			}catch(NullPointerException ex) {
 				JOptionPane.showMessageDialog(null,"Compruebe que exista el id ingresado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -207,7 +206,7 @@ public class EventoCliente implements ActionListener{
 			
 			
 	//Eliminación	
-		}else if(e.getSource()==vista.btnEliminarCliente) {
+		}else if(e.getSource()==vista.btnEliminar) {
 		//Confirma la eliminación	
 			try {
 				int resultado = JOptionPane.showConfirmDialog(null, "Se eliminará el registro", "Warning", 
@@ -215,12 +214,12 @@ public class EventoCliente implements ActionListener{
 				if(resultado == 0) {
 					
 				//Se dan de baja todos los datos del cliente						
-					contDireccion.bajaDireccion(vista.lbl_idDireccion.getText());
-					contTelefono.bajaTelefono(vista.lbl_idTelefono.getText());
-					contPasaporte.bajaPasaporte(vista.lbl_idPasaporte.getText());
-					contPF.bajaPasajFrecuente(vista.lbl_idPF.getText());
+					contDireccion.bajaDireccion(vista.lbl_id_direccion.getText());
+					contTelefono.bajaTelefono(vista.lbl_id_telefono.getText());
+					contPasaporte.bajaPasaporte(vista.lbl_id_pasaporte.getText());
+					contPF.bajaPasajFrecuente(vista.lbl_id_pasajeroFrecuente.getText());
 					
-					if(contCliente.bajaCliente(vista.ModtextFieldID.getText())) {
+					if(contCliente.bajaCliente(vista.tf_id.getText())) {
 						JOptionPane.showMessageDialog(null, "Cliente eliminado", "Baja cliente", JOptionPane.INFORMATION_MESSAGE);
 					}else {
 						JOptionPane.showMessageDialog(null, "Error al eliminar", "Error", JOptionPane.ERROR_MESSAGE);
@@ -238,62 +237,82 @@ public class EventoCliente implements ActionListener{
 			}
 	
 	//Modificación		
-		}else if(e.getSource()==vista.btnModificarCliente) {
+		}else if(e.getSource()==vista.btnModificar) {
 			try {
 				
 			//Obtiene los campos completados en la consulta y realiza la modificación	
-				Integer id = Integer.parseInt(vista.ModtextFieldID.getText());
-				String nombre = vista.ModtextFieldNombre.getText();
-				String apellido = vista.ModtextFieldApellido.getText();
-				String dni = vista.ModtextFieldDni.getText();
-				String cuit = vista.ModtextFieldCuit.getText();
-				String fecha_nac = vista.ModtextFieldNacimiento.getText();
-				String email = vista.ModtextFieldEmail.getText();
+				Integer id = Integer.parseInt(vista.tf_id.getText());
+				String nombre = vista.tf_nombre.getText();
+				String apellido = vista.tf_apellido.getText();
+				String dni = vista.tf_dni.getText();
+				String cuit = vista.tf_cuit.getText();
+				String fecha_nac = vista.tf_fecha_nacimiento.getText();
+				String email = vista.tf_email.getText();
 				
 			//Dirección	
-				Integer id_direccion = Integer.parseInt(vista.lbl_idDireccion.getText());
-				String calle = vista.ModtextFieldCalle.getText();
-				String altura = vista.ModtextFieldAltura.getText();
-				String ciudad = vista.ModtextFieldCiudad.getText();
-				String postal = vista.ModtextFieldCodP.getText();
-				String provincia = (String) vista.ModcomboBox_provincia.getSelectedItem();
-				String pais = (String) vista.ModcomboBox_pais.getSelectedItem();
+				Direccion d;
+				Integer id_direccion = Integer.parseInt(vista.lbl_id_direccion.getText());
+				String calle = vista.tf_calle.getText();
+				String altura = vista.tf_altura.getText();
+				String ciudad = vista.tf_ciudad.getText();
+				String postal = vista.tf_codigo_postal.getText();
+				String provincia = (String) vista.comboProvincia.getSelectedItem();
+				String pais = (String) vista.comboPais.getSelectedItem();
 				
-				Pais p = contPais.consultarPais(pais);
-				Provincia prov = contProvincia.consultarPorNombre(provincia);
 				
-				Direccion d = new Direccion(id_direccion, calle, altura, ciudad, postal, prov,  p);
-				contDireccion.modDireccion(d);		
+			//Chequea si se ingresó el país y la provincia mediante los campos "Otro"	
+				if(provincia.equalsIgnoreCase("Internacional")) {
+					if(pais.equalsIgnoreCase("Otro")) {
+						contPais.altaPais(new Pais(vista.tf_otroPais.getText()));
+						contProvincia.altaProv(new Provincia(vista.tf_otraProvincia.getText()));
+						Pais p = contPais.consultarPais(vista.tf_otroPais.getText());
+						Provincia prov = contProvincia.consultarPorNombre(vista.tf_otraProvincia.getText());
+						d = new Direccion(id_direccion, calle, altura, ciudad, postal, prov,  p);
+						contDireccion.modDireccion(d);
+					}else {
+						contProvincia.altaProv(new Provincia(vista.tf_otraProvincia.getText()));
+						Provincia prov = contProvincia.consultarPorNombre(vista.tf_otraProvincia.getText());
+						Pais p = contPais.consultarPais(pais);
+						d = new Direccion(id_direccion, calle, altura, ciudad, postal, prov,  p);
+						contDireccion.modDireccion(d);
+					}	
+				}else {
+					Provincia prov = contProvincia.consultarPorNombre(provincia);
+					Pais p = contPais.consultarPais(pais);
+					
+					d = new Direccion(id_direccion, calle, altura, ciudad, postal, prov,  p);
+					contDireccion.modDireccion(d);
+				}	
 				
 				
 			//Teléfono
-				Integer id_telefono = Integer.parseInt(vista.lbl_idTelefono.getText());
-				String celular = vista.ModtextFieldCelular.getText();
-				String personal = vista.ModtextFieldPersonal.getText();
-				String laboral = vista.ModtextFieldLaboral.getText();
-				Telefono t = new Telefono(id_telefono,celular, personal, laboral);
+				Integer id_telefono = Integer.parseInt(vista.lbl_id_telefono.getText());
+				String celular = vista.tf_celular.getText();
+				String personal = vista.tf_personal.getText();
+				String laboral = vista.tf_laboral.getText();
+				Telefono t = new Telefono(id_telefono, celular, personal, laboral);
 				contTelefono.modTelefono(t);
 				
 				
 			//Pasaporte
-				Integer id_pasaporte = Integer.parseInt(vista.lbl_idPasaporte.getText());
-				String numero = vista.ModtextFieldNumero.getText();
-				String autoridad = vista.ModtextField_emision.getText();
-				String fecha_emision = vista.ModtextFieldFechaEmision.getText();
-				String fecha_venc = vista.ModtextField_vencimiento.getText();
-				String pais_emision = (String) vista.ModcomboBox_paisEmision.getSelectedItem();
+				Integer id_pasaporte = Integer.parseInt(vista.lbl_id_pasaporte.getText());
+				String numero = vista.tf_numeroPasaporte.getText();
+				String autoridad = vista.tf_autoridadEmision.getText();
+				String fecha_emision = vista.tf_fechaEmision.getText();
+				String fecha_venc = vista.tf_fechaVencimiento.getText();
+				String pais_emision = (String) vista.comboPaisEmision.getSelectedItem();
 				Pais paisEmision = contPais.consultarPais(pais_emision);
-				Pasaporte pasaporte = new Pasaporte(id_pasaporte,numero, autoridad, fecha_emision, fecha_venc, paisEmision);
+				Pasaporte pasaporte = new Pasaporte(id_pasaporte, numero, autoridad, fecha_emision, fecha_venc, paisEmision);
 				contPasaporte.modPasaporte(pasaporte);
 				
 			//Pasajero frecuente
-				Integer id_pf = Integer.parseInt(vista.lbl_idPF.getText());
-				String categoria = vista.ModtextFieldCategoria.getText();
-				String numeroPF = vista.ModtextFieldNumeroPF.getText();
-				Alianza alianza = (Alianza) vista.ModcomboBoxAlianza.getSelectedItem();
-				String nombre_aerolinea = vista.ModcomboBoxAerolinea.getSelectedItem().toString();
+				Integer id_pf = Integer.parseInt(vista.lbl_id_pasajeroFrecuente.getText());
+				String categoria = vista.tf_categoria.getText();
+				String numeroPF = vista.tf_numeroPF.getText();
+				Alianza alianza = (Alianza) vista.comboAlianza.getSelectedItem();
+				String nombre_aerolinea = (String) vista.comboAerolinea.getSelectedItem();
 				Aerolinea aerolinea = contLA.consultaPorNombre(nombre_aerolinea);
-				PasajeroFrecuente pf = new PasajeroFrecuente(id_pf,categoria, numeroPF, alianza, aerolinea);
+				PasajeroFrecuente pf = new PasajeroFrecuente(id_pf, categoria, numeroPF, alianza, aerolinea);
 				contPF.modPasajFrecuente(pf);
 				
 				Cliente c = new Cliente(id, nombre, apellido, dni, cuit, fecha_nac, email, d, t, pasaporte, pf);
@@ -304,10 +323,10 @@ public class EventoCliente implements ActionListener{
 					JOptionPane.showMessageDialog(null, "Error al modificar al cliente", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				
-				JOptionPane.showMessageDialog(null, c.toString(), "Datos del cliente", JOptionPane.INFORMATION_MESSAGE);
-				
+								
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que no queden campos por completar", "Error", JOptionPane.ERROR_MESSAGE);
+				np.printStackTrace();
 			}catch(Exception ex) {
 				JOptionPane.showMessageDialog(null,"Compruebe que estén bien todos los datos", "Error", JOptionPane.ERROR_MESSAGE);
 				ex.printStackTrace();

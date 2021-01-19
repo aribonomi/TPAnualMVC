@@ -108,7 +108,7 @@ public class VistaVenta extends JFrame {
 		btnAtras = new JButton("Atras");
 		btnAtras.setBounds(524, 218, 89, 23);
 		contentPane.add(btnAtras);
-		btnAtras.addActionListener(new EventoVenta(this));
+		//btnAtras.addActionListener(new EventoVenta(this));
 		
 		JLabel lblAerolinea = new JLabel("Aerolinea");
 		lblAerolinea.setBounds(10, 86, 75, 14);
@@ -183,17 +183,17 @@ public class VistaVenta extends JFrame {
 		btnAgregar = new JButton("Agregar");
 		btnAgregar.setBounds(144, 188, 89, 23);
 		contentPane.add(btnAgregar);
-		btnAgregar.addActionListener(new EventoVenta(this));
+		//btnAgregar.addActionListener(new EventoVenta(this));
 		
 		btnModificarVenta = new JButton("Modificar");
 		btnModificarVenta.setBounds(402, 218, 89, 23);
 		contentPane.add(btnModificarVenta);
-		btnModificarVenta.addActionListener(new EventoVenta(this));
+		//btnModificarVenta.addActionListener(new EventoVenta(this));
 		
 		btnConsulta = new JButton("Consultar");
 		btnConsulta.setBounds(524, 32, 89, 23);
 		contentPane.add(btnConsulta);
-		btnConsulta.addActionListener(new EventoVenta(this));
+		//btnConsulta.addActionListener(new EventoVenta(this));
 		
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBounds(524, 66, 89, 23);
@@ -249,7 +249,7 @@ public class VistaVenta extends JFrame {
 		JLabel lblNewLabel_2 = new JLabel("(Si paga con credito)");
 		lblNewLabel_2.setBounds(10, 183, 107, 14);
 		contentPane.add(lblNewLabel_2);
-		btnEliminar.addActionListener(new EventoVenta(this));
+		//btnEliminar.addActionListener(new EventoVenta(this));
 		
 	}
 }
