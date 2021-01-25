@@ -85,19 +85,19 @@ public class EventoVuelo implements ActionListener{
 				Integer id = Integer.parseInt(vista.tf_Id.getText());
 				Vuelo vuelo = contVuelo.consultarVuelo(id);
 				
-				Aerolinea aerolinea = contLA.consultarLineaAerea((vuelo.getAerolinea().getId_aeroLinea().toString()));
-				vuelo.setAerolinea(aerolinea);
-				
-				Aeropuerto aeropSalida = contAeropuerto.consultarAeropuerto(vuelo.getAeropuertoSalida().getId_Aeropuerto());
-				aeropSalida.setPais(contPais.consultaPorID(aeropSalida.getPais().getId_pais()));
-				aeropSalida.setProvincia(contProvincia.consultarProvincia(aeropSalida.getProvincia().getId_provincia().toString()));
-				
-				Aeropuerto aeropLlegada = contAeropuerto.consultarAeropuerto(vuelo.getAeropuertoLlegada().getId_Aeropuerto());
-				aeropLlegada.setPais(contPais.consultaPorID(aeropLlegada.getPais().getId_pais()));
-				aeropLlegada.setProvincia(contProvincia.consultarProvincia(aeropLlegada.getProvincia().getId_provincia().toString()));
-				
-				vuelo.setAeropuertoSalida(aeropSalida);
-				vuelo.setAeropuertoLlegada(aeropLlegada);
+//				Aerolinea aerolinea = contLA.consultarLineaAerea((vuelo.getAerolinea().getId_aeroLinea().toString()));
+//				vuelo.setAerolinea(aerolinea);
+//				
+//				Aeropuerto aeropSalida = contAeropuerto.consultarAeropuerto(vuelo.getAeropuertoSalida().getId_Aeropuerto());
+//				aeropSalida.setPais(contPais.consultaPorID(aeropSalida.getPais().getId_pais()));
+//				aeropSalida.setProvincia(contProvincia.consultarProvincia(aeropSalida.getProvincia().getId_provincia().toString()));
+//				
+//				Aeropuerto aeropLlegada = contAeropuerto.consultarAeropuerto(vuelo.getAeropuertoLlegada().getId_Aeropuerto());
+//				aeropLlegada.setPais(contPais.consultaPorID(aeropLlegada.getPais().getId_pais()));
+//				aeropLlegada.setProvincia(contProvincia.consultarProvincia(aeropLlegada.getProvincia().getId_provincia().toString()));
+//				
+//				vuelo.setAeropuertoSalida(aeropSalida);
+//				vuelo.setAeropuertoLlegada(aeropLlegada);
 				
 			//Setea los campos con los datos del vuelo consultado	
 				vista.lblNroVuelo.setText(vuelo.getNumero());

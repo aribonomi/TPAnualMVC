@@ -141,24 +141,24 @@ public class EventoCliente implements ActionListener{
 				Cliente c = contCliente.consultaPorId(id);
 				
 			//Se consultan los objetos contenidos dentro del cliente mediante el cliente consultado	
-				Direccion d = contDireccion.consultar(c.getdireccion().getId_direccion().toString());
-				d.setPais(contPais.consultaPorID(d.getPais().getId_pais()));
-				d.setProvincia(contProvincia.consultarProvincia(d.getProvincia().getId_provincia().toString()));
-				
-				Telefono t = contTelefono.consultarTelefono(c.gettelefono().getId_Telefono().toString());
-				
-				Pasaporte p = contPasaporte.consultarPasaporte(c.getpasaporte().getId_Pasaporte().toString());
-				p.setPaisEmision(contPais.consultaPorID(p.getPaisEmision().getId_pais()));
-				
-				PasajeroFrecuente pf = contPF.consultarPasajeroFrecuente(c.getpasajeroFrecuente().getId_pasajeroFrecuente().toString());
-				
-				Aerolinea a = contLA.consultarLineaAerea(pf.getAerolinea().getId_aeroLinea().toString());
-				
-				c.setId_direccion(d);
-				c.setId_telefono(t);
-				c.setId_pasaporte(p);
-				c.setpasajeroFrecuente(pf);
-				c.getpasajeroFrecuente().setAerolinea(a);
+//				Direccion d = contDireccion.consultar(c.getdireccion().getId_direccion().toString());
+//				d.setPais(contPais.consultaPorID(d.getPais().getId_pais()));
+//				d.setProvincia(contProvincia.consultarProvincia(d.getProvincia().getId_provincia().toString()));
+//				
+//				Telefono t = contTelefono.consultarTelefono(c.gettelefono().getId_Telefono().toString());
+//				
+//				Pasaporte p = contPasaporte.consultarPasaporte(c.getpasaporte().getId_Pasaporte().toString());
+//				p.setPaisEmision(contPais.consultaPorID(p.getPaisEmision().getId_pais()));
+//				
+//				PasajeroFrecuente pf = contPF.consultarPasajeroFrecuente(c.getpasajeroFrecuente().getId_pasajeroFrecuente().toString());
+//				
+//				Aerolinea a = contLA.consultarLineaAerea(pf.getAerolinea().getId_aeroLinea().toString());
+//				
+//				c.setId_direccion(d);
+//				c.setId_telefono(t);
+//				c.setId_pasaporte(p);
+//				c.setpasajeroFrecuente(pf);
+//				c.getpasajeroFrecuente().setAerolinea(a);
 
 				
 			//Se setean los datos del cliente mediante las consultas hechas	
@@ -170,30 +170,30 @@ public class EventoCliente implements ActionListener{
 				vista.tf_email.setText(c.getEmail());
 				
 				vista.lbl_id_direccion.setText(c.getdireccion().getId_direccion().toString());
-				vista.tf_calle.setText(d.getCalle());
-				vista.tf_altura.setText(d.getAltura());
-				vista.tf_ciudad.setText(d.getCiudad());
-				vista.tf_codigo_postal.setText(d.getCodigoPostal());
-				vista.comboProvincia.setSelectedItem(d.getProvincia().getNombreProvincia());
-				vista.comboPais.setSelectedItem(d.getPais().getNombrePais());
+				vista.tf_calle.setText(c.getdireccion().getCalle());
+				vista.tf_altura.setText(c.getdireccion().getAltura());
+				vista.tf_ciudad.setText(c.getdireccion().getCiudad());
+				vista.tf_codigo_postal.setText(c.getdireccion().getCodigoPostal());
+				vista.comboProvincia.setSelectedItem(c.getdireccion().getProvincia().getNombreProvincia());
+				vista.comboPais.setSelectedItem(c.getdireccion().getPais().getNombrePais());
 				
-				vista.lbl_id_telefono.setText(t.getId_Telefono().toString());
-				vista.tf_celular.setText(t.getCelular());
-				vista.tf_personal.setText(t.getPersona());
-				vista.tf_laboral.setText(t.getLaboral());
+				vista.lbl_id_telefono.setText(c.gettelefono().getId_Telefono().toString());
+				vista.tf_celular.setText(c.gettelefono().getCelular());
+				vista.tf_personal.setText(c.gettelefono().getPersona());
+				vista.tf_laboral.setText(c.gettelefono().getLaboral());
 				
-				vista.lbl_id_pasaporte.setText(p.getId_Pasaporte().toString());
-				vista.tf_numeroPasaporte.setText(p.getNumero());
-				vista.tf_autoridadEmision.setText(p.getAutoridadEmision());
-				vista.tf_fechaEmision.setText(p.getFechaEmision());
-				vista.tf_fechaVencimiento.setText(p.getFechaVencimiento());
-				vista.comboPaisEmision.setSelectedItem(p.getPaisEmision().getNombrePais());
+				vista.lbl_id_pasaporte.setText(c.getpasaporte().getId_Pasaporte().toString());
+				vista.tf_numeroPasaporte.setText(c.getpasaporte().getNumero());
+				vista.tf_autoridadEmision.setText(c.getpasaporte().getAutoridadEmision());
+				vista.tf_fechaEmision.setText(c.getpasaporte().getFechaEmision());
+				vista.tf_fechaVencimiento.setText(c.getpasaporte().getFechaVencimiento());
+				vista.comboPaisEmision.setSelectedItem(c.getpasaporte().getPaisEmision().getNombrePais());
 				
-				vista.lbl_id_pasajeroFrecuente.setText(pf.getId_pasajeroFrecuente().toString());
-				vista.tf_categoria.setText(pf.getCategoria());
-				vista.tf_numeroPF.setText(pf.getNumero());
-				vista.comboAlianza.setSelectedItem(pf.getAlianza());
-				vista.comboAerolinea.setSelectedItem(a.getNombre());
+				vista.lbl_id_pasajeroFrecuente.setText(c.getpasajeroFrecuente().getId_pasajeroFrecuente().toString());
+				vista.tf_categoria.setText(c.getpasajeroFrecuente().getCategoria());
+				vista.tf_numeroPF.setText(c.getpasajeroFrecuente().getNumero());
+				vista.comboAlianza.setSelectedItem(c.getpasajeroFrecuente().getAlianza());
+				vista.comboAerolinea.setSelectedItem(c.getpasajeroFrecuente().getAerolinea().getNombre());
 				
 			}catch(NullPointerException ex) {
 				JOptionPane.showMessageDialog(null,"Compruebe que exista el id ingresado", "Error", JOptionPane.ERROR_MESSAGE);

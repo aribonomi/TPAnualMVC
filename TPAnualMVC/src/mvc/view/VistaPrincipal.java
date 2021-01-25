@@ -18,6 +18,10 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import com.jgoodies.forms.layout.FormSpecs;
 
 public class VistaPrincipal extends JFrame {
 
@@ -31,6 +35,7 @@ public class VistaPrincipal extends JFrame {
 	public JMenuItem mntmAerolineas;
 	public JMenuItem mntmClientes;
 	public JMenuItem mntmSalir;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -59,45 +64,58 @@ public class VistaPrincipal extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("434px"),},
+			new RowSpec[] {
+				RowSpec.decode("261px"),}));
 		
 		JPanel panel = new JPanel();
 		panel.setToolTipText("");
 		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel.setBackground(SystemColor.controlHighlight);
-		panel.setBounds(0, 0, 434, 261);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JLabel LabelBienvenido = new JLabel("BIENVENIDO!");
-		LabelBienvenido.setBounds(0, 105, 434, 52);
-		LabelBienvenido.setBackground(Color.ORANGE);
-		LabelBienvenido.setHorizontalAlignment(SwingConstants.CENTER);
-		LabelBienvenido.setFont(new Font("Times New Roman", Font.PLAIN, 35));
-		panel.add(LabelBienvenido);
+		contentPane.add(panel, "1, 1, fill, fill");
+		panel.setLayout(new FormLayout(new ColumnSpec[] {
+				ColumnSpec.decode("434px"),},
+			new RowSpec[] {
+				RowSpec.decode("21px"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,}));
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 434, 21);
-		panel.add(menuBar);
+		panel.add(menuBar, "1, 1, fill, fill");
 		
 		mntmClientes = new JMenuItem("Clientes");
 		menuBar.add(mntmClientes);
-		mntmClientes.addActionListener(new EventosVistaPrincipal(this));
+		//mntmClientes.addActionListener(new EventosVistaPrincipal(this));
 		
 		mntmAerolineas = new JMenuItem("Aerolineas");
 		menuBar.add(mntmAerolineas);
-		mntmAerolineas.addActionListener(new EventosVistaPrincipal(this));
+		//mntmAerolineas.addActionListener(new EventosVistaPrincipal(this));
 		
 		mntmVuelos = new JMenuItem("Vuelos");
 		menuBar.add(mntmVuelos);
-		mntmVuelos.addActionListener(new EventosVistaPrincipal(this));
+		//mntmVuelos.addActionListener(new EventosVistaPrincipal(this));
 		
 		mntmVentas = new JMenuItem("Ventas");
 		menuBar.add(mntmVentas);
-		mntmVentas.addActionListener(new EventosVistaPrincipal(this));
+		//mntmVentas.addActionListener(new EventosVistaPrincipal(this));
 		
 		mntmSalir = new JMenuItem("Salir");
 		menuBar.add(mntmSalir);
-		mntmSalir.addActionListener(new EventosVistaPrincipal(this));
+		
+		lblNewLabel = new JLabel("BIENVENIDO!");
+		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 40));
+		panel.add(lblNewLabel, "1, 11, center, default");
+		//mntmSalir.addActionListener(new EventosVistaPrincipal(this));
 	}
 }

@@ -149,6 +149,7 @@ public class VistaVuelo2 extends JFrame {
 		
 		btnAtras = new JButton("Atr\u00E1s");
 		contentPane.add(btnAtras, "8, 6");
+		btnAtras.addActionListener(new EventoVuelo(this));
 		
 		JLabel lblNewLabel_1 = new JLabel("N\u00FAmero de vuelo");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);

@@ -9,12 +9,16 @@ import dao.negocio.*;
 public class ControladorAeropuerto {
 		
 	AeropuertoDAO aeropDAO;
+	ControladorPais contPais;
+	ControladorProvincia contProvincia;
 
 	public ControladorAeropuerto() {
 		
 	//Llamo a la implementación mediante el factory	
 		new FactoryAeropuerto();
 		this.aeropDAO = FactoryAeropuerto.getAeropuertoDaoImplMysql();
+		contPais = new ControladorPais();
+		contProvincia = new ControladorProvincia();
 	}
 	
 	public boolean altaAeropuerto(Aeropuerto a){
@@ -26,7 +30,14 @@ public class ControladorAeropuerto {
 	}
 	
 	public Aeropuerto consultarAeropuerto(Integer id) {
-		return aeropDAO.getAeropuerto(id);
+		Aeropuerto aeropuerto = aeropDAO.getAeropuerto(id);
+		Pais pais = contPais.consultaPorID(aeropuerto.getPais().getId_pais());
+		Provincia provincia = contProvincia.consultarProvincia(aeropuerto.getProvincia().getId_provincia().toString());
+		
+		aeropuerto.setPais(pais);
+		aeropuerto.setProvincia(provincia);
+		
+		return aeropuerto;
 	}
 	
 	public List<String> obtenerNombres(){

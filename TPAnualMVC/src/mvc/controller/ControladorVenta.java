@@ -5,23 +5,27 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import Factory.FactoryVenta;
-import Factory.FactoryVuelo;
 import dao.Interfaces.VentasDAO;
-import dao.Interfaces.VuelosDAO;
-import dao.negocio.Venta;
+
+import dao.negocio.*;
 
 public class ControladorVenta {
 	
 	VentasDAO ventaDAO;
-	VuelosDAO vueloDAO;
+	ControladorCliente contCliente;
+	ControladorVuelo contVuelo;
+	ControladorLineaAerea contLA;
+	
 	
 	public ControladorVenta() {
 		
 	//Llamo a la implementación mediante el factory	
 		new FactoryVenta();
-		new FactoryVuelo();
 		ventaDAO = FactoryVenta.getVentasDaoImplMysql();
-		vueloDAO = FactoryVuelo.getVuelosDaoImplMysql();
+		contVuelo = new ControladorVuelo();
+		contCliente = new ControladorCliente();
+		contLA = new ControladorLineaAerea();
+		
 	}
 	
 	public boolean altaVenta(Venta v) {
@@ -37,12 +41,16 @@ public class ControladorVenta {
 	}
 	
 	public Venta consultarVenta(Integer id) {
-		try {
-			return ventaDAO.getVentas(id.toString());
-		}catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "La venta consultada no existe", "Error", JOptionPane.ERROR_MESSAGE);
-		}
-		return null;
+		Venta venta = ventaDAO.getVentas(id.toString());
+		Cliente cliente = contCliente.consultaPorId(venta.getCliente().getId_cliente());
+		Vuelo vuelo = contVuelo.consultarVuelo(venta.getVuelo().getId_Vuelo());
+		Aerolinea aerolinea = contLA.consultarLineaAerea(venta.getAerolinea().getId_aeroLinea().toString());
+		
+		venta.setCliente(cliente);
+		venta.setVuelo(vuelo);
+		venta.setAerolinea(aerolinea);
+		
+		return venta;
 	}
 	
 	public List<Integer> obtenerIds(){

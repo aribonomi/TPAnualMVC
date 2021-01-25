@@ -76,13 +76,13 @@ public class EventoVenta implements ActionListener{
 			//Se consulta la venta mediante el campo id	
 				Integer id = Integer.parseInt(vista.tf_id.getText());
 				Venta venta = contVenta.consultarVenta(id);
-				Cliente cliente = contCliente.consultaPorId(venta.getCliente().getId_cliente());
-				Vuelo vuelo = contVuelo.consultarVuelo(venta.getVuelo().getId_Vuelo());
-				Aerolinea aerolinea = contLA.consultarLineaAerea(venta.getAerolinea().getId_aeroLinea().toString());
-				
-				venta.setCliente(cliente);
-				venta.setVuelo(vuelo);
-				venta.setAerolinea(aerolinea);
+//				Cliente cliente = contCliente.consultaPorId(venta.getCliente().getId_cliente());
+//				Vuelo vuelo = contVuelo.consultarVuelo(venta.getVuelo().getId_Vuelo());
+//				Aerolinea aerolinea = contLA.consultarLineaAerea(venta.getAerolinea().getId_aeroLinea().toString());
+//				
+//				venta.setCliente(cliente);
+//				venta.setVuelo(vuelo);
+//				venta.setAerolinea(aerolinea);
 				
 				
 			//Se completan los campos en la consulta	

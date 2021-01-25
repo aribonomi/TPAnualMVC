@@ -71,7 +71,7 @@ public class LogicaVenta {
 	//Logica para ver si la venta existe
 	
 	public static String obtenerFormaPago(String forma_pago) {
-		//Método para determinar qué forma de pago se eligió cuando se realiza la consulta	
+	//Método para determinar qué forma de pago se eligió cuando se realiza la consulta	
 		if(forma_pago.startsWith("C")) {
 			return "Crédito";
 		}else if(forma_pago.startsWith("E")) {
@@ -84,17 +84,17 @@ public class LogicaVenta {
 	
 	
 	public static String obtenerCuotasLogica(String cuotas) {
-		//Método para determinar en cuántas cuotas pagó cuando se realiza la consulta	
-				if(cuotas.contains("3")) {
-					return "3 s/i";
-				}else if(cuotas.contains("6")) {
-					return "6 s/i";
-				}else if(cuotas.contains("12")) {
-					return "12 (10% interes)";
-				}else if(cuotas.contains("24")) {
-					return "24 (10% interes)";
-				}
-				return null;
+	//Método para determinar en cuántas cuotas pagó cuando se realiza la consulta	
+		if(cuotas.contains("3")) {
+			return "3 s/i";
+		}else if(cuotas.contains("6")) {
+			return "6 s/i";
+		}else if(cuotas.contains("12")) {
+			return "12 (10% interes)";
+		}else if(cuotas.contains("24")) {
+			return "24 (10% interes)";
+		}
+		return null;
 	}
 	
 	
