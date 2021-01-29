@@ -86,15 +86,15 @@ public class LogicaVenta {
 	public static String obtenerCuotasLogica(String cuotas) {
 	//Método para determinar en cuántas cuotas pagó cuando se realiza la consulta	
 		if(cuotas.contains("3")) {
-			return "3 s/i";
+			return "3 s/ interés";
 		}else if(cuotas.contains("6")) {
-			return "6 s/i";
+			return "6 s/ interés";
 		}else if(cuotas.contains("12")) {
-			return "12 (10% interes)";
+			return "12 (10% de interés)";
 		}else if(cuotas.contains("24")) {
-			return "24 (10% interes)";
+			return "24 (10% de interés)";
 		}
-		return null;
+		return null;	
 	}
 	
 	

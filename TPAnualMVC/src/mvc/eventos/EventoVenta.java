@@ -100,6 +100,8 @@ public class EventoVenta implements ActionListener{
 			}catch(NullPointerException np) {
 				JOptionPane.showMessageDialog(null, "Compruebe que el id ingresado exista", "Error", JOptionPane.ERROR_MESSAGE);
 				np.printStackTrace();
+			}catch(Exception ex) {
+				ex.printStackTrace();
 			}
 		
 	//Modificación		
