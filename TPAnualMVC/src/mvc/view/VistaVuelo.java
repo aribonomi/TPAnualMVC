@@ -204,10 +204,6 @@ public class VistaVuelo extends JFrame {
 		tf_fechaSalida.setToolTipText("yyyy-MM-dd");
 		contentPane.add(tf_fechaSalida, "4, 16, fill, default");
 		
-		Label label = new Label("yyyy-MM-dd");
-		label.setFont(new Font("Dialog", Font.BOLD, 12));
-		contentPane.add(label, "6, 16, center, default");
-		
 		JLabel lblNewLabel_5 = new JLabel("Fecha de llegada");
 		lblNewLabel_5.setHorizontalAlignment(SwingConstants.LEFT);
 		contentPane.add(lblNewLabel_5, "2, 18, left, default");
@@ -215,10 +211,6 @@ public class VistaVuelo extends JFrame {
 		tf_fecha_llegada = new JFormattedTextField(df);
 		tf_fecha_llegada.setToolTipText("yyyy-MM-dd");
 		contentPane.add(tf_fecha_llegada, "4, 18, fill, default");
-		
-		Label label_1 = new Label("yyyy-MM-dd");
-		label_1.setFont(new Font("Dialog", Font.BOLD, 12));
-		contentPane.add(label_1, "6, 18, center, default");
 		
 		JLabel lblNewLabel_6 = new JLabel("Tiempo de vuelo (horas)");
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
