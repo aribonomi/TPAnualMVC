@@ -1,61 +1,64 @@
 package mvc.view;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
 
 import mvc.controller.ControladorAeropuerto;
 import mvc.controller.ControladorLineaAerea;
-import mvc.controller.ControladorVuelo;
 import mvc.eventos.EventoVuelo;
 
+import com.jgoodies.forms.layout.FormSpecs;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JFormattedTextField;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
+import java.awt.Font;
+import javax.swing.JSpinner;
 import java.awt.TextArea;
+import javax.swing.SpinnerDateModel;
+import java.util.Date;
+import java.util.Calendar;
+import javax.swing.SpinnerNumberModel;
+import java.awt.Label;
+import javax.swing.DefaultComboBoxModel;
+import dao.negocio.Alianza;
+import java.awt.Button;
+import java.awt.Dimension;
 
-public class VistaVuelo extends JFrame{
-	
-	
+public class VistaVuelo extends JFrame {
 
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	
-
-	public JTextField textField_idAerolineaMod;
-	public JTextField textFieldNombreMod;
-	public JTextField textFieldApellidoMod;
-	public JTextField textFieldCantidadDeAsientos;
-	public JTextField textFieldFechaSalida;
-	public JTextField textFieldFechaLlegada;
-	public JTextField textFieldTiempoVuelo;
-	public JTextField ModtextFieldNumero;
-	public JTextField ModtextFieldCantidadAsientos;
-	public JTextField ModtextFieldFechaSalida;
-	public JTextField ModtextFieldFechaLlegada;
-	public JTextField ModtextFieldTiempoVuelo;
-	public JComboBox comboBoxAerolinea;
-	public JComboBox modcomboBoxAerolinea;
-	public JButton btnAlta;
-	public JButton btnModificar;
-	public JButton btnAtras;
-	public JButton btnEliminar;
+	public JTextField tf_Id;
+	public JComboBox comboAeropuerto_Salida;
+	public JComboBox comboAeropuerto_llegada;
+	public JFormattedTextField tf_fecha_llegada;
 	public JButton btnConsultar;
-	public JComboBox comboBoxAeropLlegada;
-	public JComboBox comboBoxAeropSalida;
-	public JComboBox modcomboBoxAeropLlegada;
-	public JComboBox modcomboBoxAeropSalida;
-	public TextArea textAreaConsulta;
-	public JLabel lblNumVuelo;
-	public JTextField textFieldVueloCons;
-
+	public JButton btnAgregar;
+	public JButton btnModificar;
+	public JFormattedTextField tf_fechaSalida;
+	public JComboBox combo_aerolinea;
+	public JLabel lblNroVuelo;
+	public TextArea textArea_resultado;
+	public JButton btnEliminar;
+	public JButton btnAtras;
+	public JTextField tf_tiempo_vuelo;
+	public JTextField tf_cantidadAsientos;
+	private JLabel lblNewLabel_9;
+	public JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -64,8 +67,8 @@ public class VistaVuelo extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VistaVuelo window = new VistaVuelo();
-					window.setVisible(true);
+					VistaVuelo frame = new VistaVuelo();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -74,210 +77,164 @@ public class VistaVuelo extends JFrame{
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public VistaVuelo() {
-		setTitle("Vuelo");
+	
+		setTitle("Gesti\u00F3n de vuelos");
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(5, 10, 650, 400);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 909, 360);
+		setBounds(100, 100, 640, 357);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		JLabel labelArgegarAerolinea = new JLabel("Agregar Vuelo");
-		labelArgegarAerolinea.setBounds(10, 0, 277, 32);
-		labelArgegarAerolinea.setHorizontalAlignment(SwingConstants.CENTER);
-		labelArgegarAerolinea.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		contentPane.add(labelArgegarAerolinea);
+		scrollPane.setPreferredSize(new Dimension(715, 357));
+		scrollPane.setViewportView(contentPane);
 		
-		JLabel labelNombre = new JLabel("Numero");
-		labelNombre.setBounds(10, 36, 61, 14);
-		contentPane.add(labelNombre);
+		setContentPane(scrollPane);
+		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				FormSpecs.DEFAULT_COLSPEC,
+				FormSpecs.RELATED_GAP_COLSPEC,
+				ColumnSpec.decode("default:grow"),},
+			new RowSpec[] {
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				RowSpec.decode("default:grow"),
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,}));
 		
-		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(563, 57, 89, 23);
-		contentPane.add(btnEliminar);
-		//btnEliminar.addActionListener(new EventoVuelo(this));
+		JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance().createTitle("Vuelos");
+		lblNewJgoodiesTitle.setFont(new Font("Tahoma", Font.BOLD, 20));
+		contentPane.add(lblNewJgoodiesTitle, "4, 2, 5, 1, center, default");
 		
-		JLabel lblModificarAerolinea = new JLabel("Modificar Vuelo");
-		lblModificarAerolinea.setHorizontalAlignment(SwingConstants.CENTER);
-		lblModificarAerolinea.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		lblModificarAerolinea.setBounds(285, 0, 367, 32);
-		contentPane.add(lblModificarAerolinea);
+		JLabel lblNewLabel_8 = new JLabel("ID");
+		contentPane.add(lblNewLabel_8, "2, 6, left, default");
 		
-		btnAlta = new JButton("Agregar");
-		btnAlta.setBounds(148, 239, 89, 23);
-		contentPane.add(btnAlta);
-		//btnAlta.addActionListener(new EventoVuelo(this));
-		
-		
-		btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(429, 271, 89, 23);
-		contentPane.add(btnModificar);
-		//btnModificar.addActionListener(new EventoVuelo(this));
-		
-		btnAtras = new JButton("Atras");
-		btnAtras.setBounds(563, 271, 89, 23);
-		contentPane.add(btnAtras);
-		//btnAtras.addActionListener(new EventoVuelo(this));
-		
-		JLabel lblCantidadDeAsientos = new JLabel("Cantidad de Asientos");
-		lblCantidadDeAsientos.setBounds(10, 61, 123, 14);
-		contentPane.add(lblCantidadDeAsientos);
-		
-		JLabel lblAeropuertoDeLlegada = new JLabel("Aeropuerto de Llegada");
-		lblAeropuertoDeLlegada.setBounds(10, 86, 123, 14);
-		contentPane.add(lblAeropuertoDeLlegada);
-		
-		JLabel lblAeropuertoDeSalida = new JLabel("Aeropuerto de Salida");
-		lblAeropuertoDeSalida.setBounds(10, 111, 123, 14);
-		contentPane.add(lblAeropuertoDeSalida);
-		
-		JLabel lblFechaDeSalida = new JLabel("Fecha de Salida");
-		lblFechaDeSalida.setBounds(10, 136, 123, 14);
-		contentPane.add(lblFechaDeSalida);
-		
-		JLabel lblFechaDeLlegada = new JLabel("Fecha de Llegada");
-		lblFechaDeLlegada.setBounds(10, 161, 123, 14);
-		contentPane.add(lblFechaDeLlegada);
-		
-		JLabel lblTiempoDeVuelo = new JLabel("Tiempo de Vuelo");
-		lblTiempoDeVuelo.setBounds(10, 186, 123, 14);
-		contentPane.add(lblTiempoDeVuelo);
-		
-		JLabel lblAerolinea = new JLabel("Aerolinea");
-		lblAerolinea.setBounds(10, 212, 123, 14);
-		contentPane.add(lblAerolinea);
-		
-		textFieldCantidadDeAsientos = new JTextField();
-		textFieldCantidadDeAsientos.setColumns(10);
-		textFieldCantidadDeAsientos.setBounds(133, 58, 141, 19);
-		contentPane.add(textFieldCantidadDeAsientos);
-		
-		textFieldFechaSalida = new JTextField();
-		textFieldFechaSalida.setColumns(10);
-		textFieldFechaSalida.setBounds(133, 133, 141, 19);
-		contentPane.add(textFieldFechaSalida);
-		
-		textFieldFechaLlegada = new JTextField();
-		textFieldFechaLlegada.setColumns(10);
-		textFieldFechaLlegada.setBounds(133, 158, 141, 19);
-		contentPane.add(textFieldFechaLlegada);
-		
-		textFieldTiempoVuelo = new JTextField();
-		textFieldTiempoVuelo.setColumns(10);
-		textFieldTiempoVuelo.setBounds(134, 184, 141, 19);
-		contentPane.add(textFieldTiempoVuelo);
-		
-		JLabel lblId = new JLabel("ID");
-		lblId.setBounds(285, 36, 51, 14);
-		contentPane.add(lblId);
-		
-		JLabel label = new JLabel("Numero");
-		label.setBounds(285, 61, 51, 14);
-		contentPane.add(label);
-		
-		JLabel label_1 = new JLabel("Cantidad de Asientos");
-		label_1.setBounds(285, 86, 123, 14);
-		contentPane.add(label_1);
-		
-		JLabel label_2 = new JLabel("Aeropuerto de Salida");
-		label_2.setBounds(285, 136, 123, 14);
-		contentPane.add(label_2);
-		
-		JLabel label_3 = new JLabel("Aeropuerto de Llegada");
-		label_3.setBounds(285, 111, 123, 14);
-		contentPane.add(label_3);
-		
-		JLabel label_4 = new JLabel("Fecha de Salida");
-		label_4.setBounds(285, 161, 113, 14);
-		contentPane.add(label_4);
-		
-		JLabel label_5 = new JLabel("Fecha de Llegada");
-		label_5.setBounds(285, 187, 113, 14);
-		contentPane.add(label_5);
-		
-		JLabel label_6 = new JLabel("Tiempo de Vuelo");
-		label_6.setBounds(285, 212, 113, 14);
-		contentPane.add(label_6);
-		
-		JLabel label_7 = new JLabel("Aerolinea");
-		label_7.setBounds(285, 243, 113, 14);
-		contentPane.add(label_7);
-		
-		ModtextFieldNumero = new JTextField();
-		ModtextFieldNumero.setColumns(10);
-		ModtextFieldNumero.setBounds(409, 58, 141, 19);
-		contentPane.add(ModtextFieldNumero);
-		
-		ModtextFieldCantidadAsientos = new JTextField();
-		ModtextFieldCantidadAsientos.setColumns(10);
-		ModtextFieldCantidadAsientos.setBounds(409, 83, 141, 19);
-		contentPane.add(ModtextFieldCantidadAsientos);
-		
-		ModtextFieldFechaSalida = new JTextField();
-		ModtextFieldFechaSalida.setColumns(10);
-		ModtextFieldFechaSalida.setBounds(409, 158, 141, 19);
-		contentPane.add(ModtextFieldFechaSalida);
-		
-		ModtextFieldFechaLlegada = new JTextField();
-		ModtextFieldFechaLlegada.setColumns(10);
-		ModtextFieldFechaLlegada.setBounds(409, 184, 141, 19);
-		contentPane.add(ModtextFieldFechaLlegada);
-		
-		ModtextFieldTiempoVuelo = new JTextField();
-		ModtextFieldTiempoVuelo.setColumns(10);
-		ModtextFieldTiempoVuelo.setBounds(409, 209, 141, 19);
-		contentPane.add(ModtextFieldTiempoVuelo);
-		
-		comboBoxAerolinea = new JComboBox(new ControladorLineaAerea().obtenerNombres().toArray());
-		comboBoxAerolinea.setBounds(134, 210, 141, 19);
-		contentPane.add(comboBoxAerolinea);
-		
-		modcomboBoxAerolinea = new JComboBox(new ControladorLineaAerea().obtenerNombres().toArray());
-		modcomboBoxAerolinea.setBounds(409, 240, 141, 20);
-		contentPane.add(modcomboBoxAerolinea);
+		tf_Id = new JTextField();
+		contentPane.add(tf_Id, "4, 6, fill, default");
+		tf_Id.setColumns(10);
 		
 		btnConsultar = new JButton("Consultar");
-		btnConsultar.setBounds(563, 32, 89, 23);
-		contentPane.add(btnConsultar);
-		//btnConsultar.addActionListener(new EventoVuelo(this));
+		contentPane.add(btnConsultar, "6, 6");
+		btnConsultar.addActionListener(new EventoVuelo(this));
 		
-		comboBoxAeropLlegada = new JComboBox(new ControladorAeropuerto().obtenerNombres().toArray());
-		comboBoxAeropLlegada.setBounds(133, 85, 141, 17);
-		contentPane.add(comboBoxAeropLlegada);
+		btnAtras = new JButton("Atr\u00E1s");
+		contentPane.add(btnAtras, "8, 6");
+		btnAtras.addActionListener(new EventoVuelo(this));
 		
-		comboBoxAeropSalida = new JComboBox(new ControladorAeropuerto().obtenerNombres().toArray());
-		comboBoxAeropSalida.setBounds(133, 110, 141, 17);
-		contentPane.add(comboBoxAeropSalida);
+		JLabel lblNewLabel_1 = new JLabel("N\u00FAmero de vuelo");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
+		contentPane.add(lblNewLabel_1, "2, 8, left, default");
 		
-		modcomboBoxAeropSalida = new JComboBox(new ControladorAeropuerto().obtenerNombres().toArray());
-		modcomboBoxAeropSalida.setBounds(409, 135, 141, 17);
-		contentPane.add(modcomboBoxAeropSalida);
+		lblNroVuelo = new JLabel("");
+		contentPane.add(lblNroVuelo, "4, 8, center, default");
 		
-		modcomboBoxAeropLlegada = new JComboBox(new ControladorAeropuerto().obtenerNombres().toArray());
-		modcomboBoxAeropLlegada.setBounds(409, 109, 141, 19);
-		contentPane.add(modcomboBoxAeropLlegada);
+		btnModificar = new JButton("Modificar");
+		contentPane.add(btnModificar, "6, 8");
+		btnModificar.addActionListener(new EventoVuelo(this));
 		
-		textAreaConsulta = new TextArea();
-		textAreaConsulta.setBounds(594, 113, 289, 140);
-		contentPane.add(textAreaConsulta);
+		JLabel lblNewLabel = new JLabel("Cantidad de asientos");
+		contentPane.add(lblNewLabel, "2, 10, left, default");
 		
-		JLabel lblNewLabel = new JLabel("Datos completos");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(594, 96, 289, 14);
-		contentPane.add(lblNewLabel);
+		tf_cantidadAsientos = new JTextField();
+		contentPane.add(tf_cantidadAsientos, "4, 10, fill, default");
+		tf_cantidadAsientos.setColumns(10);
 		
-		lblNumVuelo = new JLabel("");
-		lblNumVuelo.setBounds(133, 36, 141, 14);
-		contentPane.add(lblNumVuelo);
+		btnAgregar = new JButton("Agregar");
+		contentPane.add(btnAgregar, "6, 10");
+		btnAgregar.addActionListener(new EventoVuelo(this));
 		
-		textFieldVueloCons = new JTextField();
-		textFieldVueloCons.setBounds(409, 33, 141, 17);
-		contentPane.add(textFieldVueloCons);
-		textFieldVueloCons.setColumns(10);
+		JLabel lblNewLabel_2 = new JLabel("Aeropuerto de llegada");
+		contentPane.add(lblNewLabel_2, "2, 12, left, default");
 		
+		comboAeropuerto_llegada = new JComboBox(new ControladorAeropuerto().obtenerNombres().toArray());
+		contentPane.add(comboAeropuerto_llegada, "4, 12, fill, default");
+		
+		btnEliminar = new JButton("Eliminar");
+		contentPane.add(btnEliminar, "6, 12");
+		btnEliminar.addActionListener(new EventoVuelo(this));
+		
+		lblNewLabel_9 = new JLabel("Datos completos");
+		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		contentPane.add(lblNewLabel_9, "10, 12");
+		
+		JLabel lblNewLabel_3 = new JLabel("Aeropuerto de salida");
+		contentPane.add(lblNewLabel_3, "2, 14, left, default");
+		
+		comboAeropuerto_Salida = new JComboBox(new ControladorAeropuerto().obtenerNombres().toArray());
+		contentPane.add(comboAeropuerto_Salida, "4, 14, fill, default");
+		
+		JLabel lblNewLabel_4 = new JLabel("Fecha de salida");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.LEFT);
+		contentPane.add(lblNewLabel_4, "2, 16, left, default");
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
+		tf_fechaSalida = new JFormattedTextField(df);
+		contentPane.add(tf_fechaSalida, "4, 16, fill, default");
+		
+		Label label = new Label("yyyy-MM-dd");
+		label.setFont(new Font("Dialog", Font.BOLD, 12));
+		contentPane.add(label, "6, 16, center, default");
+		
+		JLabel lblNewLabel_5 = new JLabel("Fecha de llegada");
+		lblNewLabel_5.setHorizontalAlignment(SwingConstants.LEFT);
+		contentPane.add(lblNewLabel_5, "2, 18, left, default");
+		
+		tf_fecha_llegada = new JFormattedTextField(df);
+		contentPane.add(tf_fecha_llegada, "4, 18, fill, default");
+		
+		Label label_1 = new Label("yyyy-MM-dd");
+		label_1.setFont(new Font("Dialog", Font.BOLD, 12));
+		contentPane.add(label_1, "6, 18, center, default");
+		
+		JLabel lblNewLabel_6 = new JLabel("Tiempo de vuelo (horas)");
+		lblNewLabel_6.setHorizontalAlignment(SwingConstants.LEFT);
+		contentPane.add(lblNewLabel_6, "2, 20, right, default");
+		
+		textArea_resultado = new TextArea();
+		contentPane.add(textArea_resultado, "10, 13, 1, 8");
+		
+		tf_tiempo_vuelo = new JTextField();
+		contentPane.add(tf_tiempo_vuelo, "4, 20, fill, default");
+		tf_tiempo_vuelo.setColumns(10);
+		
+		JLabel lblNewLabel_7 = new JLabel("Aerol\u00EDnea");
+		lblNewLabel_7.setHorizontalAlignment(SwingConstants.LEFT);
+		contentPane.add(lblNewLabel_7, "2, 22, left, default");
+		
+		combo_aerolinea = new JComboBox(new ControladorLineaAerea().obtenerNombres().toArray());
+		contentPane.add(combo_aerolinea, "4, 22, fill, default");
 	}
+
 }

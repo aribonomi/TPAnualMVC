@@ -8,10 +8,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		VistaPrincipal2 vistaP = new VistaPrincipal2();
+		VistaPrincipal vistaP = new VistaPrincipal();
 		vistaP.setVisible(true);
-
-
 	
 	}
 	

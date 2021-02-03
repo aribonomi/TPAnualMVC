@@ -9,18 +9,17 @@ import dao.negocio.*;
 import dao.negocio.Vuelo;
 import mvc.controller.*;
 import mvc.view.VistaVenta;
-import mvc.view.VistaVenta2;
 
 public class EventoVenta implements ActionListener{
 	
 //Se llama a los controladores y la vista de la venta	
-	VistaVenta2 vista;
+	VistaVenta vista;
 	ControladorCliente contCliente;
 	ControladorVuelo contVuelo;
 	ControladorLineaAerea contLA;
 	ControladorVenta contVenta;
 
-	public EventoVenta(VistaVenta2 vista) {
+	public EventoVenta(VistaVenta vista) {
 		super();
 		this.vista = vista;
 		contCliente = new ControladorCliente();

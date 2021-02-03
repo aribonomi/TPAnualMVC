@@ -15,9 +15,9 @@ public class EventoAerolinea implements ActionListener{
 //Se llama a los controladores y la vista de la aerolínea	
 	ControladorLineaAerea contLA;
 	
-	VistaAerolinea2 vista;
+	VistaAerolinea vista;
 	
-	public EventoAerolinea(VistaAerolinea2 vista) {
+	public EventoAerolinea(VistaAerolinea vista) {
 		this.vista = vista;
 		contLA = new ControladorLineaAerea();
 		

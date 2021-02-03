@@ -7,13 +7,13 @@ import javax.swing.JOptionPane;
 
 import dao.negocio.*;
 import mvc.controller.*;
-import mvc.view.VistaCliente2;
+import mvc.view.VistaCliente;
 
 public class EventoCliente implements ActionListener{
 	
 	
 //Se llama a los controladores y la vista del cliente	
-	VistaCliente2 vista;
+	VistaCliente vista;
 	ControladorCliente contCliente;
 	ControladorDireccion contDireccion;
 	ControladorTelefono contTelefono;
@@ -23,7 +23,7 @@ public class EventoCliente implements ActionListener{
 	ControladorPais contPais;
 	ControladorProvincia contProvincia;
 	
-	public EventoCliente(VistaCliente2 vista) {
+	public EventoCliente(VistaCliente vista) {
 		this.vista = vista;
 		contCliente = new ControladorCliente();
 		contDireccion = new ControladorDireccion();

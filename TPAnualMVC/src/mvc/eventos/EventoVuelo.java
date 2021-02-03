@@ -10,12 +10,11 @@ import dao.negocio.Aeropuerto;
 import dao.negocio.Vuelo;
 import mvc.controller.*;
 import mvc.view.VistaVuelo;
-import mvc.view.VistaVuelo2;
 
 public class EventoVuelo implements ActionListener{
 	
 //Llama a los controladores y a la vista	
-	VistaVuelo2 vista;
+	VistaVuelo vista;
 	ControladorVuelo contVuelo;
 	ControladorAeropuerto contAeropuerto;
 	ControladorLineaAerea contLA;
@@ -24,7 +23,7 @@ public class EventoVuelo implements ActionListener{
 	
 	
 
-	public EventoVuelo(VistaVuelo2 vista) {
+	public EventoVuelo(VistaVuelo vista) {
 		super();
 		this.vista = vista;
 		contVuelo = new ControladorVuelo();
