@@ -140,27 +140,6 @@ public class EventoCliente implements ActionListener{
 				
 				Cliente c = contCliente.consultaPorId(id);
 				
-			//Se consultan los objetos contenidos dentro del cliente mediante el cliente consultado	
-//				Direccion d = contDireccion.consultar(c.getdireccion().getId_direccion().toString());
-//				d.setPais(contPais.consultaPorID(d.getPais().getId_pais()));
-//				d.setProvincia(contProvincia.consultarProvincia(d.getProvincia().getId_provincia().toString()));
-//				
-//				Telefono t = contTelefono.consultarTelefono(c.gettelefono().getId_Telefono().toString());
-//				
-//				Pasaporte p = contPasaporte.consultarPasaporte(c.getpasaporte().getId_Pasaporte().toString());
-//				p.setPaisEmision(contPais.consultaPorID(p.getPaisEmision().getId_pais()));
-//				
-//				PasajeroFrecuente pf = contPF.consultarPasajeroFrecuente(c.getpasajeroFrecuente().getId_pasajeroFrecuente().toString());
-//				
-//				Aerolinea a = contLA.consultarLineaAerea(pf.getAerolinea().getId_aeroLinea().toString());
-//				
-//				c.setId_direccion(d);
-//				c.setId_telefono(t);
-//				c.setId_pasaporte(p);
-//				c.setpasajeroFrecuente(pf);
-//				c.getpasajeroFrecuente().setAerolinea(a);
-
-				
 			//Se setean los datos del cliente mediante las consultas hechas	
 				vista.tf_nombre.setText(c.getNombre());
 				vista.tf_apellido.setText(c.getApellido());

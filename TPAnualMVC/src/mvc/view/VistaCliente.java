@@ -69,10 +69,10 @@ public class VistaCliente extends JFrame {
 	private JLabel lblNewLabel_29;
 	public JTextField tf_dni;
 	public JFormattedTextField tf_fecha_nacimiento;
-	public JTextField tf_otroPais;
+	public JTextField tf_otraProvincia;
 	private JLabel lblNewLabel_30;
 	private JLabel lblNewLabel_31;
-	public JTextField tf_otraProvincia;
+	public JTextField tf_otroPais;
 
 	/**
 	 * Launch the application.
@@ -300,9 +300,9 @@ public class VistaCliente extends JFrame {
 		lblNewLabel_30 = new JLabel("Otro");
 		contentPane.add(lblNewLabel_30, "6, 28, right, default");
 		
-		tf_otroPais = new JTextField();
-		contentPane.add(tf_otroPais, "8, 28, fill, default");
-		tf_otroPais.setColumns(10);
+		tf_otraProvincia = new JTextField();
+		contentPane.add(tf_otraProvincia, "8, 28, fill, default");
+		tf_otraProvincia.setColumns(10);
 		
 		JLabel lblNewLabel_12 = new JLabel("Pa\u00EDs");
 		contentPane.add(lblNewLabel_12, "2, 30, left, default");
@@ -313,9 +313,9 @@ public class VistaCliente extends JFrame {
 		lblNewLabel_31 = new JLabel("Otro");
 		contentPane.add(lblNewLabel_31, "6, 30, right, default");
 		
-		tf_otraProvincia = new JTextField();
-		contentPane.add(tf_otraProvincia, "8, 30, fill, default");
-		tf_otraProvincia.setColumns(10);
+		tf_otroPais = new JTextField();
+		contentPane.add(tf_otroPais, "8, 30, fill, default");
+		tf_otroPais.setColumns(10);
 		
 		JLabel lblNewLabel_13 = new JLabel("Tel\u00E9fono");
 		lblNewLabel_13.setFont(new Font("Tahoma", Font.BOLD, 11));
