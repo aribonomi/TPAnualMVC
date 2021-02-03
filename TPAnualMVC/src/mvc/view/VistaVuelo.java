@@ -201,6 +201,7 @@ public class VistaVuelo extends JFrame {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		
 		tf_fechaSalida = new JFormattedTextField(df);
+		tf_fechaSalida.setToolTipText("yyyy-MM-dd");
 		contentPane.add(tf_fechaSalida, "4, 16, fill, default");
 		
 		Label label = new Label("yyyy-MM-dd");
@@ -212,6 +213,7 @@ public class VistaVuelo extends JFrame {
 		contentPane.add(lblNewLabel_5, "2, 18, left, default");
 		
 		tf_fecha_llegada = new JFormattedTextField(df);
+		tf_fecha_llegada.setToolTipText("yyyy-MM-dd");
 		contentPane.add(tf_fecha_llegada, "4, 18, fill, default");
 		
 		Label label_1 = new Label("yyyy-MM-dd");

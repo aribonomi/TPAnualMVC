@@ -370,12 +370,14 @@ public class VistaCliente extends JFrame {
 		contentPane.add(lblNewLabel_20, "2, 46, left, default");
 		
 		tf_fechaEmision = new JFormattedTextField(df);
+		tf_fechaEmision.setToolTipText("yyyy-MM-dd");
 		contentPane.add(tf_fechaEmision, "4, 46, fill, default");
 		
 		JLabel lblNewLabel_21 = new JLabel("Fecha de vencimiento");
 		contentPane.add(lblNewLabel_21, "2, 48, right, default");
 		
 		tf_fechaVencimiento = new JFormattedTextField(df);
+		tf_fechaVencimiento.setToolTipText("yyyy-MM-dd");
 		contentPane.add(tf_fechaVencimiento, "4, 48, fill, default");
 		
 		JLabel lblNewLabel_22 = new JLabel("Pa\u00EDs de emisi\u00F3n");

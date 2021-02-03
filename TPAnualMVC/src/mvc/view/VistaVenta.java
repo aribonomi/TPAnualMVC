@@ -170,6 +170,7 @@ public class VistaVenta extends JFrame {
 		
 		
 		tf_fecha = new JFormattedTextField(df);
+		tf_fecha.setToolTipText("yyyy-MM-dd");
 		contentPane.add(tf_fecha, "4, 12, fill, default");
 		
 		JLabel lblNewLabel_6 = new JLabel("Forma de pago");
